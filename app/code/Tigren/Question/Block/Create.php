@@ -9,23 +9,22 @@ namespace Tigren\Question\Block;
 
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
+use Tigren\Question\Model\ResourceModel\Post\CollectionFactory;
 
-
-class Display extends Template
+class Create extends Template
 {
+    protected $collection;
     /**
      * @param Context $context
      */
-    public function __construct(Context $context)
+    public function __construct(Context $context, CollectionFactory $collectionFactory)
     {
+        $this->collection = $collectionFactory;
         parent::__construct($context);
     }
 
-    /**
-     * @return \Magento\Framework\Phrase
-     */
-    public function sayhi()
+    public function getCollection()
     {
-        return __('Hello World!!!!');
+        return $this->collection->create();
     }
 }

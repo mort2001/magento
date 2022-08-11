@@ -1,0 +1,29 @@
+<div id="custom_form">
+    <form class="form form-edit-account"
+          action="<?= $this->getUrl('question/create/save') ?>"
+          method="post" id="form-validate"
+          id="custom_form"
+          enctype="multipart/form-data"
+          data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+          autocomplete="off">
+        <fieldset class="fieldset info">
+            <legend class="legend"><span><?= $block->escapeHtml(__('Create Question')) ?></span></legend>
+            <div class="field title required">
+                <label class="label" for="title"><span><?php echo __('Title') ?></span></label>
+                <div class="control">
+                    <input name="title" id="title" title="<?php echo __('Title') ?>" class="input-text" type="text"
+                           required/>
+                </div>
+            </div>
+            <div class="field content required">
+                <label class="label" for="content"><span><?php echo __('Content') ?></span></label>
+                <div class="control">
+                    <textarea name="content" id="content" title="<?php echo __('What do you think?') ?>"
+                              class="input-text" cols="5" rows="3" data-validate="{required:true}" placeholder="Show me what do you want to talk?"></textarea>
+                </div>
+            </div>
+            <button type="submit" title="<?php echo __('Submit') ?>" class="action submit primary" id="custom_btn">
+                <span><?php echo __('Submit') ?></span>
+        </fieldset>
+    </form>
+</div>

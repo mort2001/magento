@@ -5,19 +5,20 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-namespace Tigren\Question\Controller\Index;
+namespace Tigren\Question\Controller\Create;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 
-class Display extends Action
+class Index extends Action
 {
     protected $_pageFactory;
 
     public function __construct(
         Context     $context,
-        PageFactory $pageFactory)
+        PageFactory $pageFactory
+    )
     {
         $this->_pageFactory = $pageFactory;
         return parent::__construct($context);
