@@ -45,5 +45,10 @@ if ($collection->count()) {
     <?php
 }
 ?>
+<form action="<?= $this->getUrl('question/create/index') ?>" >
+    <button type="submit" title="<?php echo __('Create Question') ?>"
+            class="action submit primary" id="custom_btn">
+        <span><?php echo __('Create Question') ?></span>
+</form>
 
 
