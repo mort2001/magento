@@ -8,9 +8,9 @@
 namespace Tigren\Question\Controller\Adminhtml\Create;
 
 use Magento\Backend\App\Action;
-use Magento\Backend\Model\View\Result\Page;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\View\Result\Page;
 
 /**
  * Class Form
@@ -19,7 +19,7 @@ use Magento\Framework\Controller\ResultInterface;
 class Form extends Action
 {
     /**
-     * @return ResultInterface&\Magento\Framework\View\Result\Page
+     * @return ResultInterface&Page
      */
     public function execute()
     {

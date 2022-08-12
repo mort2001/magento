@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
-    <menu>
-        <add id="Tigren_Question::question" title="tigren" module="Tigren_Question" sortOrder="20" resource="Tigren_Question::question" action="question/create/index"/>
-    </menu>
-</config>
