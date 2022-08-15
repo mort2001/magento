@@ -1,0 +1,35 @@
+<?php
+/*
+ * @author    Tigren Solutions <info@tigren.com>
+ * @copyright Copyright (c) 2022 Tigren Solutions <https://www.tigren.com>. All rights reserved.
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+
+/**
+ * @var Tigren\Question\Block\Edit $block
+ */
+$getQuestion = $block->getQuestion();
+?>
+<head>
+    <title>Form Edit Question</title>
+</head>
+
+<div class="form-question">
+    <h2>Form Edit Question</h2>
+    <button class="button-home"><a href="/question/create/listquestion">View The Question</a></button>
+    <form action="<?= $block->escapeUrl($block->getUrl("*/*/update")) ?>.?id=<?= $getQuestion['entity_id'] ?>"
+          method="post">
+
+        <div class="item-form">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" value="<?= $getQuestion['title'] ?>">
+        </div>
+        <div class="item-form">
+            <label for="content">Content</label>
+            <textarea class="content" name="content" id="content"><?= $getQuestion['content'] ?></textarea>
+        </div>
+        <div class="button-confirm">
+            <input class="button" type="submit" name="submit" value="Confirm">
+        </div>
+    </form>
+</div>

@@ -9,13 +9,16 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="tigren_question_create_listing_data_source" xsi:type="string">
-                    Tigren\Question\Model\ResourceModel\Post\Grid\Collection
+                <item name="question_create_listing_data_source" xsi:type="string">
+                    Tigren\Question\Model\ResourceModel\Post\Collection
+                </item>
+                <item name="create_question_data_source" xsi:type="string">
+                    Tigren\Question\Model\ResourceModel\Post\Collection
                 </item>
             </argument>
         </arguments>
     </type>
-    <virtualType name="Tigren\Question\Model\ResourceModel\Post\Grid\Collection"
+    <virtualType name="Tigren\Question\Model\ResourceModel\Post\Collection"
                  type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
             <argument name="mainTable" xsi:type="string">tigren_customer_question</argument>

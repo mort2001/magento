@@ -18,6 +18,7 @@ if ($collection->count()) {
                 <th scope="col" class="col email"><?php echo __('Content') ?></th>
                 <th scope="col" class="col createat"><?php echo __('Created At') ?></th>
                 <th scope="col" class="col author_id"><?php echo __('Author ID') ?></th>
+                <th scope="col" colspan="2" class="col actions"><?php echo __('Actions') ?></th>
             </tr>
             </thead>
             <tbody>
@@ -36,7 +37,13 @@ if ($collection->count()) {
                     <td data-th="<?= $block->escapeHtml(__('Created At')) ?>"
                         class="col title"><?php echo date('Y-m-d', strtotime($item->getCreatedAt())); ?></td>
                     <td data-th="<?= $block->escapeHtml(__('Author ID')) ?>" class="col author id">
-                        <?php echo $item->getAuthor_id() ?>
+                        <?php echo $item->getAuthor_id() ?></td>
+                    <td>
+                        <button><a href="<?= $block->getUrl("*/*/edit") ?>?id=<?= $item['entity_id'] ?>" )>Edit</a>
+                        </button>
+                        <button><a href="<?= $block->getUrl("*/*/delete") ?>?id=<?= $item['entity_id'] ?>" )
+                                   onclick="return confirm('Do you want delete the question ?')">Delete</a></button>
+                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -45,7 +52,7 @@ if ($collection->count()) {
     <?php
 }
 ?>
-<form action="<?= $this->getUrl('question/create/index') ?>" >
+<form action="<?= $this->getUrl('question/create/index') ?>">
     <button type="submit" title="<?php echo __('Create Question') ?>"
             class="action submit primary" id="custom_btn">
         <span><?php echo __('Create Question') ?></span>
