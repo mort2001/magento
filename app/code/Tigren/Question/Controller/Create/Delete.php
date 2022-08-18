@@ -7,9 +7,11 @@
 
 namespace Tigren\Question\Controller\Create;
 
+use Magento\Customer\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\View\Result\PageFactory;
 use Tigren\Question\Model\PostFactory;
 use Tigren\Question\Model\ResourceModel\Post\CollectionFactory;
@@ -19,6 +21,7 @@ use Tigren\Question\Model\ResourceModel\Post\CollectionFactory;
  */
 class Delete extends Action
 {
+    protected $_session;
     /**
      * @var PageFactory
      */
@@ -42,9 +45,11 @@ class Delete extends Action
         Context           $context,
         PageFactory       $_pageFactory,
         PostFactory       $postFactory,
-        CollectionFactory $collectionFactory
+        CollectionFactory $collectionFactory,
+        Session           $session
     )
     {
+        $this->_session = $session;
         $this->_pageFactory = $_pageFactory;
         $this->postFactory = $postFactory;
         $this->collectionFactory = $collectionFactory;
@@ -52,19 +57,23 @@ class Delete extends Action
     }
 
     /**
-     * @return ResultInterface
+     * @return Redirect
      */
     public function execute()
     {
-        $id = $this->getRequest()->getParams()['id'];
-        $post = $this->postFactory->create()->load($id);
+        if ($this->_session->isLoggedIn()) {
+            $id = $this->getRequest()->getParams()['id'];
+            $post = $this->postFactory->create()->load($id);
 
-        if ($post->getData('entity_id')) {
-            $post->delete();
-            $this->messageManager->addSuccess('Delete Success');
+            if ($post->getData('entity_id')) {
+                $post->delete();
+                $this->messageManager->addSuccess('Delete Success');
+            } else {
+                $this->messageManager->addError('Error');
+            }
+            return $this->resultRedirectFactory->create()->setPath('question/create/listquestion');
         } else {
-            $this->messageManager->addError('Error');
+            return $this->_redirect('customer/account/login');
         }
-        return $this->resultRedirectFactory->create()->setPath('question/create/listquestion');
     }
 }

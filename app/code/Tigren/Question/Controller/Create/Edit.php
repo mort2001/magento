@@ -7,48 +7,44 @@
 
 namespace Tigren\Question\Controller\Create;
 
-use Exception;
+use Magento\Customer\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-use Magento\Framework\Controller\ResultInterface;
-use Magento\Framework\View\Result\Page;
-use Magento\Framework\View\Result\PageFactory;
-use Tigren\Question\Model\PostFactory;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\ResultFactory;
 
 /**
- *
+ * Class Edit
+ * @package Tigren\Question\Controller\Create
  */
 class Edit extends Action
 {
     /**
-     * @var PostFactory
+     * @var Session
      */
-    protected $postFactory;
+    protected $_session;
 
     /**
-     * @param PostFactory $postFactory
      * @param Context $context
-     * @param PageFactory $pageFactory
+     * @param Session $session
      */
-    public function __construct(
-        PostFactory $postFactory,
-        Context     $context,
-        PageFactory $pageFactory
-    )
+    public function __construct(Context $context, Session $session)
     {
-        $this->postFactory = $postFactory;
-        $this->pageFactory = $pageFactory;
-        return parent::__construct($context);
+        $this->_session = $session;
+        parent::__construct($context);
     }
 
     /**
-     * @return Page|ResultInterface
-     * @throws Exception
+     * @return ResponseInterface
      */
     public function execute()
     {
-        return $this->pageFactory->create();
+        if ($this->_session->isLoggedIn()) {
+            $result = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
+            $result->getConfig()->getTitle();
+            return $result;
+        } else {
+            return $this->_redirect('customer/account/login');
+        }
     }
-
-
 }

@@ -6,6 +6,7 @@
           enctype="multipart/form-data"
           data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
           autocomplete="off">
+        <button><a href="<?= $block->getUrl('*/*/listquestion') ?>">View All Question(s)</a></button>
         <fieldset class="fieldset info">
             <legend class="legend"><span><?= $block->escapeHtml(__('Create Question')) ?></span></legend>
             <div class="field title required">

@@ -10,26 +10,40 @@
  */
 $getQuestion = $block->getQuestion();
 ?>
+
 <head>
     <title>Form Edit Question</title>
 </head>
 
-<div class="form-question">
-    <h2>Form Edit Question</h2>
-    <button class="button-home"><a href="/question/create/listquestion">View The Question</a></button>
-    <form action="<?= $block->escapeUrl($block->getUrl("*/*/update")) ?>.?id=<?= $getQuestion['entity_id'] ?>"
-          method="post">
-
-        <div class="item-form">
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" value="<?= $getQuestion['title'] ?>">
-        </div>
-        <div class="item-form">
-            <label for="content">Content</label>
-            <textarea class="content" name="content" id="content"><?= $getQuestion['content'] ?></textarea>
-        </div>
-        <div class="button-confirm">
-            <input class="button" type="submit" name="submit" value="Confirm">
-        </div>
+<div id="custom_form">
+    <form class="form form-edit-account"
+          action="<?= $block->escapeUrl($block->getUrl("*/*/update")) ?>.?id=<?= $getQuestion['entity_id'] ?>"
+          method="post"
+          id="custom_form"
+          enctype="multipart/form-data"
+          data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+          autocomplete="off">
+        <button><a href="<?= $block->getUrl('*/*/listquestion') ?>">View All Question(s)</a></button>
+        <fieldset class="fieldset info">
+            <legend class="legend"><span><?= $block->escapeHtml(__('Edit Question Form')) ?></span></legend>
+            <div class="field title required">
+                <label class="label" for="title"><span><?php echo __('Title') ?></span></label>
+                <div class="control">
+                    <input name="title" id="title" title="<?php echo __('Title') ?>" class="input-text" type="text"
+                           value="<?= $getQuestion['title'] ?>"/>
+                </div>
+            </div>
+            <div class="field content required">
+                <label class="label" for="title"><span><?php echo __('Content') ?></span></label>
+                <div class="control">
+                    <input name="content" id="content" title="<?php echo __('Content') ?>" class="input-text"
+                           type="text"
+                           value="<?= $getQuestion['content'] ?>"/>
+                </div>
+            </div>
+            <button type="submit" title="<?php echo __('Submit') ?>" class="action submit primary" id="custom_btn">
+                <span><?php echo __('Submit') ?></span>
+            </button>
+        </fieldset>
     </form>
 </div>

@@ -1,7 +1,8 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
+/*
+ * @author    Tigren Solutions <info@tigren.com>
+ * @copyright Copyright (c) 2022 Tigren Solutions <https://www.tigren.com>. All rights reserved.
+ * @license   Open Software License ("OSL") v. 3.0
  */
 
 namespace Tigren\Question\Ui\Component\Listing\Column;
@@ -63,9 +64,16 @@ class Actions extends Column
                     'label' => __('Edit'),
                     'hidden' => false,
                 ];
+//                $item[$this->getData('name')]['delete'] = [
+//                    'href' => $this->urlBuilder->getUrl(
+//                        'question/create/delete',
+//                        ['id' => $item['entity_id'], 'store' => $storeId]
+//                    ),
+//                    'label' => __('Delete'),
+//                    'hidden' => false,
+//                ];
             }
         }
-
         return $dataSource;
     }
 }

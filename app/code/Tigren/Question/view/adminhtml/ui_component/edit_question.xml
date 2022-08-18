@@ -9,14 +9,14 @@
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
             <item name="provider" xsi:type="string">
-                create_question.create_question_data_source
+                edit_question.edit_question_data_source
             </item>
-            <item name="deps" xsi:type="string">create_question.create_question_data_source</item>
+            <item name="deps" xsi:type="string">edit_question.edit_question_data_source</item>
         </item>
         <item name="label" xsi:type="string" translate="true">The Edit Form</item>
         <item name="config" xsi:type="array">
             <item name="dataScope" xsi:type="string">data</item>
-            <item name="namespace" xsi:type="string">create_question</item>
+            <item name="namespace" xsi:type="string">edit_question</item>
         </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
     </argument>
@@ -33,16 +33,16 @@
                 <label translate="true">Save</label>
             </button>
         </buttons>
-        <namespace>create_question</namespace>
+        <namespace>edit_question</namespace>
         <dataScope>data</dataScope>
         <deps>
-            <dep>create_question.create_question_data_source</dep>
+            <dep>edit_question.edit_question_data_source</dep>
         </deps>
     </settings>
-    <dataSource name="create_question_data_source">
+    <dataSource name="edit_question_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
             <argument name="class" xsi:type="string">Tigren\Question\Model\DataProvider</argument>
-            <argument name="name" xsi:type="string">create_question_data_source</argument>
+            <argument name="name" xsi:type="string">edit_question_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
         </argument>

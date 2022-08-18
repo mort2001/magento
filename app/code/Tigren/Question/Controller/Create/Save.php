@@ -6,7 +6,6 @@ use Magento\Customer\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\Controller\ResultInterface;
 use Tigren\Question\Model\PostFactory;
 
 /**
@@ -23,6 +22,7 @@ class Save extends Action
     /**
      * @param Context $context
      * @param PostFactory $mcfFactory
+     * @param Session $session
      */
     public function __construct(Context $context, PostFactory $mcfFactory, Session $session)
     {
@@ -32,7 +32,8 @@ class Save extends Action
     }
 
     /**
-     * @return ResponseInterface|ResultInterface|void
+     * @return ResponseInterface
+     * @throws \Exception
      */
     public function execute()
     {

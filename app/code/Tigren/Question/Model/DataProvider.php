@@ -10,13 +10,22 @@ namespace Tigren\Question\Model;
 use Magento\Ui\DataProvider\AbstractDataProvider;
 use Tigren\Question\Model\ResourceModel\Post\CollectionFactory;
 
+/**
+ * Class DataProvider
+ * @package Emipro\Custom\Model
+ */
 class DataProvider extends AbstractDataProvider
 {
     /**
-     * @param string $name
-     * @param string $primaryFieldName
-     * @param string $requestFieldName
-     * @param CollectionFactory $employeeCollectionFactory
+     * @var array
+     */
+    protected $loadedData;
+
+    /**
+     * @param $name
+     * @param $primaryFieldName
+     * @param $requestFieldName
+     * @param CollectionFactory $JobCollectionFactory
      * @param array $meta
      * @param array $data
      */
@@ -24,22 +33,27 @@ class DataProvider extends AbstractDataProvider
         $name,
         $primaryFieldName,
         $requestFieldName,
-        CollectionFactory $employeeCollectionFactory,
+        CollectionFactory $JobCollectionFactory,
         array $meta = [],
         array $data = []
     )
     {
-        $this->collection = $employeeCollectionFactory->create();
+        $this->collection = $JobCollectionFactory->create();
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
     /**
-     * Get data
-     *
      * @return array
      */
     public function getData()
     {
-        return [];
+        if (isset($this->loadedData)) {
+            return $this->loadedData;
+        }
+        $items = $this->collection->getItems();
+        foreach ($items as $Job) {
+            $this->loadedData[$Job->getId()] = $Job->getData();
+        }
+        return $this->loadedData;
     }
 }

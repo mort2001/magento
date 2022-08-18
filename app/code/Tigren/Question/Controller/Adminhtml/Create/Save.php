@@ -1,43 +1,67 @@
 <?php
+/*
+ * @author    Tigren Solutions <info@tigren.com>
+ * @copyright Copyright (c) 2022 Tigren Solutions <https://www.tigren.com>. All rights reserved.
+ * @license   Open Software License ("OSL") v. 3.0
+ */
 
 namespace Tigren\Question\Controller\Adminhtml\Create;
 
+use Exception;
 use Magento\Backend\App\Action;
-use Magento\Backend\App\Action\Context;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\Result\Redirect;
+use Magento\Framework\Controller\ResultInterface;
 use Tigren\Question\Model\PostFactory;
 
 /**
- *
+ * Class Save
+ * @package Tigren\Customer\Controller\Adminhtml\Post
  */
 class Save extends Action
 {
     /**
      * @var PostFactory
      */
-    protected $_mcfFactory;
+    public $postFactory;
 
     /**
-     * @param Context $context
-     * @param PostFactory $mcfFactory
+     * Save constructor.
+     * @param Action\Context $context
+     * @param PostFactory $postFactory
      */
-    public function __construct(Context $context, PostFactory $mcfFactory,)
+    public function __construct(
+        Action\Context $context,
+        PostFactory    $postFactory
+    )
     {
-        $this->_mcfFactory = $mcfFactory;
         parent::__construct($context);
+        $this->postFactory = $postFactory;
     }
 
     /**
-     * @return void
+     * @return ResponseInterface|Redirect|ResultInterface
      */
     public function execute()
     {
-        die('asdsad');
         $data = $this->getRequest()->getParams();
-        var_dump($data);
-        die;
-        $model_data = $this->_mcfFactory->create();
-        $model_data->addData($data);
-        $model_data->save();
-        $this->messageManager->addSuccessMessage("Saved Data");
+        $id = $data['entity_id'] ?? null;
+        if ($id) {
+            $post = $this->postFactory->create()->load($id);
+        } else {
+            $post = $this->postFactory->create();
+        }
+        $arr = [
+            'title' => $data['title'],
+            'content' => $data['content']
+        ];
+        try {
+            $post->addData($arr);
+            $post->save();
+            $this->messageManager->addSuccessMessage(__('You had saved the question'));
+        } catch (Exception $e) {
+            $this->messageManager->addErrorMessage(__($e->getMessage()));
+        }
+        return $this->resultRedirectFactory->create()->setPath('question/create/index');
     }
 }
