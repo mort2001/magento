@@ -10,7 +10,6 @@ namespace Tigren\Question\Controller\Create;
 use Magento\Customer\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\View\Result\PageFactory;
 use Tigren\Question\Model\PostFactory;

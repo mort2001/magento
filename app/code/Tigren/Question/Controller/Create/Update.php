@@ -16,14 +16,12 @@ use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 use Tigren\Question\Model\PostFactory;
 
-
 /**
- *
+ * Class Update
+ * @package Tigren\Question\Controller\Create
  */
 class Update extends Action
 {
-
-
     /**
      * @var PostFactory
      */
@@ -81,5 +79,4 @@ class Update extends Action
         }
         return $resutl;
     }
-
 }

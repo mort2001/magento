@@ -12,7 +12,8 @@ use Tigren\Question\Model\PostFactory;
 use Tigren\Question\Model\ResourceModel\Post\CollectionFactory;
 
 /**
- *
+ * Class DataProvider
+ * @package Tigren\Question\Model\Config
  */
 class DataProvider extends AbstractDataProvider
 {
@@ -24,8 +25,6 @@ class DataProvider extends AbstractDataProvider
      * @var
      */
     protected $collection;
-
-
     /**
      * @param $name
      * @param $primaryFieldName

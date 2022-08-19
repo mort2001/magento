@@ -9,8 +9,15 @@ namespace Tigren\Question\Model;
 
 use Magento\Framework\Model\AbstractModel;
 
+/**
+ * Class Post
+ * @package Tigren\Question\Model
+ */
 class Post extends AbstractModel
 {
+    /**
+     * @return void
+     */
     protected function _construct()
     {
         $this->_init('Tigren\Question\Model\ResourceModel\Post');

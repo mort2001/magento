@@ -7,10 +7,10 @@
 
 namespace Tigren\Question\Controller\Create;
 
+use Magento\Customer\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
-use Magento\Customer\Model\Session;
 
 class Index extends Action
 {
@@ -20,7 +20,7 @@ class Index extends Action
     public function __construct(
         Context     $context,
         PageFactory $pageFactory,
-        Session $session
+        Session     $session
     )
     {
         $this->_sesstion = $session;
@@ -30,10 +30,9 @@ class Index extends Action
 
     public function execute()
     {
-        if($this->_sesstion->isLoggedIn())
-        {
+        if ($this->_sesstion->isLoggedIn()) {
             return $this->_pageFactory->create();
-        }else{
+        } else {
             return $this->_redirect('customer/account/login');
         }
     }

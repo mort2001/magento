@@ -10,7 +10,8 @@ namespace Tigren\Question\Model\ResourceModel;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 /**
- *
+ * Class Post
+ * @package Tigren\Question\Model\ResourceModel
  */
 class Post extends AbstractDb
 {

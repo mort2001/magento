@@ -33,14 +33,15 @@ class AddAttributeCustomer implements DataPatchInterface
     /**
      * AccountPurposeCustomerAttribute constructor.
      *
-     * @param  ModuleDataSetupInterface  $setup
-     * @param  CustomerSetupFactory  $customerSetupFactory
+     * @param ModuleDataSetupInterface $setup
+     * @param CustomerSetupFactory $customerSetupFactory
      */
     public function __construct(
         ModuleDataSetupInterface $setup,
-        Config $eavConfig,
-        CustomerSetupFactory $customerSetupFactory
-    ) {
+        Config                   $eavConfig,
+        CustomerSetupFactory     $customerSetupFactory
+    )
+    {
         $this->customerSetupFactory = $customerSetupFactory;
         $this->setup = $setup;
         $this->eavConfig = $eavConfig;
@@ -61,33 +62,33 @@ class AddAttributeCustomer implements DataPatchInterface
             $attributeSetId
         );
         $customerSetup->addAttribute(Customer::ENTITY, 'is_question_created', [
-            'type'                  => 'int',
-            'input'                 => 'select',
-            'label'                 => 'Question is created',
-            'source'                => 'Magento\Eav\Model\Entity\Attribute\Source\Boolean',
-            'required'              => true,
-            'default'               => 0,
-            'visible'               => true,
-            'user_defined'          => true,
-            'system'                => false,
-            'is_visible_in_grid'    => true,
-            'is_used_in_grid'       => true,
+            'type' => 'int',
+            'input' => 'select',
+            'label' => 'Question is created',
+            'source' => 'Magento\Eav\Model\Entity\Attribute\Source\Boolean',
+            'required' => true,
+            'default' => 0,
+            'visible' => true,
+            'user_defined' => true,
+            'system' => false,
+            'is_visible_in_grid' => true,
+            'is_used_in_grid' => true,
             'is_filterable_in_grid' => true,
             'is_searchable_in_grid' => true,
-            'position'              => 300,
+            'position' => 300,
         ]);
         $newAttribute = $this->eavConfig->getAttribute(
             Customer::ENTITY,
             'is_question_created'
         );
         $newAttribute->addData([
-            'used_in_forms'      => [
+            'used_in_forms' => [
                 'adminhtml_checkout',
                 'adminhtml_customer',
                 'customer_account_edit',
                 'customer_account_create',
             ],
-            'attribute_set_id'   => $attributeSetId,
+            'attribute_set_id' => $attributeSetId,
             'attribute_group_id' => $attributeGroup,
         ]);
         $newAttribute->save();
