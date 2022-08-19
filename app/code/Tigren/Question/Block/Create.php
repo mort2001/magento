@@ -7,36 +7,21 @@
 
 namespace Tigren\Question\Block;
 
+use Magento\Framework\Phrase;
 use Magento\Framework\View\Element\Template;
-use Magento\Framework\View\Element\Template\Context;
-use Tigren\Question\Model\ResourceModel\Post\Collection;
-use Tigren\Question\Model\ResourceModel\Post\CollectionFactory;
 
 /**
- * Class Create
- * @package Tigren\Question\Block
+ *
  */
 class Create extends Template
 {
     /**
-     * @var CollectionFactory
+     * @param Template\Context $context
+     * @param array $data
      */
-    protected $collection;
-
-    /**
-     * @param Context $context
-     */
-    public function __construct(Context $context, CollectionFactory $collectionFactory)
+    public function __construct(Template\Context $context, array $data = [])
     {
-        $this->collection = $collectionFactory;
-        parent::__construct($context);
+        parent::__construct($context, $data);
     }
 
-    /**
-     * @return Collection
-     */
-    public function getCollection()
-    {
-        return $this->collection->create();
-    }
 }

@@ -11,8 +11,10 @@ use Magento\Framework\View\Element\Template;
 use Tigren\Question\Model\Post;
 use Tigren\Question\Model\PostFactory;
 
+
 /**
- *
+ * Class Edit
+ * @package Tigren\Question\Block
  */
 class Edit extends Template
 {
@@ -21,9 +23,9 @@ class Edit extends Template
      */
     protected $postFactory;
 
+
     /**
      * @param Template\Context $context
-     * @param array $data
      * @param PostFactory $postFactory
      */
     public function __construct(Template\Context $context, PostFactory $postFactory)
@@ -38,11 +40,11 @@ class Edit extends Template
      */
     public function getQuestion()
     {
-        $id = $this->getRequest()->getParams()['id'];
+        $id = $this->getRequest()->getParam('id');
 
         $post = $this->postFactory->create()->load($id);
 
-        if ($post->getData('entity_id')) {
+        if ($post->getEntityId()) {
             return $post;
         }
 

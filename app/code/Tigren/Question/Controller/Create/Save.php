@@ -14,6 +14,7 @@ use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ResponseInterface;
 use Tigren\Question\Model\PostFactory;
 
+
 /**
  *
  */
@@ -25,13 +26,15 @@ class Save extends Action
     protected $_mcfFactory;
     protected $session;
 
+
     /**
      * @param Context $context
      * @param PostFactory $mcfFactory
      * @param Session $session
      */
-    public function __construct(Context $context, PostFactory $mcfFactory, Session $session)
+    public function __construct(Context $context, PostFactory $mcfFactory, Session $session, Context $httpContext)
     {
+
         $this->session = $session;
         $this->_mcfFactory = $mcfFactory;
         parent::__construct($context);
@@ -43,6 +46,7 @@ class Save extends Action
      */
     public function execute()
     {
+
         $data = $this->getRequest()->getParams();
         $model_data = $this->_mcfFactory->create();
         $authorId = $this->session->getCustomer()->getId();

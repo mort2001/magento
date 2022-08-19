@@ -6,10 +6,11 @@
  */
 
 /**
- * @var Tigren\Question\Block\Create $block
+ * @var Tigren\Question\Helper\Data $helper
  */
-$collection = $block->getCollection();
-if ($collection->count()) {
+$helper = $this->helper(Tigren\Question\Helper\Data::class);
+$question = $helper->getListQues();
+if ($question->count()) {
     ?>
     <div class="table-wrapper orders-history">
         <table class="data table table-order-items history" id="my-orders-table">
@@ -26,21 +27,21 @@ if ($collection->count()) {
             </thead>
             <tbody>
             <?php
-            foreach ($collection as $item): ?>
+            foreach ($question as $item): ?>
                 <tr>
                     <td data-th="<?= $block->escapeHtml(__('ID')) ?>" class="col id">
-                        <?php echo $item->getId() ?>
+                        <?php echo $item['entity_id'] ?>
                     </td>
                     <td data-th="<?= $block->escapeHtml(__('Title')) ?>" class="col title">
-                        <?php echo $item->getTitle() ?>
+                        <?php echo $item['title'] ?>
                     </td>
                     <td data-th="<?= $block->escapeHtml(__('Content')) ?>" class="col content">
-                        <?php echo $item->getContent() ?>
+                        <?php echo $item['content'] ?>
                     </td>
                     <td data-th="<?= $block->escapeHtml(__('Created At')) ?>"
                         class="col title"><?php echo date('Y-m-d', strtotime($item->getCreatedAt())); ?></td>
                     <td data-th="<?= $block->escapeHtml(__('Author ID')) ?>" class="col author id">
-                        <?php echo $item->getAuthor_id() ?></td>
+                        <?php echo $item['author_id'] ?></td>
                     <td>
                         <button><a href="<?= $block->getUrl("*/*/edit") ?>?id=<?= $item['entity_id'] ?>" )>Edit</a>
                         </button>
