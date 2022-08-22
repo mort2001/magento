@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+  ~ @author    Tigren Solutions <info@tigren.com>
+  ~ @copyright Copyright (c) 2022 Tigren Solutions <https://www.tigren.com>. All rights reserved.
+  ~ @license   Open Software License ("OSL") v. 3.0
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="amasty_groupcat_api_data_ruleinterface_save_before">
+        <observer name="legacy_model_save" instance="Magento\Framework\EntityManager\Observer\BeforeEntitySave" />
+    </event>
+    <event name="amasty_groupcat_api_data_ruleinterface_save_after">
+        <observer name="legacy_model_save" instance="Magento\Framework\EntityManager\Observer\AfterEntitySave" />
+    </event>
+    <event name="amasty_groupcat_api_data_ruleinterface_delete_before">
+        <observer name="legacy_model_delete" instance="Magento\Framework\EntityManager\Observer\BeforeEntityDelete" />
+    </event>
+    <event name="amasty_groupcat_api_data_ruleinterface_delete_after">
+        <observer name="legacy_model_delete" instance="Magento\Framework\EntityManager\Observer\AfterEntityDelete" />
+    </event>
+    <event name="amasty_groupcat_api_data_ruleinterface_load_after">
+        <observer name="legacy_model_load" instance="Magento\Framework\EntityManager\Observer\AfterEntityLoad" />
+    </event>
+    <event name="customer_save_after_data_object">
+        <observer name="reindex_on_save_customer" instance="Amasty\Groupcat\Observer\Customer\Save"/>
+    </event>
+    <event name="customer_login">
+        <observer name="amasty_groupcat_customer_login" instance="Amasty\Groupcat\Observer\Customer\Login"/>
+    </event>
+</config>
