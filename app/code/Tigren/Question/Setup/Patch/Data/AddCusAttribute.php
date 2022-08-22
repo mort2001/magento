@@ -13,7 +13,7 @@ use Magento\Eav\Model\Config;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
-class AddAttributeCustomer implements DataPatchInterface
+class AddCusAttribute implements DataPatchInterface
 {
     /**
      * @var CustomerSetupFactory
@@ -62,12 +62,12 @@ class AddAttributeCustomer implements DataPatchInterface
             $attributeSetId
         );
         $customerSetup->addAttribute(Customer::ENTITY, 'is_question_created', [
-            'type' => 'int',
-            'input' => 'select',
+            'type' => 'varchar',
+            'input' => 'text',
             'label' => 'Question is created',
             'source' => 'Magento\Eav\Model\Entity\Attribute\Source\Boolean',
-            'required' => true,
-            'default' => 0,
+            'required' => false,
+            'default' =>"No",
             'visible' => true,
             'user_defined' => true,
             'system' => false,
