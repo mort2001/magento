@@ -13,7 +13,7 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
  * Class Post
  * @package Tigren\Question\Model\ResourceModel
  */
-class Customer extends AbstractDb
+class Rule extends AbstractDb
 {
     /**
      * @return void

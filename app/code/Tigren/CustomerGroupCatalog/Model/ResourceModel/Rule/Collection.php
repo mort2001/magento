@@ -5,7 +5,7 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-namespace Tigren\CustomerGroupCatalog\Model\ResourceModel\Customer;
+namespace Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
@@ -25,6 +25,6 @@ class Collection extends AbstractCollection
      */
     protected function _construct()
     {
-        $this->_init('Tigren\CustomerGroupCatalog\Model\Customer', 'Tigren\CustomerGroupCatalog\Model\ResourceModel\Customer');
+        $this->_init('Tigren\CustomerGroupCatalog\Model\Rule', 'Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule');
     }
 }

@@ -8,7 +8,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Tigren_Question::question" title="Tigren" module="Tigren_Question" sortOrder="20"
+        <add id="Tigren_Question::question" title="Tigren" module="Tigren_Question" sortOrder="100"
              resource="Tigren_Question::question"/>
         <add id="Tigren_Question::manage_questions" title="Manage Questions" module="Tigren_Question"
              action="question/create" resource="Tigren_Question::question"
