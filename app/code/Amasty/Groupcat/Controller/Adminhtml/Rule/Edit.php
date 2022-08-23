@@ -7,6 +7,10 @@
 
 namespace Amasty\Groupcat\Controller\Adminhtml\Rule;
 
+use Amasty\Groupcat\Controller\RegistryConstants;
+use Magento\CatalogRule\Model\Rule;
+use Magento\Framework\Exception\NoSuchEntityException;
+
 class Edit extends \Amasty\Groupcat\Controller\Adminhtml\Rule
 {
     public function execute()
@@ -15,13 +19,13 @@ class Edit extends \Amasty\Groupcat\Controller\Adminhtml\Rule
         if ($id) {
             try {
                 $model = $this->ruleRepository->get($id);
-            } catch (\Magento\Framework\Exception\NoSuchEntityException $exception) {
+            } catch (NoSuchEntityException $exception) {
                 $this->messageManager->addErrorMessage(__('This rule no longer exists.'));
 
                 return $this->resultRedirectFactory->create()->setPath('amasty_groupcat/*');
             }
         } else {
-            /** @var \Magento\CatalogRule\Model\Rule $model */
+            /** @var Rule $model */
             $model = $this->ruleFactory->create();
         }
 
@@ -30,7 +34,7 @@ class Edit extends \Amasty\Groupcat\Controller\Adminhtml\Rule
         if (!empty($data)) {
             $model->addData($data);
         }
-        $this->coreRegistry->register(\Amasty\Groupcat\Controller\RegistryConstants::CURRENT_GROUPCAT_RULE_ID, $model);
+        $this->coreRegistry->register(RegistryConstants::CURRENT_GROUPCAT_RULE_ID, $model);
         $resultPage = $this->_initAction();
 
         // set title and breadcrumbs

@@ -7,15 +7,19 @@
 
 namespace Tigren\CustomerGroupCatalog\Controller\Adminhtml\Rule;
 
-use Tigren\CustomerGroupCatalog\Controller\Adminhtml\Rule;
+use Magento\Backend\App\Action;
+use Magento\Framework\Controller\ResultFactory;
 
-class Index extends Rule
+/**
+ * Class Form
+ * @package Tigren\Question\Controller\Adminhtml\Create
+ */
+class AddNew extends Action
 {
     public function execute()
     {
-        $resultPage = $this->_initAction();
-        $resultPage->getConfig()->getTitle()->prepend(__('Tigren Customer Group Catalog Rules'));
-
+        $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
+        $resultPage->getConfig()->getTitle()->prepend(__('Add New Rule!!!'));
         return $resultPage;
     }
 }
