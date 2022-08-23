@@ -54,7 +54,7 @@ class Save extends Action
             'products' => $data['products'],
             'from_date' => $data['from_date'],
             'to_date' => $data['to_date'],
-//            'store_id' => $data['store_id'],
+            'store_id' => $data['store_id'],
             'priority' => $data['priority'],
             'is_active' => $data['is_active']
         ];

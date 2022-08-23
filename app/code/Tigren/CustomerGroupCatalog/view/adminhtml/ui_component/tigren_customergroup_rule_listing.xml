@@ -11,7 +11,8 @@
             <item name="provider" xsi:type="string">
                 tigren_customergroup_rule_listing.tigren_customergroup_rule_listing_data_source
             </item>
-            <item name="deps" xsi:type="string">tigren_customergroup_rule_listing.tigren_customergroup_rule_listing_data_source
+            <item name="deps" xsi:type="string">
+                tigren_customergroup_rule_listing.tigren_customergroup_rule_listing_data_source
             </item>
         </item>
         <item name="spinner" xsi:type="string">tigren_customergroup_rule_listing_columns</item>
@@ -72,7 +73,7 @@
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">delete</item>
                         <item name="label" xsi:type="string" translate="true">Delete</item>
-                        <item name="url" xsi:type="url" path="tigren_customergroup/rule/massDelete"/>
+                        <item name="url" xsi:type="url" path="tigren_customergroup/rule/Delete"/>
                         <item name="confirm" xsi:type="array">
                             <item name="title" xsi:type="string" translate="true">Delete Rule</item>
                             <item name="message" xsi:type="string" translate="true">Are you sure you want to delete
@@ -111,7 +112,7 @@
             </argument>
         </column>
 
-<!--        class="Tigren\CustomerGroupCatalog\Ui\Component\Listing\Column\Store"-->
+        <!--        class="Tigren\CustomerGroupCatalog\Ui\Component\Listing\Column\Store"-->
         <column name="store_ids">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

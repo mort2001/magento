@@ -25,4 +25,24 @@
             <column name="rule_id"/>
         </constraint>
     </table>
+    <table name="tigren_customergroup_rule_customer_group" resource="default" engine="innodb" comment="Rule Customer Group Relation">
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Rule Id"/>
+        <column xsi:type="int" name="customer_group_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Customer Group ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+            <column name="customer_group_id"/>
+        </constraint>
+<!--        <constraint xsi:type="foreign" referenceId="FK_CB356CEC5C2177ECEDD5B01271F40A6C" table="amasty_groupcat_rule_customer_group" column="customer_group_id" referenceTable="customer_group" referenceColumn="customer_group_id" onDelete="CASCADE"/>-->
+<!--        <constraint xsi:type="foreign" referenceId="FK_74FDB921EE3177A72FA9D4C781730BEC" table="amasty_groupcat_rule_customer_group" column="rule_id" referenceTable="amasty_groupcat_rule" referenceColumn="rule_id" onDelete="CASCADE"/>-->
+    </table>
+    <table name="tigren_customergroup_rule_rule_store" resource="default" engine="innodb" comment="Rule Store relation">
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Rule Id"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Store View ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+            <column name="store_id"/>
+        </constraint>
+<!--        <constraint xsi:type="foreign" referenceId="AMASTY_GROUPCAT_RULE_STORE_RULE_ID_AMASTY_GROUPCAT_RULE_RULE_ID" table="amasty_groupcat_rule_store" column="rule_id" referenceTable="amasty_groupcat_rule" referenceColumn="rule_id" onDelete="CASCADE"/>-->
+<!--        <constraint xsi:type="foreign" referenceId="AMASTY_GROUPCAT_RULE_STORE_STORE_ID_STORE_STORE_ID" table="amasty_groupcat_rule_store" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>-->
+    </table>
 </schema>
