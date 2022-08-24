@@ -134,7 +134,7 @@
                 </item>
             </argument>
         </field>
-        <field name="store_id">
+        <field name="store_ids">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="label" xsi:type="string" translate="true">Stores</item>
@@ -148,6 +148,23 @@
                     </item>
                 </item>
                 <item name="options" xsi:type="object">Tigren\CustomerGroupCatalog\Model\Rule\StoresOptionsProvider
+                </item>
+            </argument>
+        </field>
+        <field name="discount_amount">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Discount Amount</item>
+                    <item name="additionalClasses" xsi:type="string">amgroupcat-field-input</item>
+                    <item name="placeholder" xsi:type="string" translate="true">Select...</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">discount_amount</item>
+                    <item name="dataScope" xsi:type="string">discount_amount</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
                 </item>
             </argument>
         </field>
@@ -220,44 +237,13 @@
                         <item name="additionalClasses" xsi:type="string">amgroupcat-field-multiselect</item>
                         <item name="dataType" xsi:type="string">number</item>
                         <item name="formElement" xsi:type="string">multiselect</item>
-                        <item name="source" xsi:type="string">groupcat_rule</item>
-                        <item name="dataScope" xsi:type="string">customer_group_ids</item>
+                        <item name="source" xsi:type="string">customer_group_id</item>
+                        <item name="dataScope" xsi:type="string">customer_group_id</item>
                     </item>
                     <item name="options" xsi:type="object">Magento\CatalogRule\Model\Rule\CustomerGroupsOptionsProvider
                     </item>
                 </argument>
             </field>
-        </fieldset>
-        <fieldset name="customer_conditions">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="label" xsi:type="string" translate="true">Customer Conditions</item>
-                    <item name="labelNote" xsi:type="string" translate="true">Please mind these conditions are applied
-                        only
-                        for
-                        logged in customers
-                    </item>
-                    <item name="additionalClasses" xsi:type="string">amgroupcat-fieldset-container -custom -line</item>
-                    <item name="template" xsi:type="string">Amasty_Groupcat/form/fieldset</item>
-                    <item name="collapsible" xsi:type="boolean">true</item>
-                    <item name="sortOrder" xsi:type="number">15</item>
-                </item>
-            </argument>
-            <container name="actions_apply_to">
-                <argument name="data" xsi:type="array">
-                    <item name="config" xsi:type="array">
-                        <item name="label" xsi:type="boolean">false</item>
-                        <item name="sortOrder" xsi:type="number">15</item>
-                        <item name="additionalClasses" xsi:type="string">amgroupcat-flex-container amgroupcat-flex
-                        </item>
-                    </item>
-                </argument>
-                <!--            <htmlContent name="html_content">-->
-                <!--                <argument name="block" xsi:type="object">-->
-                <!--                    Amasty\Groupcat\Block\Adminhtml\Rule\Edit\Tab\CustomerConditions-->
-                <!--                </argument>-->
-                <!--            </htmlContent>-->
-            </container>
         </fieldset>
     </fieldset>
 </form>

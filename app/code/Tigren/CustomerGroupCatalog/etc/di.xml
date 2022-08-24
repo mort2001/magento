@@ -19,7 +19,17 @@
                  type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
             <argument name="mainTable" xsi:type="string">tigren_customergroup_rule</argument>
-            <argument name="resourceModel" xsi:type="string">Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule</argument>
+            <argument name="resourceModel" xsi:type="string">Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule
+            </argument>
         </arguments>
     </virtualType>
+
+    <preference for="Magento\Catalog\Pricing\Render\FinalPriceBox"
+                type="Tigren\CustomerGroupCatalog\Pricing\Render\FinalPriceBox"/>
+    <preference for="Magento\ConfigurableProduct\Pricing\Render\FinalPriceBox"
+                type="Tigren\CustomerGroupCatalog\Pricing\Render\FinalPriceBox"/>
+
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="hidebutton" type="Tigren\CustomerGroupCatalog\Plugin\HideButton" sortOrder="1" disabled="false"/>
+    </type>
 </config>

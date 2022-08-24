@@ -111,14 +111,13 @@
                 </item>
             </argument>
         </column>
-
-        <!--        class="Tigren\CustomerGroupCatalog\Ui\Component\Listing\Column\Store"-->
-        <column name="store_ids">
+        <!--        class="Tigren\CustomerGroupCatalog\Ui\Component\Listing\Column\Store" class="Magento\Store\Ui\Component\Listing\Column\Store-->
+        <column name="store_ids" class="Magento\Store\Ui\Component\Listing\Column\Store">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
                     <item name="sortable" xsi:type="boolean">false</item>
-                    <item name="label" xsi:type="string" translate="true">Stores</item>
+                    <item name="label" xsi:type="string" translate="true">Store View</item>
                 </item>
             </argument>
         </column>
@@ -128,6 +127,15 @@
                     <item name="filter" xsi:type="string">text</item>
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">Products</item>
+                </item>
+            </argument>
+        </column>
+        <column name="discount_amount">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Discount Amount</item>
                 </item>
             </argument>
         </column>

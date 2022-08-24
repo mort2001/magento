@@ -17,6 +17,9 @@ use Magento\Framework\Controller\ResultFactory;
 class Edit extends Action
 {
 
+    /**
+     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface|\Magento\Framework\View\Result\Page|\Magento\Framework\View\Result\Page&\Magento\Framework\Controller\ResultInterface
+     */
     public function execute()
     {
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);

@@ -10,6 +10,10 @@ namespace Tigren\CustomerGroupCatalog\Model\Rule;
 use Magento\Framework\Data\OptionSourceInterface;
 use Magento\Store\Model\System\Store;
 
+/**
+ * Class StoresOptionsProvider
+ * @package Tigren\CustomerGroupCatalog\Model\Rule
+ */
 class StoresOptionsProvider implements OptionSourceInterface
 {
     /**
@@ -17,6 +21,9 @@ class StoresOptionsProvider implements OptionSourceInterface
      */
     private $store;
 
+    /**
+     * @param Store $store
+     */
     public function __construct(Store $store)
     {
         $this->store = $store;

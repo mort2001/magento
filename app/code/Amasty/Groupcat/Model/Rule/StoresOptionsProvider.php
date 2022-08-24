@@ -7,14 +7,17 @@
 
 namespace Amasty\Groupcat\Model\Rule;
 
-class StoresOptionsProvider implements \Magento\Framework\Data\OptionSourceInterface
+use Magento\Framework\Data\OptionSourceInterface;
+use Magento\Store\Model\System\Store;
+
+class StoresOptionsProvider implements OptionSourceInterface
 {
     /**
-     * @var \Magento\Store\Model\System\Store
+     * @var Store
      */
     private $store;
 
-    public function __construct(\Magento\Store\Model\System\Store $store)
+    public function __construct(Store $store)
     {
         $this->store = $store;
     }

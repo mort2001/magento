@@ -10,11 +10,18 @@ namespace Tigren\CustomerGroupCatalog\Model\OptionSource\Rule;
 
 use Magento\Framework\Data\OptionSourceInterface;
 
+/**
+ * Class Status
+ * @package Tigren\CustomerGroupCatalog\Model\OptionSource\Rule
+ */
 class Status implements OptionSourceInterface
 {
     public const INACTIVE = 0;
     public const ACTIVE = 1;
 
+    /**
+     * @return array[]
+     */
     public function toOptionArray(): array
     {
         return [
