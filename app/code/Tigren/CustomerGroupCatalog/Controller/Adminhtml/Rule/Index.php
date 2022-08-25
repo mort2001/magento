@@ -7,6 +7,9 @@
 
 namespace Tigren\CustomerGroupCatalog\Controller\Adminhtml\Rule;
 
+use Magento\Backend\Model\View\Result\Page;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\ResultInterface;
 use Tigren\CustomerGroupCatalog\Controller\Adminhtml\Rule;
 
 /**
@@ -16,13 +19,12 @@ use Tigren\CustomerGroupCatalog\Controller\Adminhtml\Rule;
 class Index extends Rule
 {
     /**
-     * @return \Magento\Backend\Model\View\Result\Page|\Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface
+     * @return Page|ResponseInterface|ResultInterface
      */
     public function execute()
     {
         $resultPage = $this->_initAction();
         $resultPage->getConfig()->getTitle()->prepend(__('Tigren Customer Group Catalog Rules'));
-
         return $resultPage;
     }
 }

@@ -25,7 +25,7 @@ class DataProvider extends AbstractDataProvider
      * @param $name
      * @param $primaryFieldName
      * @param $requestFieldName
-     * @param CollectionFactory $JobCollectionFactory
+     * @param CollectionFactory $CollectionFactory
      * @param array $meta
      * @param array $data
      */
@@ -33,12 +33,12 @@ class DataProvider extends AbstractDataProvider
         $name,
         $primaryFieldName,
         $requestFieldName,
-        CollectionFactory $JobCollectionFactory,
+        CollectionFactory $CollectionFactory,
         array $meta = [],
         array $data = []
     )
     {
-        $this->collection = $JobCollectionFactory->create();
+        $this->collection = $CollectionFactory->create();
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
@@ -51,8 +51,8 @@ class DataProvider extends AbstractDataProvider
             return $this->loadedData;
         }
         $items = $this->collection->getItems();
-        foreach ($items as $Job) {
-            $this->loadedData[$Job->getId()] = $Job->getData();
+        foreach ($items as $Rule) {
+            $this->loadedData[$Rule->getId()] = $Rule->getData();
         }
         return $this->loadedData;
     }

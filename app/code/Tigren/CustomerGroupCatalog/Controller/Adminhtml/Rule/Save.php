@@ -43,6 +43,8 @@ class Save extends Action
     public function execute()
     {
         $data = $this->getRequest()->getParams();
+//        echo '<pre>';
+//        var_dump(implode(',', $data['store_id'])); die;
         $id = $data['rule_id'] ?? null;
         if ($id) {
             $post = $this->ruleFactory->create()->load($id);
@@ -55,10 +57,10 @@ class Save extends Action
             'discount_amount' => $data['discount_amount'],
             'from_date' => $data['from_date'],
             'to_date' => $data['to_date'],
-            'store_id' => $data['store_id'],
+            'store_ids' => implode(',', $data['store_ids']),
             'priority' => $data['priority'],
             'is_active' => $data['is_active'],
-            'customer_group_id' => $data['customer_group_id']
+            'customer_group_ids' => implode(',', $data['customer_group_ids'])
         ];
         try {
             $post->addData($arr);

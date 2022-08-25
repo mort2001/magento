@@ -40,10 +40,10 @@ class FinalPriceBox extends \Magento\Catalog\Pricing\Render\FinalPriceBox
         SaleableInterface                                $saleableItem,
         PriceInterface                                   $price,
         RendererPool                                     $rendererPool,
-        array                                            $data = [],
         SalableResolverInterface                         $salableResolver = null,
         MinimalPriceCalculatorInterface                  $minimalPriceCalculator = null,
-        \Magento\Framework\App\Http\Context              $httpContext
+        \Magento\Framework\App\Http\Context              $httpContext,
+        array                                            $data = []
     )
     {
         $this->httpContext = $httpContext;
@@ -55,6 +55,7 @@ class FinalPriceBox extends \Magento\Catalog\Pricing\Render\FinalPriceBox
             $salableResolver,
             $minimalPriceCalculator);
     }
+
     /**
      * @param $html
      * @return string

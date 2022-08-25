@@ -11,7 +11,7 @@ use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
 /**
  * Class Collection
- * @package Tigren\Question\Model\ResourceModel\Post
+ * @package Tigren\Question\Model\ResourceModel\Rule
  */
 class Collection extends AbstractCollection
 {

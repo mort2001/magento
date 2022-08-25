@@ -41,7 +41,7 @@ class Listing extends AbstractDataProvider
 
     /**
      * @param Filter $filter
-     * @return mixed|void
+     * @return void
      */
     public function addFilter(Filter $filter)
     {

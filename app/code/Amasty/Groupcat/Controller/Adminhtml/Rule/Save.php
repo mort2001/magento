@@ -45,7 +45,6 @@ class Save extends \Amasty\Groupcat\Controller\Adminhtml\Rule
     {
         if ($data = $this->getRequest()->getPostValue()) {
             try {
-                /** @var \Amasty\Groupcat\Model\Rule $model */
                 $model = $this->ruleFactory->create();
 
                 if ($id = $this->getRequest()->getParam(RuleInterface::RULE_ID)) {
