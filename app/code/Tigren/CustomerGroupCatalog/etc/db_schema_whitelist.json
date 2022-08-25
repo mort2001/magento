@@ -3,8 +3,8 @@
         "column": {
             "rule_id": true,
             "name": true,
-            "customer_group_id": true,
-            "store_id": true,
+            "customer_group_ids": true,
+            "store_ids": true,
             "products": true,
             "discount_amount": true,
             "from_date": true,

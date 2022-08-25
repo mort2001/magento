@@ -62,18 +62,26 @@ class Addtocart implements ObserverInterface
     {
 
         if($this->_session->isLoggedIn()){
-            $cusgroup_id = $this->_session->getCustomerGroupId();
-            $this->collectionFactory->create();
+            $group_id = $this->_session->getCustomerGroupId();
+            $ruleCollection = $this->collectionFactory->create()->addFieldToFilter('customer_group_ids', $group_id);
+            $priority = $ruleCollection->getColumnValues('priority');
+            $priority_collection = $this->collectionFactory->create()->addFieldToFilter('priority', min($priority));
+            $discount = $priority_collection->getColumnValues('discount_amount');
+            $item = $observer->getEvent()->getData('quote_item');
+            $item = ($item->getParentItem() ? $item->getParentItem() : $item);
+            $integerIDs = array_map('intval', $discount);
+            foreach ($integerIDs as $percent){
+                $percent = $percent/100;
+            }
+//            $percentFactor = 0.2; //giving 20% discount
+            $sku = $item->getSku();
+            $productCollection = $this->_product->loadByAttribute('sku', $sku);
+            $productPriceBySku = $productCollection->getPrice();
+            $customPrice = $productPriceBySku - ($productPriceBySku * $percent); // custom price
+            $item->setCustomPrice($customPrice);
+            $item->setOriginalCustomPrice($customPrice);
+            $item->getProduct()->setIsSuperMode(true);
         }
-        $item = $observer->getEvent()->getData('quote_item');
-        $item = ($item->getParentItem() ? $item->getParentItem() : $item);
-        $percentFactor = 0.2; //giving 20% discount
-        $sku = $item->getSku();
-        $productCollection = $this->_product->loadByAttribute('sku', $sku);
-        $productPriceBySku = $productCollection->getPrice();
-        $customPrice = $productPriceBySku - ($productPriceBySku * $percentFactor); // custom price
-        $item->setCustomPrice($customPrice);
-        $item->setOriginalCustomPrice($customPrice);
-        $item->getProduct()->setIsSuperMode(true);
+
     }
 }
