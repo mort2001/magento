@@ -7,7 +7,12 @@
 
 $questions = $this->helper(Tigren\CustomerGroupCatalog\Helper\Data::class)->getRules();
 ?>
-<table>
+
+<button><a href="http://magento24.localhost.com/" )>Go to Homepage</a>
+</button>
+<hr>
+
+<table border="1">
     <tr>
         <th>Rule ID</th>
         <th>Name</th>
@@ -18,13 +23,14 @@ $questions = $this->helper(Tigren\CustomerGroupCatalog\Helper\Data::class)->getR
     </tr>
     <?php
     foreach ($questions as $item): ?>
-    <tr>
-        <td><?= $item['rule_id'] ?></td>
-        <td><?= $item['name'] ?></td>
-        <td><?= $item['store_ids'] ?></td>
-        <td><?= $item['customer_group_ids'] ?></td>
-        <td><?= $item['discount_amount'] ?></td>
-        <td><?= $item['priority'] ?></td>
-    </tr>
+        <tr>
+            <td><?= $item['rule_id'] ?></td>
+            <td><?= $item['name'] ?></td>
+            <td><?= $item['store_ids'] ?></td>
+            <td><?= $item['customer_group_ids'] ?></td>
+            <td><?= $item['discount_amount'] ?></td>
+            <td><?= $item['priority'] ?></td>
+        </tr>
     <?php endforeach; ?>
 </table>
+

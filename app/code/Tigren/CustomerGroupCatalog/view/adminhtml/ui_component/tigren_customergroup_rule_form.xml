@@ -86,6 +86,9 @@
                     <item name="additionalClasses" xsi:type="string">amgroupcat-field-checkbox</item>
                     <item name="source" xsi:type="string">status</item>
                     <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
                     <item name="formElement" xsi:type="string">checkbox</item>
                     <item name="prefer" xsi:type="string">toggle</item>
                     <item name="valueMap" xsi:type="array">
@@ -98,6 +101,7 @@
                     </item>
                     <item name="default" xsi:type="number">1</item>
                 </item>
+
             </argument>
         </field>
         <field name="name">

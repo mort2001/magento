@@ -15,6 +15,7 @@
             </argument>
         </arguments>
     </type>
+
     <virtualType name="Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule\Collection"
                  type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
@@ -30,6 +31,17 @@
                 type="Tigren\CustomerGroupCatalog\Pricing\Render\FinalPriceBox"/>
 
     <type name="Magento\Catalog\Model\Product">
-        <plugin name="hidebutton" type="Tigren\CustomerGroupCatalog\Plugin\HideButton" sortOrder="1" disabled="false"/>
+        <plugin name="hidebutton" type="Tigren\CustomerGroupCatalog\Plugin\HideAddToCartButton" sortOrder="1" disabled="false"/>
+    </type>
+
+    <type name="Magento\Customer\Controller\Account\LoginPost">
+        <plugin name="redirect_custom_url" type="Tigren\CustomerGroupCatalog\Plugin\RedirectCustomUrl" sortOrder="1"
+                disabled="false"/>
+    </type>
+
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="change_product_price" type="Tigren\CustomerGroupCatalog\Plugin\Magento\Catalog\Model\Products"
+                sortOrder="1"
+                disabled="false"/>
     </type>
 </config>

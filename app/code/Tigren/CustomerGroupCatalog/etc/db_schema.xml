@@ -4,6 +4,7 @@
   ~ @copyright Copyright (c) 2022 Tigren Solutions <https://www.tigren.com>. All rights reserved.
   ~ @license   Open Software License ("OSL") v. 3.0
   -->
+
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <table name="tigren_customergroup_rule" resource="default" engine="innodb" comment="Tigren Customer Group Rule">

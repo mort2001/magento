@@ -11,13 +11,10 @@ use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Backend\Model\View\Result\RedirectFactory;
-use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Ui\Component\MassAction\Filter;
 use Tigren\CustomerGroupCatalog\Model\RuleFactory;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule\CollectionFactory;
-
 
 /**
  * Class Delete
@@ -68,7 +65,7 @@ class Delete extends Action
     }
 
     /**
-     * @return Redirect|ResponseInterface|ResultInterface
+     * @return Redirect
      * @throws LocalizedException
      */
     public function execute()

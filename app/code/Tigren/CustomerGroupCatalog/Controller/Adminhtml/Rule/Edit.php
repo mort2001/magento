@@ -8,7 +8,10 @@
 namespace Tigren\CustomerGroupCatalog\Controller\Adminhtml\Rule;
 
 use Magento\Backend\App\Action;
+use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\View\Result\Page;
 
 /**
  * Class Form
@@ -16,9 +19,8 @@ use Magento\Framework\Controller\ResultFactory;
  */
 class Edit extends Action
 {
-
     /**
-     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface|\Magento\Framework\View\Result\Page|\Magento\Framework\View\Result\Page&\Magento\Framework\Controller\ResultInterface
+     * @return ResponseInterface|ResultInterface|Page
      */
     public function execute()
     {

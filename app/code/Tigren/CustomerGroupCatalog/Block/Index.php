@@ -44,7 +44,7 @@ class Index extends Template
         $group_id = $this->_session->getCustomerGroupId();
         $collection = $this->collectionFactory->create();
         $collection->addFieldToFilter('customer_group_id', $group_id);
-        return $collection;
 
+        return $collection;
     }
 }

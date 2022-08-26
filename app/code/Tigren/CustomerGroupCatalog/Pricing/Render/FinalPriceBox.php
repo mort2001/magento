@@ -30,10 +30,10 @@ class FinalPriceBox extends \Magento\Catalog\Pricing\Render\FinalPriceBox
      * @param SaleableInterface $saleableItem
      * @param PriceInterface $price
      * @param RendererPool $rendererPool
-     * @param array $data
      * @param SalableResolverInterface|null $salableResolver
      * @param MinimalPriceCalculatorInterface|null $minimalPriceCalculator
      * @param \Magento\Framework\App\Http\Context $httpContext
+     * @param array $data
      */
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
@@ -43,7 +43,7 @@ class FinalPriceBox extends \Magento\Catalog\Pricing\Render\FinalPriceBox
         SalableResolverInterface                         $salableResolver = null,
         MinimalPriceCalculatorInterface                  $minimalPriceCalculator = null,
         \Magento\Framework\App\Http\Context              $httpContext,
-        array                                            $data = []
+        array                                            $data = [],
     )
     {
         $this->httpContext = $httpContext;
@@ -69,7 +69,7 @@ class FinalPriceBox extends \Magento\Catalog\Pricing\Render\FinalPriceBox
                 'data-product-id="' . $this->getSaleableItem()->getId() . '"' .
                 '>' . $html . '</div>';
         } else {
-            $wording = 'Please Login To See Price';
+            $wording = '<a href="customer/account/login"> Please Login To See Price </a>';
             return '<div class="" ' .
                 'data-role="priceBox" ' .
                 'data-product-id="' . $this->getSaleableItem()->getId() . '"' .

@@ -25,6 +25,7 @@ class Index extends Rule
     {
         $resultPage = $this->_initAction();
         $resultPage->getConfig()->getTitle()->prepend(__('Tigren Customer Group Catalog Rules'));
+
         return $resultPage;
     }
 }

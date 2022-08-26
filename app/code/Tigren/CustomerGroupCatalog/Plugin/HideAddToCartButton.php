@@ -15,7 +15,7 @@ use Magento\Customer\Model\Session;
  * Class HideButton
  * @package Tigren\CustomerGroupCatalog\Plugin
  */
-class HideButton
+class HideAddToCartButton
 {
     /**
      * @var Session
@@ -37,10 +37,9 @@ class HideButton
      */
     public function aroundIsSalable(Product $product, Closure $result)
     {
-        if($this->sesstion->isLoggedIn())
-        {
+        if ($this->sesstion->isLoggedIn()) {
             return $this;
-        }else{
+        } else {
             return 0;
         }
     }

@@ -33,8 +33,7 @@ abstract class Rule extends Action
     protected $ruleFactory;
 
     /**
-     * Rule constructor.
-     *
+     * Rule constructor
      * @param Context $context
      * @param Registry $coreRegistry
      * @param RuleFactory $ruleFactory
@@ -49,6 +48,7 @@ abstract class Rule extends Action
         parent::__construct($context);
         $this->ruleFactory = $ruleFactory;
     }
+
     /**
      * @return Page
      */

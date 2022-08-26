@@ -56,10 +56,33 @@ class Data extends AbstractHelper
         $group_id = $this->_session->getCustomerGroupId();
         $ruleCollection = $this->collectionFactory->create()->addFieldToFilter('customer_group_ids', $group_id);
         $priority = $ruleCollection->getColumnValues('priority');
-        $priority_collection = $this->collectionFactory->create()->addFieldToFilter('priority', min($priority));
-        $discount = $priority_collection->getColumnValues('discount_amount');
-        return $priority_collection;
+
+        return $this->collectionFactory->create()->addFieldToFilter('priority', min($priority));
     }
 
+    /**
+     * @return float|int|void
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
+     */
+    public function getDiscount()
+    {
+        if ($this->_session->isLoggedIn()) {
+            $group_id = $this->_session->getCustomerGroupId();
+            $ruleCollection = $this->collectionFactory->create()->addFieldToFilter('customer_group_ids', $group_id);
+            $priority = $ruleCollection->getColumnValues('priority');
+            $priority_collection = $this->collectionFactory->create()
+                ->addFieldToFilter('priority', min($priority))
+                ->addFieldToFilter('from_date', ['lt' => date('Y-m-d')])
+                ->addFieldToFilter('to_date', ['gt' => date('Y-m-d')]);
+            $discount = $priority_collection->getColumnValues('discount_amount');
+            $integerIDs = array_map('intval', $discount);
+            $percent = 0;
+            foreach ($integerIDs as $percent) {
+                $percent = $percent / 100;
+            }
 
+            return $percent;
+        }
+    }
 }

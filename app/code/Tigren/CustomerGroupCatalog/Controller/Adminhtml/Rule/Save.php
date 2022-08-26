@@ -14,7 +14,7 @@ use Tigren\CustomerGroupCatalog\Model\RuleFactory;
 
 /**
  * Class Save
- * @package Tigren\Customer\Controller\Adminhtml\Post
+ * @package Tigren\CustomerGroupCatalog\Controller\Adminhtml\Rule
  */
 class Save extends Action
 {
