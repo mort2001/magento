@@ -234,7 +234,7 @@
                     <item name="additionalClasses" xsi:type="string">amgroupcat-fieldset-child</item>
                 </item>
             </argument>
-            <field name="customer_group_ids">5
+            <field name="customer_group_ids">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
                         <item name="labelVisible" xsi:type="boolean">false</item>
