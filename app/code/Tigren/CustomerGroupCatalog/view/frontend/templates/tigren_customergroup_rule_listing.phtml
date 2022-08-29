@@ -1,0 +1,36 @@
+<?php
+/*
+ * @author    Tigren Solutions <info@tigren.com>
+ * @copyright Copyright (c) 2022 Tigren Solutions <https://www.tigren.com>. All rights reserved.
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+
+$questions = $this->helper(Tigren\CustomerGroupCatalog\Helper\Data::class)->getRules();
+?>
+
+<button><a href="http://magento24.localhost.com/" )>Go to Homepage</a>
+</button>
+<hr>
+
+<table border="1">
+    <tr>
+        <th>Rule ID</th>
+        <th>Name</th>
+        <th>Store</th>
+        <th>Customer Group ID</th>
+        <th>Discount Amount (%)</th>
+        <th>Priority</th>
+    </tr>
+    <?php
+    foreach ($questions as $item): ?>
+        <tr>
+            <td><?= $item['rule_id'] ?></td>
+            <td><?= $item['name'] ?></td>
+            <td><?= $item['store_ids'] ?></td>
+            <td><?= $item['customer_group_ids'] ?></td>
+            <td><?= $item['discount_amount'] ?></td>
+            <td><?= $item['priority'] ?></td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+
