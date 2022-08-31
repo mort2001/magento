@@ -35,12 +35,14 @@ define([
                     productInfo = self.options.productInfoResolver(form),
                     formData;
                 $(self.options.minicartSelector).trigger('contentLoading');
+                var productSku = form.data().productSku;
                 self.disableAddToCartButton(form);
+
                 formData = new FormData(form[0]);
                 $.ajax({
-                    url: form.attr('action'),
+                    url: form.prop('action'),
                     data: formData,
-                    type: 'post',
+                    type: 'POST',
                     dataType: 'json',
                     cache: false,
                     contentType: false,
@@ -63,6 +65,7 @@ define([
                             'form': form,
                             'response': res
                         });
+
                         if (self.isLoaderEnabled()) {
                             $('body').trigger(self.options.processStop);
                         }
@@ -99,33 +102,64 @@ define([
                                 .find('span')
                                 .html(res.product.statusText);
                         }
-                        self.enableAddToCartButton(form);
-                        var popup = $('<div class="add-to-cart-modal-popup"/>').html($('.page-title span').text() + '<span> has been added to cart.</span>').modal({
-                            modalClass: 'add-to-cart-popup',
-                            title: $.mage.__("Notification"),
-                            buttons: [
-                                {
-                                    text: 'Continue',
-                                    click: function () {
-                                        this.closeModal();
-                                    }
-                                },
-                                {
-                                    text: 'Clear Cart',
-                                    click: function () {
-                                        alert('Clear Cart???')
-                                        this.closeModal();
-                                    }
-                                },
-                                {
-                                    text: 'Checkout',
-                                    click: function () {
-                                        window.location = window.checkout.checkoutUrl
-                                    }
+
+                        self.enableAddToCartButton(form, productSku);
+                        $.ajax({
+                            url: '/tigren_advancedcheckout/payment/index',
+                            type: 'post',
+                            data: {
+                                productSku: productSku,
+                            },
+                            dataType: 'json',
+                            beforeSend: function (notice) {
+                                console.log(notice);
+                                $('body').trigger('processStart');
+                            },
+                            success: function (notice) {
+                                if (notice.ClearCart === true) {
+                                    $('body').trigger('processStop');
+                                    var popup = $('<div class="add-to-cart-modal-popup"/>').html($('.page-title span').text() + '<span> has been added to cart.</span>').modal({
+                                        modalClass: 'add-to-cart-popup',
+                                        title: $.mage.__("Notification"),
+                                        buttons: [
+                                            {
+                                                text: 'Clear Cart',
+                                                click: function (status) {
+                                                    var customurl = "tigren_advancedcheckout/payment/clearcart";
+                                                    $.ajax({
+                                                        url: customurl,
+                                                        data: {
+                                                            status: "test1",
+                                                        },
+                                                        type: 'post',
+                                                        dataType: 'json',
+                                                        success: function (response) {
+                                                            if (response.messages) {
+                                                                $('[data-placeholder="messages"]').html(response.messages);
+                                                            }
+
+                                                            if (response.minicart) {
+                                                                $('[data-block="minicart"]').replaceWith(response.minicart);
+                                                                $('[data-block="minicart"]').trigger('contentUpdated');
+                                                            }
+                                                            console.log(response);
+                                                        },
+                                                    })
+                                                    this.closeModal();
+                                                }
+                                            },
+                                            {
+                                                text: 'Checkout',
+                                                click: function () {
+                                                    window.location = window.checkout.checkoutUrl
+                                                }
+                                            }
+                                        ]
+                                    });
                                 }
-                            ]
-                        });
-                        popup.modal('openModal');
+                                popup.modal('openModal');
+                            }
+                        })
                     },
 
                     /** @inheritdoc */
@@ -147,6 +181,37 @@ define([
                     }
                 });
             },
+            /**
+             * @param {String} form
+             */
+            disableAddToCartButton: function (form) {
+                var addToCartButtonTextWhileAdding = this.options.addToCartButtonTextWhileAdding || $t('Adding...'),
+                    addToCartButton = $(form).find(this.options.addToCartButtonSelector);
+
+                addToCartButton.addClass(this.options.addToCartButtonDisabledClass);
+                addToCartButton.find('span').text(addToCartButtonTextWhileAdding);
+                addToCartButton.prop('title', addToCartButtonTextWhileAdding);
+            },
+
+            /**
+             * @param {String} form
+             */
+            enableAddToCartButton: function (form) {
+                var addToCartButtonTextAdded = this.options.addToCartButtonTextAdded || $t('Added'),
+                    self = this,
+                    addToCartButton = $(form).find(this.options.addToCartButtonSelector);
+
+                addToCartButton.find('span').text(addToCartButtonTextAdded);
+                addToCartButton.prop('title', addToCartButtonTextAdded);
+
+                setTimeout(function () {
+                    var addToCartButtonTextDefault = self.options.addToCartButtonTextDefault || $t('Add to Cart');
+
+                    addToCartButton.removeClass(self.options.addToCartButtonDisabledClass);
+                    addToCartButton.find('span').text(addToCartButtonTextDefault);
+                    addToCartButton.prop('title', addToCartButtonTextDefault);
+                }, 1000);
+            }
         });
 
         return $.mage.catalogAddToCart;
