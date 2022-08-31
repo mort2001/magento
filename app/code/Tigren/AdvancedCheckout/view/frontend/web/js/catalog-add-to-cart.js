@@ -29,15 +29,131 @@ define([
                 addToCartButtonTextDefault: '',
                 productInfoResolver: productInfoResolver
             },
+
+            /**
+             *
+             * @private
+             */
+            _bindSubmit: function () {
+                var self = this;
+
+                if (this.element.data('catalog-addtocart-initialized')) {
+                    return;
+                }
+
+                this.element.data('catalog-addtocart-initialized', 1);
+                this.element.on('submit', function (e) {
+                    e.preventDefault();
+                    self.submitForm($(this));
+                });
+            },
+
+            /**
+             * @private
+             */
+            _redirect: function (url) {
+                var urlParts, locationParts, forceReload;
+
+                urlParts = url.split('#');
+                locationParts = window.location.href.split('#');
+                forceReload = urlParts[0] === locationParts[0];
+
+                window.location.assign(url);
+
+                if (forceReload) {
+                    window.location.reload();
+                }
+            },
+
+            /**
+             * @return {Boolean}
+             */
+            isLoaderEnabled: function () {
+                return this.options.processStart && this.options.processStop;
+            },
+
+            /**
+             *
+             * @param form
+             */
+            submitForm: function (form) {
+                var productSku = form.data().productSku,
+                    self = this;
+                $.ajax({
+                    url: '/tigren_advancedcheckout/payment/index',
+                    type: 'post',
+                    data: {
+                        productSku: productSku,
+                    },
+                    dataType: 'json',
+                    beforeSend: function (notice) {
+                        console.log(notice);
+                        $('body').trigger('processStart');
+                    },
+                    success: function (notice) {
+                        if (notice.ClearCart === true) {
+                            $('body').trigger('processStop');
+                            var popup = $('<div class="add-to-cart-modal-popup"/>').html('<div style="color: #0a820b;"><span>This product has been added to cart before ...</span></div>').modal({
+                                modalClass: 'add-to-cart-popup',
+                                title: $.mage.__("<div style='color: #0a820b'><b>Notification</b></div>"),
+                                buttons: [
+                                    {
+                                        text: 'Continue Adding to cart',
+                                        click: function () {
+                                            $('body').trigger('processStop');
+                                            self.ajaxSubmit(form);
+                                            this.closeModal();
+                                        }
+                                    },
+                                    {
+                                        text: 'Clear Cart',
+                                        click: function (status) {
+                                            var customurl = "tigren_advancedcheckout/payment/clearcart";
+                                            $.ajax({
+                                                url: customurl,
+                                                data: {
+                                                    status: "test1",
+                                                },
+                                                type: 'post',
+                                                dataType: 'json',
+                                                success: function (response) {
+                                                    $('body').trigger('processStop');
+                                                    console.log(response);
+                                                },
+                                            })
+                                            this.closeModal();
+                                        }
+                                    },
+                                    {
+                                        text: 'Checkout',
+                                        click: function () {
+                                            window.location = window.checkout.checkoutUrl
+                                        }
+                                    }
+                                ]
+                            });
+                            popup.modal('openModal');
+                        } else {
+                            $('body').trigger('processStop');
+                            self.ajaxSubmit(form);
+                        }
+
+                    }
+                });
+            },
+
+            /**
+             *
+             * @param form
+             */
             ajaxSubmit: function (form) {
                 var self = this,
                     productIds = idsResolver(form),
                     productInfo = self.options.productInfoResolver(form),
                     formData;
                 $(self.options.minicartSelector).trigger('contentLoading');
-                var productSku = form.data().productSku;
                 self.disableAddToCartButton(form);
-
+                // var productSku = form.data().productSku;
                 formData = new FormData(form[0]);
                 $.ajax({
                     url: form.prop('action'),
@@ -102,64 +218,7 @@ define([
                                 .find('span')
                                 .html(res.product.statusText);
                         }
-
-                        self.enableAddToCartButton(form, productSku);
-                        $.ajax({
-                            url: '/tigren_advancedcheckout/payment/index',
-                            type: 'post',
-                            data: {
-                                productSku: productSku,
-                            },
-                            dataType: 'json',
-                            beforeSend: function (notice) {
-                                console.log(notice);
-                                $('body').trigger('processStart');
-                            },
-                            success: function (notice) {
-                                if (notice.ClearCart === true) {
-                                    $('body').trigger('processStop');
-                                    var popup = $('<div class="add-to-cart-modal-popup"/>').html($('.page-title span').text() + '<span> has been added to cart.</span>').modal({
-                                        modalClass: 'add-to-cart-popup',
-                                        title: $.mage.__("Notification"),
-                                        buttons: [
-                                            {
-                                                text: 'Continue adding to cart',
-                                                click: function () {
-                                                    this.closeModal();
-                                                }
-                                            },
-                                            {
-                                                text: 'Clear Cart',
-                                                click: function (status) {
-                                                    var customurl = "tigren_advancedcheckout/payment/clearcart";
-                                                    $.ajax({
-                                                        url: customurl,
-                                                        data: {
-                                                            status: "test1",
-                                                        },
-                                                        type: 'post',
-                                                        dataType: 'json',
-                                                        success: function (response) {
-                                                            console.log(response);
-                                                        },
-                                                    })
-                                                    this.closeModal();
-                                                }
-                                            },
-                                            {
-                                                text: 'Checkout',
-                                                click: function () {
-                                                    window.location = window.checkout.checkoutUrl
-                                                }
-                                            }
-                                        ]
-                                    });
-                                } else {
-                                    $('body').trigger('processStop');
-                                }
-                                popup.modal('openModal');
-                            }
-                        })
+                        self.enableAddToCartButton(form);
                     },
 
                     /** @inheritdoc */
@@ -196,7 +255,8 @@ define([
             /**
              * @param {String} form
              */
-            enableAddToCartButton: function (form, productSku) {
+            enableAddToCartButton: function (form) {
+
                 var addToCartButtonTextAdded = this.options.addToCartButtonTextAdded || $t('Added'),
                     self = this,
                     addToCartButton = $(form).find(this.options.addToCartButtonSelector);

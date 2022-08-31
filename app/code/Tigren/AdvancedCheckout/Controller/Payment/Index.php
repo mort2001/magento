@@ -75,7 +75,6 @@ class Index extends Action
         } else {
             $result['ClearCart'] = false;
         }
-
         return $this->getResponse()->representJson($this->serializer->serialize($result));
     }
 }
