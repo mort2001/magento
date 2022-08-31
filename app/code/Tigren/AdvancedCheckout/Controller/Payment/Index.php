@@ -65,10 +65,6 @@ class Index extends Action
         $multi_orders = $product->getCustomAttribute('custom_product_attribute') ? $product->getCustomAttribute('custom_product_attribute')->getValue() : '';
         $items = $this->_checkoutSession->getQuote()->getAllVisibleItems();
 
-        $writer = new \Zend_Log_Writer_Stream(BP . '/var/log/custom.log');
-        $logger = new \Zend_Log();
-        $logger->addWriter($writer);
-        $logger->info(print_r(count($items), true));
 
         if ($multi_orders == 0 && count($items) > 0) {
             $result['ClearCart'] = true;
