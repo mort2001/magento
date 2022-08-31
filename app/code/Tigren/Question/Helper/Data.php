@@ -41,14 +41,6 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @return bool
-     */
-    public function getStoreConfig()
-    {
-        return true;
-    }
-
-    /**
      * @return Collection
      */
     public function getListQues()
