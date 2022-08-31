@@ -134,14 +134,6 @@ define([
                                                         type: 'post',
                                                         dataType: 'json',
                                                         success: function (response) {
-                                                            if (response.messages) {
-                                                                $('[data-placeholder="messages"]').html(response.messages);
-                                                            }
-
-                                                            if (response.minicart) {
-                                                                $('[data-block="minicart"]').replaceWith(response.minicart);
-                                                                $('[data-block="minicart"]').trigger('contentUpdated');
-                                                            }
                                                             console.log(response);
                                                         },
                                                     })
