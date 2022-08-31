@@ -13,6 +13,7 @@ use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Quote\Model\Quote\Item;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
@@ -26,6 +27,13 @@ use Magento\Checkout\Model\Cart;
  */
 class ClearCart extends Action
 {
+    /**
+     * @var CartRepositoryInterface
+     */
+    protected $_cartRepository;
+    /**
+     * @var Cart
+     */
     protected $_modelCart;
     /**
      * @var Item
@@ -50,10 +58,13 @@ class ClearCart extends Action
      * @param ResultFactory $resultFactory
      * @param CheckoutSession $checkoutSession
      * @param Item $modelCartItem
+     * @param Cart $cart
+     * @param CartRepositoryInterface $cartRepository
      */
     public function __construct(Context         $context, SerializerInterface $serializer, ResultFactory $resultFactory,
-                                CheckoutSession $checkoutSession, Item $modelCartItem, Cart $cart)
+                                CheckoutSession $checkoutSession, Item $modelCartItem, Cart $cart, CartRepositoryInterface $cartRepository)
     {
+        $this->_cartRepository = $cartRepository;
         $this->_modelCart = $cart;
         $this->modelCartItem = $modelCartItem;
         $this->checkoutSession = $checkoutSession;
@@ -64,28 +75,26 @@ class ClearCart extends Action
 
     /**
      * @return ResponseInterface|Json&ResultInterface
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
      */
     public function execute()
     {
         $status = $this->getRequest()->getParams();
-        $writer = new \Zend_Log_Writer_Stream(BP . '/var/log/custom.log');
-        $logger = new \Zend_Log();
-        $logger->addWriter($writer);
-        $logger->info(print_r($status, true));
         if ($status) {
-            $all_items = $this->checkoutSession->getQuote()->getAllVisibleItems();
-            foreach($all_items as $items)
-            {
-                $itemId = $items->getItemId();
-                $this->_modelCart->removeItem($itemId)->save();
-            }
+            $cart = $this->checkoutSession
+                ->clearQuote()
+                ->getQuote()
+                ->unsetData('any_custom_quote_attribute')
+                ->removeAllItems();
+            $this->_cartRepository->save($cart);
+            $this->checkoutSession->replaceQuote($cart);
         }
 
         $response = $this->resultFactory
             ->create(ResultFactory::TYPE_JSON)
             ->setData([
                 'status' => "ok",
-                'message' => "form submitted correctly"
             ]);
         return $response;
     }

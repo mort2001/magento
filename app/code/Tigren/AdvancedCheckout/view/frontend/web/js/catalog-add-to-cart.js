@@ -123,6 +123,12 @@ define([
                                         title: $.mage.__("Notification"),
                                         buttons: [
                                             {
+                                                text: 'Continue adding to cart',
+                                                click: function () {
+                                                    this.closeModal();
+                                                }
+                                            },
+                                            {
                                                 text: 'Clear Cart',
                                                 click: function (status) {
                                                     var customurl = "tigren_advancedcheckout/payment/clearcart";
@@ -148,6 +154,8 @@ define([
                                             }
                                         ]
                                     });
+                                } else {
+                                    $('body').trigger('processStop');
                                 }
                                 popup.modal('openModal');
                             }
@@ -188,7 +196,7 @@ define([
             /**
              * @param {String} form
              */
-            enableAddToCartButton: function (form) {
+            enableAddToCartButton: function (form, productSku) {
                 var addToCartButtonTextAdded = this.options.addToCartButtonTextAdded || $t('Added'),
                     self = this,
                     addToCartButton = $(form).find(this.options.addToCartButtonSelector);

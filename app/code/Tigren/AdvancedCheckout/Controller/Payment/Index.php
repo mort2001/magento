@@ -60,27 +60,22 @@ class Index extends Action
     public function execute()
     {
         $result = [];
-        $items = $this->_checkoutSession->getQuote()->getAllVisibleItems();
         $sku = $this->getRequest()->getParam('productSku');
         $product = $this->_productRepository->get($sku);
+        $multi_orders = $product->getCustomAttribute('custom_product_attribute') ? $product->getCustomAttribute('custom_product_attribute')->getValue() : '';
+        $items = $this->_checkoutSession->getQuote()->getAllVisibleItems();
 
         $writer = new \Zend_Log_Writer_Stream(BP . '/var/log/custom.log');
         $logger = new \Zend_Log();
         $logger->addWriter($writer);
-        $logger->info(print_r($product->getId(), true));
+        $logger->info(print_r(count($items), true));
 
-        $multi_orders = $product->getCustomAttribute('custom_product_attribute') ? $product->getCustomAttribute('custom_product_attribute')->getValue() : '';
         if ($multi_orders == 0 && count($items) > 0) {
             $result['ClearCart'] = true;
         } else {
             $result['ClearCart'] = false;
         }
 
-        if ($multi_orders == 0 && count($items) == 0) {
-            $result['success'] = true;
-        } else {
-            $result['success'] = false;
-        }
         return $this->getResponse()->representJson($this->serializer->serialize($result));
     }
 }
