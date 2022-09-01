@@ -128,38 +128,78 @@ define([
          * Place order.
          */
         placeOrder: function (data, event) {
-            alert('aaaaa');
             var self = this;
+            $.ajax({
+                url: '/tigren_advancedcheckout/payment/placeordernotice',
+                type: 'post',
+                data: {
+                    data: 'data'
+                },
+                beforeSend: function (notice) {
+                    $('body').trigger('processStart');
+                },
+                success: function (notice) {
+                    console.log(notice);
+                    if (notice.openPopup === true) {
+                        $('body').trigger('processStop');
+                        var popup = $('<div class="add-to-cart-modal-popup"/>').html('<div style="color: darkred;"><span>You have at least 1 order ' +
+                            'that had not been completed! PLease wait until the process is done!!!</span></div>').modal({
+                            modalClass: 'place-order-popup',
+                            title: $.mage.__("<center><div style='color: #0a820b'><b>Notification</b></div></center>"),
+                            buttons: [
+                                {
+                                    text: 'Close Notification',
+                                    click: function () {
+                                        $('body').trigger('processStop');
+                                        this.closeModal();
+                                    }
+                                },
+                                {
+                                    text: 'Back to Homepage',
+                                    click: function () {
+                                        $('body').trigger('processStop');
+                                        window.location.href = 'http://magento24.localhost.com/'
+                                    }
+                                }
+                            ]
+                        })
+                        popup.modal('openModal');
+                    } else {
+                        $('body').trigger('processStop');
 
-            if (event) {
-                event.preventDefault();
-            }
 
-            if (this.validate() &&
-                additionalValidators.validate() &&
-                this.isPlaceOrderActionAllowed() === true
-            ) {
-                this.isPlaceOrderActionAllowed(false);
-
-                this.getPlaceOrderDeferredObject()
-                    .done(
-                        function () {
-                            self.afterPlaceOrder();
-
-                            if (self.redirectAfterPlaceOrder) {
-                                redirectOnSuccessAction.execute();
-                            }
+                        if (event) {
+                            event.preventDefault();
                         }
-                    ).always(
-                    function () {
-                        self.isPlaceOrderActionAllowed(true);
+
+                        if (self.validate() &&
+                            additionalValidators.validate() &&
+                            self.isPlaceOrderActionAllowed() === true
+                        ) {
+                            self.isPlaceOrderActionAllowed(false);
+
+                            self.getPlaceOrderDeferredObject()
+                                .done(
+                                    function () {
+                                        self.afterPlaceOrder();
+
+                                        if (self.redirectAfterPlaceOrder) {
+                                            redirectOnSuccessAction.execute();
+                                        }
+                                    }
+                                ).always(
+                                function () {
+                                    self.isPlaceOrderActionAllowed(true);
+                                }
+                            );
+
+                            return true;
+                        }
+
+                        return false;
                     }
-                );
-
-                return true;
-            }
-
-            return false;
+                }
+            });
         },
 
         /**
