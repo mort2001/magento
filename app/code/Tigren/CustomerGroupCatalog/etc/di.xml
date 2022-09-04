@@ -25,15 +25,15 @@
         </arguments>
     </virtualType>
 
-    <preference for="Magento\Catalog\Pricing\Render\FinalPriceBox"
-                type="Tigren\CustomerGroupCatalog\Pricing\Render\FinalPriceBox"/>
-    <preference for="Magento\ConfigurableProduct\Pricing\Render\FinalPriceBox"
-                type="Tigren\CustomerGroupCatalog\Pricing\Render\FinalPriceBox"/>
+<!--    <preference for="Magento\Catalog\Pricing\Render\FinalPriceBox"-->
+<!--                type="Tigren\CustomerGroupCatalog\Pricing\Render\FinalPriceBox"/>-->
+<!--    <preference for="Magento\ConfigurableProduct\Pricing\Render\FinalPriceBox"-->
+<!--                type="Tigren\CustomerGroupCatalog\Pricing\Render\FinalPriceBox"/>-->
 
-    <type name="Magento\Catalog\Model\Product">
-        <plugin name="hidebutton" type="Tigren\CustomerGroupCatalog\Plugin\HideAddToCartButton" sortOrder="1"
-                disabled="false"/>
-    </type>
+<!--    <type name="Magento\Catalog\Model\Product">-->
+<!--        <plugin name="hidebutton" type="Tigren\CustomerGroupCatalog\Plugin\HideAddToCartButton" sortOrder="1"-->
+<!--                disabled="false"/>-->
+<!--    </type>-->
 
     <type name="Magento\Customer\Controller\Account\LoginPost">
         <plugin name="redirect_custom_url" type="Tigren\CustomerGroupCatalog\Plugin\RedirectCustomUrl" sortOrder="1"

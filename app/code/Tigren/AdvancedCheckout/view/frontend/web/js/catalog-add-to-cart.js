@@ -125,8 +125,9 @@ define([
                                         }
                                     },
                                     {
-                                        text: 'Checkout',
+                                        text: 'Add and Checkout',
                                         click: function () {
+                                            self.ajaxSubmit(form);
                                             window.location = window.checkout.checkoutUrl
                                         }
                                     }

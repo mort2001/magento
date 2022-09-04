@@ -9,7 +9,6 @@ namespace Tigren\CustomerGroupCatalog\Controller\Rule;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -17,6 +16,7 @@ use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Customer\Model\Session;
 use Tigren\CustomerGroupCatalog\Helper\Data;
+use Tigren\CustomerGroupCatalog\Observer\OrderdataObserver;
 
 /**
  * Class Index
@@ -24,6 +24,7 @@ use Tigren\CustomerGroupCatalog\Helper\Data;
  */
 class Index extends Action
 {
+    protected $_orderdata;
     /**
      * @var Session
      */
@@ -45,8 +46,9 @@ class Index extends Action
      * @param Session $session
      * @param Data $discount
      */
-    public function __construct(Context $context, PageFactory $pageFactory, Session $session, Data $discount)
+    public function __construct(Context $context, PageFactory $pageFactory, Session $session, Data $discount, OrderdataObserver $orderdataObserver)
     {
+        $this->_orderdata = $orderdataObserver;
         $this->_discount = $discount;
         $this->_session = $session;
         $this->_pageFactory = $pageFactory;
@@ -68,5 +70,6 @@ class Index extends Action
             $this->messageManager->addErrorMessage('PLs Login first');
             $this->_redirect('customer/account/login');
         }
+
     }
 }
