@@ -81,10 +81,53 @@
                 </item>
             </argument>
         </container>
+        <!-- Filter Search -->
+<!--        <filterSearch name="fulltext">-->
+<!--            <argument name="data" xsi:type="array">-->
+<!--                <item name="config" xsi:type="array">-->
+<!--                    <item name="provider" xsi:type="string">-->
+<!--                        question_create_listing.question_create_listing_data_source-->
+<!--                    </item>-->
+<!--                    <item name="chipsProvider" xsi:type="string">-->
+<!--                        question_create_listing.question_create_listing.listing_top.listing_filters_chips-->
+<!--                    </item>-->
+<!--                    <item name="storageConfig" xsi:type="array">-->
+<!--                        <item name="provider" xsi:type="string">-->
+<!--                            question_create_listing.question_create_listing.listing_top.bookmarks-->
+<!--                        </item>-->
+<!--                        <item name="namespace" xsi:type="string">current.search</item>-->
+<!--                    </item>-->
+<!--                </item>-->
+<!--            </argument>-->
+<!--        </filterSearch>-->
+
+        <filterSearch name="fulltext">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/search/search</item>
+                    <item name="displayArea" xsi:type="string">dataGridFilters</item>
+                    <item name="provider" xsi:type="string">
+                        question_create_listing.question_create_listing_data_source
+                    </item>
+                    <item name="chipsProvider" xsi:type="string">
+                        question_create_listing.question_create_listing.listing_top.listing_filters_chips
+                    </item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">
+                            question_create_listing.question_create_listing.listing_top.bookmarks
+                        </item>
+                        <item name="namespace" xsi:type="string">current.search</item>
+                    </item>
+                </item>
+            </argument>
+        </filterSearch>
+
         <!-- Filters -->
         <filters name="listing_filters">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
+                    <item name="displayArea" xsi:type="string">dataGridFilters</item>
+                    <item name="dataScope" xsi:type="string">filters</item>
                     <item name="storageConfig" xsi:type="array">
                         <item name="provider" xsi:type="string">
                             question_create_listing.question_create_listing.listing_top.bookmarks
@@ -104,25 +147,7 @@
                 </item>
             </argument>
         </filters>
-        <!-- Filter Search -->
-        <filterSearch name="fulltext">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="provider" xsi:type="string">
-                        question_create_listing.question_create_listing_data_source
-                    </item>
-                    <item name="chipsProvider" xsi:type="string">
-                        question_create_listing.question_create_listing.listing_top.listing_filters_chips
-                    </item>
-                    <item name="storageConfig" xsi:type="array">
-                        <item name="provider" xsi:type="string">
-                            question_create_listing.question_create_listing.listing_top.bookmarks
-                        </item>
-                        <item name="namespace" xsi:type="string">current.search</item>
-                    </item>
-                </item>
-            </argument>
-        </filterSearch>
+
         <!-- Mass action -->
         <massaction name="listing_massaction">
             <argument name="data" xsi:type="array">
