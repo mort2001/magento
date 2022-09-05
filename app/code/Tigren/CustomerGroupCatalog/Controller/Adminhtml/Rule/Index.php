@@ -19,7 +19,7 @@ use Tigren\CustomerGroupCatalog\Controller\Adminhtml\Rule;
 class Index extends Rule
 {
     /**
-     * @return Page|ResponseInterface|ResultInterface
+     * @return Page
      */
     public function execute()
     {

@@ -111,17 +111,6 @@
                 </item>
             </argument>
         </column>
-        <!--        </column>-->
-        <!--        class="Tigren\CustomerGroupCatalog\Ui\Component\Listing\Column\Store" class="Magento\Store\Ui\Component\Listing\Column\Store-->
-        <!--        <column name="store_ids" class="Magento\Store\Ui\Component\Listing\Column\Store">-->
-        <!--            <argument name="data" xsi:type="array">-->
-        <!--                <item name="config" xsi:type="array">-->
-        <!--                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>-->
-        <!--                    <item name="sortable" xsi:type="boolean">false</item>-->
-        <!--                    <item name="label" xsi:type="string" translate="true">Store View</item>-->
-        <!--                </item>-->
-        <!--            </argument>-->
-        <!--        </column>-->
         <column name="customer_group_ids">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
