@@ -346,6 +346,7 @@ return [
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,
         'Temando_ShippingRemover' => 1,
-        'Tigren_Question' => 1
+        'Tigren_CustomerGroupCatalog' => 1,
+        'Tigren_HelloWorld' => 1
     ]
 ];
