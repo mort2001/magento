@@ -26,7 +26,7 @@ class Save extends Action
     /**
      * @var PostFactory
      */
-    protected $_mcfFactory;
+    protected $_postFactory;
     /**
      * @var Session
      */
@@ -49,12 +49,12 @@ class Save extends Action
      * @param CustomerFactory $customerFactory
      * @param Customer $cus
      */
-    public function __construct(Context $context, PostFactory $mcfFactory, Session $session, Context $httpContext, CustomerFactory $customerFactory, Customer $cus,)
+    public function __construct(Context $context, PostFactory $postFactory, Session $session, Context $httpContext, CustomerFactory $customerFactory, Customer $cus,)
     {
         $this->cus = $cus;
         $this->customerFactory = $customerFactory;
         $this->session = $session;
-        $this->_mcfFactory = $mcfFactory;
+        $this->_postFactory = $postFactory;
         parent::__construct($context);
     }
 
@@ -65,7 +65,7 @@ class Save extends Action
     public function execute()
     {
         $data = $this->getRequest()->getParams();
-        $model_data = $this->_mcfFactory->create();
+        $model_data = $this->_postFactory->create();
         $authorId = $this->session->getCustomer()->getId();
         $data['author_id'] = $authorId;
         $model_data->addData($data);

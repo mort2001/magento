@@ -6,20 +6,19 @@
  */
 
 namespace Tigren\Question\Model;
-
-use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
+use Magento\Framework\Model\AbstractModel;
 
 /**
  * Class Post
- * @package Tigren\Question\Model\ResourceModel
+ * @package Tigren\Question\Model
  */
-class Post extends AbstractDb
+class Post extends AbstractModel
 {
     /**
      * @return void
      */
     protected function _construct()
     {
-        $this->_init('tigren_customer_question', 'entity_id');
+        $this->_init('Tigren\Question\Model\ResourceModel\Post');
     }
 }
