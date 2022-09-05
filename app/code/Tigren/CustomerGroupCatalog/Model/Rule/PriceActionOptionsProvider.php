@@ -9,6 +9,10 @@ namespace Tigren\CustomerGroupCatalog\Model\Rule;
 
 use Magento\Framework\Data\OptionSourceInterface;
 
+/**
+ * Class PriceActionOptionsProvider
+ * @package Tigren\CustomerGroupCatalog\Model\Rule
+ */
 class PriceActionOptionsProvider implements OptionSourceInterface
 {
     public const SHOW = 0;

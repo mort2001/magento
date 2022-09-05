@@ -91,11 +91,10 @@ class ClearCart extends Action
             $this->checkoutSession->replaceQuote($cart);
         }
 
-        $response = $this->resultFactory
+        return $this->resultFactory
             ->create(ResultFactory::TYPE_JSON)
             ->setData([
                 'status' => "ok",
             ]);
-        return $response;
     }
 }

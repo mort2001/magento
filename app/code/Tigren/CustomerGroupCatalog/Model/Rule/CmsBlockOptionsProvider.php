@@ -10,6 +10,10 @@ namespace Tigren\CustomerGroupCatalog\Model\Rule;
 use Magento\Cms\Model\ResourceModel\Block\CollectionFactory;
 use Magento\Framework\Data\OptionSourceInterface;
 
+/**
+ * Class CmsBlockOptionsProvider
+ * @package Tigren\CustomerGroupCatalog\Model\Rule
+ */
 class CmsBlockOptionsProvider implements OptionSourceInterface
 {
     /**
@@ -22,6 +26,9 @@ class CmsBlockOptionsProvider implements OptionSourceInterface
      */
     private $collectionFactory;
 
+    /**
+     * @param CollectionFactory $collectionFactory
+     */
     public function __construct(
         CollectionFactory $collectionFactory
     )

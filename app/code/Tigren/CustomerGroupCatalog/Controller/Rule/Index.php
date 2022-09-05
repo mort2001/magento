@@ -16,7 +16,6 @@ use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Customer\Model\Session;
 use Tigren\CustomerGroupCatalog\Helper\Data;
-use Tigren\CustomerGroupCatalog\Observer\OrderdataObserver;
 
 /**
  * Class Index
@@ -24,7 +23,6 @@ use Tigren\CustomerGroupCatalog\Observer\OrderdataObserver;
  */
 class Index extends Action
 {
-    protected $_orderdata;
     /**
      * @var Session
      */
@@ -46,9 +44,8 @@ class Index extends Action
      * @param Session $session
      * @param Data $discount
      */
-    public function __construct(Context $context, PageFactory $pageFactory, Session $session, Data $discount, OrderdataObserver $orderdataObserver)
+    public function __construct(Context $context, PageFactory $pageFactory, Session $session, Data $discount)
     {
-        $this->_orderdata = $orderdataObserver;
         $this->_discount = $discount;
         $this->_session = $session;
         $this->_pageFactory = $pageFactory;
