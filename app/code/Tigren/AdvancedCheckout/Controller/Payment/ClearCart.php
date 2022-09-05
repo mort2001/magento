@@ -89,6 +89,7 @@ class ClearCart extends Action
                 ->removeAllItems();
             $this->_cartRepository->save($cart);
             $this->checkoutSession->replaceQuote($cart);
+            $this->messageManager->addSuccessMessage("Clear Cart Successfully!!!");
         }
 
         return $this->resultFactory
