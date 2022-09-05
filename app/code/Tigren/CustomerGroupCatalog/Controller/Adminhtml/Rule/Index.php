@@ -8,8 +8,6 @@
 namespace Tigren\CustomerGroupCatalog\Controller\Adminhtml\Rule;
 
 use Magento\Backend\Model\View\Result\Page;
-use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\Controller\ResultInterface;
 use Tigren\CustomerGroupCatalog\Controller\Adminhtml\Rule;
 
 /**
