@@ -9,7 +9,6 @@ namespace Tigren\CustomerGroupCatalog\Controller\Rule;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -68,5 +67,6 @@ class Index extends Action
             $this->messageManager->addErrorMessage('PLs Login first');
             $this->_redirect('customer/account/login');
         }
+
     }
 }

@@ -234,7 +234,7 @@
                     <item name="additionalClasses" xsi:type="string">amgroupcat-fieldset-child</item>
                 </item>
             </argument>
-            <field name="customer_group_ids">5
+            <field name="customer_group_ids">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
                         <item name="labelVisible" xsi:type="boolean">false</item>
@@ -248,6 +248,218 @@
                     </item>
                 </argument>
             </field>
+        </fieldset>
+        <fieldset name="product_page_options">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Product Page Display Options</item>
+                    <item name="additionalClasses" xsi:type="string">amgroupcat-fieldset-container -custom -line</item>
+                    <item name="component" xsi:type="string">Amasty_Groupcat/js/form/element/price-fieldset</item>
+                    <item name="hideProduct" xsi:type="string">
+                        tigren_customergroup_rule_form.tigren_customergroup_rule_form.product_conditions.hide_product
+                    </item>
+                    <item name="allowDirectLinks" xsi:type="string">
+                        tigren_customergroup_rule_form.tigren_customergroup_rule_form.restriction_action.allow_direct_links
+                    </item>
+                    <item name="template" xsi:type="string">Amasty_Groupcat/form/fieldset</item>
+                    <item name="collapsible" xsi:type="boolean">true</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                </item>
+            </argument>
+            <field name="price_action">
+                <argument name="data" xsi:type="array">
+                    <item name="options" xsi:type="object">Tigren\CustomerGroupCatalog\Model\Rule\PriceActionOptionsProvider</item>
+                    <item name="config" xsi:type="array">
+<!--                        <item name="label" xsi:type="string" translate="true">Hide Price</item>-->
+<!--                        <item name="additionalClasses" xsi:type="string">amgroupcat-radio-container</item>-->
+<!--                        <item name="tooltip" xsi:type="array">-->
+<!--                            <item name="description" xsi:type="string" translate="true">Select the behavior for price-->
+<!--                                hiding applied to a certain group of customers. The 'Replace with text' condition offers-->
+<!--                                you to display custom text instead of price. The option 'Replace to request form' should-->
+<!--                                be used if you want to display a link to the request form.-->
+<!--                            </item>-->
+<!--                        </item>-->
+                        <item name="template" xsi:type="string">Amasty_Groupcat/form/radio</item>
+                        <item name="dataType" xsi:type="string">number</item>
+                        <item name="formElement" xsi:type="string">radioset</item>
+                        <item name="value" xsi:type="string">0</item>
+                        <item name="source" xsi:type="string">groupcat_rule</item>
+                        <item name="dataScope" xsi:type="string">price_action</item>
+                        <item name="switcherConfig" xsi:type="array">
+                            <item name="enabled" xsi:type="boolean">true</item>
+                            <item name="rules" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="value" xsi:type="number">0</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">${ $.parentName }.block_id_view</item>
+                                            <item name="__disableTmpl" xsi:type="array">
+                                                <item name="target" xsi:type="boolean">false</item>
+                                            </item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                        <item name="1" xsi:type="array">
+                                            <item name="target" xsi:type="string">${ $.parentName }.block_id_list</item>
+                                            <item name="__disableTmpl" xsi:type="array">
+                                                <item name="target" xsi:type="boolean">false</item>
+                                            </item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                        <item name="2" xsi:type="array">
+                                            <item name="target" xsi:type="string">${ $.parentName }.hide_cart</item>
+                                            <item name="__disableTmpl" xsi:type="array">
+                                                <item name="target" xsi:type="boolean">false</item>
+                                            </item>
+                                            <item name="callback" xsi:type="string">show</item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="value" xsi:type="number">1</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">${ $.parentName }.block_id_view</item>
+                                            <item name="__disableTmpl" xsi:type="array">
+                                                <item name="target" xsi:type="boolean">false</item>
+                                            </item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                        <item name="1" xsi:type="array">
+                                            <item name="target" xsi:type="string">${ $.parentName }.block_id_list</item>
+                                            <item name="__disableTmpl" xsi:type="array">
+                                                <item name="target" xsi:type="boolean">false</item>
+                                            </item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                        <item name="2" xsi:type="array">
+                                            <item name="target" xsi:type="string">${ $.parentName }.hide_cart</item>
+                                            <item name="__disableTmpl" xsi:type="array">
+                                                <item name="target" xsi:type="boolean">false</item>
+                                            </item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="2" xsi:type="array">
+                                    <item name="value" xsi:type="number">2</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">${ $.parentName }.block_id_view</item>
+                                            <item name="__disableTmpl" xsi:type="array">
+                                                <item name="target" xsi:type="boolean">false</item>
+                                            </item>
+                                            <item name="callback" xsi:type="string">show</item>
+                                        </item>
+                                        <item name="1" xsi:type="array">
+                                            <item name="target" xsi:type="string">${ $.parentName }.block_id_list</item>
+                                            <item name="__disableTmpl" xsi:type="array">
+                                                <item name="target" xsi:type="boolean">false</item>
+                                            </item>
+                                            <item name="callback" xsi:type="string">show</item>
+                                        </item>
+                                        <item name="2" xsi:type="array">
+                                            <item name="target" xsi:type="string">${ $.parentName }.hide_cart</item>
+                                            <item name="__disableTmpl" xsi:type="array">
+                                                <item name="target" xsi:type="boolean">false</item>
+                                            </item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="3" xsi:type="array">
+                                    <item name="value" xsi:type="number">3</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">${ $.parentName }.block_id_view</item>
+                                            <item name="__disableTmpl" xsi:type="array">
+                                                <item name="target" xsi:type="boolean">false</item>
+                                            </item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                        <item name="1" xsi:type="array">
+                                            <item name="target" xsi:type="string">${ $.parentName }.block_id_list</item>
+                                            <item name="__disableTmpl" xsi:type="array">
+                                                <item name="target" xsi:type="boolean">false</item>
+                                            </item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                        <item name="2" xsi:type="array">
+                                            <item name="target" xsi:type="string">${ $.parentName }.hide_cart</item>
+                                            <item name="__disableTmpl" xsi:type="array">
+                                                <item name="target" xsi:type="boolean">false</item>
+                                            </item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+            <field name="block_id_view">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Replacement block for product page</item>
+                        <item name="fieldGroup" xsi:type="string">bool</item>
+                        <item name="dataType" xsi:type="string">number</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="value" xsi:type="string">0</item>
+                        <item name="source" xsi:type="string">groupcat_rule</item>
+                        <item name="dataScope" xsi:type="string">block_id_view</item>
+                    </item>
+                    <item name="options" xsi:type="object">Tigren\CustomerGroupCatalog\Model\Rule\CmsBlockOptionsProvider</item>
+                </argument>
+            </field>
+            <field name="block_id_list">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Replacement block for categories page
+                        </item>
+                        <item name="fieldGroup" xsi:type="string">bool</item>
+                        <item name="dataType" xsi:type="string">number</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="value" xsi:type="string">0</item>
+                        <item name="source" xsi:type="string">groupcat_rule</item>
+                        <item name="dataScope" xsi:type="string">block_id_list</item>
+                    </item>
+                    <item name="options" xsi:type="object">Tigren\CustomerGroupCatalog\Model\Rule\CmsBlockOptionsProvider</item>
+                </argument>
+            </field>
+            <field name="hide_cart">
+                <argument name="data" xsi:type="array">
+                    <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Hide "Add to cart" button</item>
+                        <item name="visible" xsi:type="boolean">true</item>
+                        <item name="additionalClasses" xsi:type="string">amgroupcat-field-checkbox</item>
+                        <item name="dataType" xsi:type="string">boolean</item>
+                        <item name="formElement" xsi:type="string">checkbox</item>
+                        <item name="prefer" xsi:type="string">toggle</item>
+                        <item name="valueMap" xsi:type="array">
+                            <item name="true" xsi:type="number">1</item>
+                            <item name="false" xsi:type="number">0</item>
+                        </item>
+                        <item name="source" xsi:type="string">groupcat_rule</item>
+                        <item name="dataScope" xsi:type="string">hide_cart</item>
+                        <item name="default" xsi:type="number">0</item>
+                    </item>
+                </argument>
+            </field>
+            <container name="product_image">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="template" xsi:type="string">Amasty_Groupcat/product-image</item>
+                        <item name="component" xsi:type="string">Amasty_Groupcat/js/product-image</item>
+                        <item name="imports" xsi:type="array">
+                            <item name="hidePrice" xsi:type="string">${ $.parentName }.price_action:value</item>
+                            <item name="hideCart" xsi:type="string">${ $.parentName }.hide_cart:value</item>
+                            <item name="hideWishlist" xsi:type="string">${ $.parentName }.hide_wishlist:value</item>
+                            <item name="hideCompare" xsi:type="string">${ $.parentName }.hide_compare:value</item>
+                        </item>
+                    </item>
+                </argument>
+            </container>
         </fieldset>
     </fieldset>
 </form>

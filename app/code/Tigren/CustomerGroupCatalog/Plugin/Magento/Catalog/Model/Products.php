@@ -15,7 +15,7 @@ use Tigren\CustomerGroupCatalog\Helper\Data;
 use Magento\Catalog\Model\Product;
 
 /**
- * Class Product
+ * Class Products
  * @package Tigren\CustomerGroupCatalog\Plugin\Catalog\Model
  */
 class Products

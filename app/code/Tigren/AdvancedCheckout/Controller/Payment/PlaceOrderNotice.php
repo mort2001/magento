@@ -1,0 +1,87 @@
+<?php
+/*
+ * @author    Tigren Solutions <info@tigren.com>
+ * @copyright Copyright (c) 2022 Tigren Solutions <https://www.tigren.com>. All rights reserved.
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+
+namespace Tigren\AdvancedCheckout\Controller\Payment;
+
+use Magento\Customer\Model\Session;
+use Magento\Framework\App\Action\Action;
+use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Sales\Model\ResourceModel\Order\CollectionFactory;
+use Magento\Framework\Serialize\SerializerInterface;
+use Zend_Log;
+use Zend_Log_Exception;
+use Zend_Log_Writer_Stream;
+
+/**
+ * Class PlaceOrderNotice
+ * @package Tigren\AdvancedCheckout\Controller\Payment
+ */
+class PlaceOrderNotice extends Action
+{
+    /**
+     * @var SerializerInterface
+     */
+    protected $serializer;
+    /**
+     * @var CollectionFactory
+     */
+    protected $_orderCollectionFactory;
+    /**
+     * @var Session
+     */
+    protected $_session;
+
+
+    /**
+     * @param Context $context
+     * @param Session $session
+     * @param CollectionFactory $orderCollectionFactory
+     * @param SerializerInterface $serializer
+     */
+    public function __construct(Context $context, Session $session, CollectionFactory $orderCollectionFactory, SerializerInterface $serializer)
+    {
+        $this->serializer = $serializer;
+        $this->_orderCollectionFactory = $orderCollectionFactory;
+        $this->_session = $session;
+        parent::__construct($context);
+    }
+
+    /**
+     * @return ResponseInterface|ResultInterface
+     * @throws Zend_Log_Exception
+     */
+    public function execute()
+    {
+        $result = [];
+        $data = $this->getRequest()->getParam('data');
+        if ($data) {
+            $customerId = $this->_session->getCustomerId();
+            $orders = $this->_orderCollectionFactory->create();
+            $orders->addFieldToFilter('customer_id', $customerId);
+            $statuses = $orders->getColumnValues('status');
+
+            $writer = new Zend_Log_Writer_Stream(BP . '/var/log/custom.log');
+            $logger = new Zend_Log();
+            $logger->addWriter($writer);
+            $logger->info(print_r($statuses, true));
+
+            if (count($orders) > 0) {
+                foreach ($statuses as $status) {
+                    if ($status == 'pending' || $status == 'processing') {
+                        $result['openPopup'] = true;
+                    }
+                }
+            } else {
+                $result['openPopup'] = false;
+            }
+        }
+
+        return $this->getResponse()->representJson($this->serializer->serialize($result));
+    }
+}
