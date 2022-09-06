@@ -17,6 +17,8 @@ use Magento\Sales\Api\OrderCustomerManagementInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\OrderFactory;
 use Magento\Store\Model\StoreManagerInterface;
+use Magento\Framework\Encryption\EncryptorInterface;
+use Magento\Customer\Model\ResourceModel\Customer\CollectionFactory;
 
 /**
  * Class ConvertGuest
@@ -25,9 +27,13 @@ use Magento\Store\Model\StoreManagerInterface;
 class ConvertGuest implements ObserverInterface
 {
     /**
-     * @var StoreManagerInterface
+     * @var CollectionFactory
      */
-    protected $_storeManager;
+    protected $_collectionFactory;
+    /**
+     * @var EncryptorInterface
+     */
+    protected $_encryptor;
     /**
      * @var OrderCustomerManagementInterface
      */
@@ -51,15 +57,21 @@ class ConvertGuest implements ObserverInterface
      * @param OrderFactory $orderFactory
      * @param OrderRepositoryInterface $orderRepository
      * @param CustomerFactory $customer
+     * @param EncryptorInterface $encryptor
+     * @param CollectionFactory $collectionFactory
      */
     public function __construct(
         StoreManagerInterface            $storeManager,
         OrderCustomerManagementInterface $orderCustomerService,
         OrderFactory                     $orderFactory,
         OrderRepositoryInterface         $orderRepository,
-        CustomerFactory                  $customer
+        CustomerFactory                  $customer,
+        EncryptorInterface               $encryptor,
+        CollectionFactory                $collectionFactory
     )
     {
+        $this->_collectionFactory = $collectionFactory;
+        $this->_encryptor = $encryptor;
         $this->_storeManager = $storeManager;
         $this->orderCustomerService = $orderCustomerService;
         $this->_orderFactory = $orderFactory;
@@ -77,17 +89,22 @@ class ConvertGuest implements ObserverInterface
     public function execute(Observer $observer)
     {
         $orderIds = $observer->getEvent()->getOrderIds();
+        //take the last order
         $orderId = $orderIds[0];
         $order = $this->_orderFactory->create()->load($orderId);
-
         $customer = $this->_customer->create();
 
+        //Base on order detail to approach customer
         $customer->setWebsiteId($this->_storeManager->getStore()->getWebsiteId());
         $customer->loadByEmail($order->getCustomerEmail());
 
         //Convert guest into customer
         if ($order->getId() && !$customer->getId()) {
-            $this->orderCustomerService->create($orderId);
+
+            $registration = $this->orderCustomerService->create($orderId);
+            $new_one = $this->_customer->create()->load( $registration->getId());
+            $new_one->setPassword('mort123');
+            $new_one->save();
         } else {
             //if customer Registered and checkout as guest
             $order->setCustomerId($customer->getId());

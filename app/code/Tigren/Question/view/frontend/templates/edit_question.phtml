@@ -19,13 +19,14 @@ $getQuestion = $block->getQuestion();
     <form class="form form-edit-account"
           action="<?= $block->escapeUrl($block->getUrl("*/*/update")) ?>.?id=<?= $getQuestion['entity_id'] ?>"
           method="post"
-          id="custom_form"
           enctype="multipart/form-data"
           data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
           autocomplete="off">
-        <button><a href="<?= $block->getUrl('*/*/listquestion') ?>">View All Question(s)</a></button>
+        <button class="action submit primary"><a style="color: white" href="<?= $block->getUrl('*/*/listquestion') ?>">
+                <?php echo __('View All Questions') ?></a></button>
         <fieldset class="fieldset info">
-            <legend class="legend"><span><?= $block->escapeHtml(__('Edit Question Form')) ?></span></legend>
+            <legend style="text-align: center; font-size: 25px; font-family: monospace; color: #0a820b" class="legend">
+                <b><span><?= $block->escapeHtml(__('Edit Question')) ?></span></b></legend>
             <div class="field title required">
                 <label class="label" for="title"><span><?php echo __('Title') ?></span></label>
                 <div class="control">

@@ -17,7 +17,7 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="entity_id"/>
         </constraint>
-        <index referenceId="CUSTOMER_QUESTION_TITLE_CONTENT" indexType="fulltext">
+        <index referenceId="TIGREN_CUSTOMER_QUESTION_TITLE_CONTENT" indexType="fulltext">
             <column name="title"/>
             <column name="content"/>
         </index>

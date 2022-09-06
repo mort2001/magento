@@ -23,5 +23,10 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="rule_id"/>
         </constraint>
+        <index referenceId="TIGREN_CUSTOMERGROUP_RULE_NAME_DISCOUNT_AMOUNT_PRODUCTS" indexType="fulltext">
+            <column name="name"/>
+            <column name="discount_amount"/>
+            <column name="products"/>
+        </index>
     </table>
 </schema>

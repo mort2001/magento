@@ -12,17 +12,40 @@ $helper = $this->helper(Tigren\Question\Helper\Data::class);
 $question = $helper->getListQues();
 if ($question->count()) {
     ?>
+    <style>
+        .text {
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+            font-size: 25px;
+            font-family: monospace;
+            font-weight: bold;
+            color: #0a820b;
+        }
+    </style>
+
+    <button class="action submit primary"><a style="color: white" href="<?= $block->getUrl('*/*/index') ?>">
+            <?php echo __('Create Question') ?></a></button>
+    <br>
+    <p>List Questions</p>
+    <hr>
     <div class="table-wrapper orders-history">
-        <table class="data table table-order-items history" id="my-orders-table">
+        <table class="data table table-order-items history" id="my-orders-table" border="2">
             <caption class="table-caption"><?php echo __('Grid Record') ?></caption>
             <thead>
             <tr>
-                <th scope="col" class="col id"><?php echo __('ID') ?></th>
-                <th scope="col" class="col name"><?php echo __('Title') ?></th>
-                <th scope="col" class="col email"><?php echo __('Content') ?></th>
-                <th scope="col" class="col createat"><?php echo __('Created At') ?></th>
-                <th scope="col" class="col author_id"><?php echo __('Author ID') ?></th>
-                <th scope="col" colspan="2" class="col actions"><?php echo __('Actions') ?></th>
+                <th scope="col" class="col id text"><?php echo __('ID') ?></th>
+                <th scope="col" class="col name text"><?php echo __('Title') ?></th>
+                <th scope="col" class="col email text"><?php echo __('Content') ?></th>
+                <th scope="col" class="col createat text"><?php echo __('Created At') ?></th>
+                <th scope="col" class="col author_id text"><?php echo __('Author ID') ?></th>
+                <th scope="col" colspan="2" class="col actions text"><?php echo __('Actions') ?></th>
             </tr>
             </thead>
             <tbody>
@@ -56,8 +79,3 @@ if ($question->count()) {
     <?php
 }
 ?>
-<form action="<?= $this->getUrl('question/create/index') ?>">
-    <button type="submit" title="<?php echo __('Create Question') ?>"
-            class="action submit primary" id="custom_btn">
-        <span><?php echo __('Create Question') ?></span>
-</form>
