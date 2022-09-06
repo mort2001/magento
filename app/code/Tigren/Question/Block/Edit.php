@@ -23,14 +23,12 @@ class Edit extends Template
      */
     protected $postFactory;
 
-
     /**
      * @param Template\Context $context
      * @param PostFactory $postFactory
      */
     public function __construct(Template\Context $context, PostFactory $postFactory)
     {
-
         $this->postFactory = $postFactory;
         parent::__construct($context);
     }
@@ -41,13 +39,9 @@ class Edit extends Template
     public function getQuestion()
     {
         $id = $this->getRequest()->getParam('id');
-
         $post = $this->postFactory->create()->load($id);
-
         if ($post->getEntityId()) {
             return $post;
         }
-
     }
-
 }

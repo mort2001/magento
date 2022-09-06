@@ -28,6 +28,9 @@ class ListQuestion extends Template
      */
     protected $_session;
 
+    /**
+     * @var \Magento\Framework\App\Http\Context
+     */
     protected $httpContext;
 
 
@@ -35,6 +38,7 @@ class ListQuestion extends Template
      * @param Context $context
      * @param CollectionFactory $collectionFactory
      * @param Session $session
+     * @param \Magento\Framework\App\Http\Context $httpContext
      */
     public function __construct(
         Context $context,
@@ -60,6 +64,7 @@ class ListQuestion extends Template
         }
         $collection = $this->collection->create();
         $collection->addFieldToFilter('author_id', $author);
+
         return $collection;
     }
 }

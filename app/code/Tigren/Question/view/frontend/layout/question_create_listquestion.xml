@@ -10,7 +10,5 @@
     <referenceContainer name="content">
         <block class="Magento\Framework\View\Element\Template" name="question_list_question"
                template="Tigren_Question::list_question.phtml" cacheable="false"/>
-        <!--        <block class="Tigren\Question\Helper" name="question_list_question"-->
-        <!--               template="Tigren_Question::list_question.phtml" cacheable="false"/>-->
     </referenceContainer>
 </page>

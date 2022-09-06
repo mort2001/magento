@@ -67,7 +67,7 @@ class Delete extends Action
     }
 
     /**
-     * @return Redirect|ResponseInterface|ResultInterface
+     * @return Redirect
      * @throws LocalizedException
      */
     public function execute()
@@ -99,6 +99,7 @@ class Delete extends Action
                 )
             );
         }
+
         return $this->resultRedirect->create()->setPath('question/create/index');
     }
 }

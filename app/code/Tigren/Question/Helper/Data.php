@@ -51,6 +51,7 @@ class Data extends AbstractHelper
         }
         $collection = $this->colelctionFactory->create();
         $collection->addFieldToFilter('author_id', $author);
+
         return $collection;
     }
 }

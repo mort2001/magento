@@ -54,6 +54,7 @@ class DataProvider extends AbstractDataProvider
         foreach ($items as $Rule) {
             $this->loadedData[$Rule->getId()] = $Rule->getData();
         }
+
         return $this->loadedData;
     }
 }

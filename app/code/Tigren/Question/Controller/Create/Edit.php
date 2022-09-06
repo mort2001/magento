@@ -42,6 +42,7 @@ class Edit extends Action
         if ($this->_session->isLoggedIn()) {
             $result = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
             $result->getConfig()->getTitle();
+
             return $result;
         } else {
             return $this->_redirect('customer/account/login');

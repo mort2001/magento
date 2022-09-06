@@ -43,7 +43,7 @@ class Save extends Action
 
     /**
      * @param Context $context
-     * @param PostFactory $mcfFactory
+     * @param PostFactory $postFactory
      * @param Session $session
      * @param Context $httpContext
      * @param CustomerFactory $customerFactory
@@ -70,30 +70,18 @@ class Save extends Action
         $data['author_id'] = $authorId;
         $model_data->addData($data);
         $model_data->save();
+
         $customerId = $this->session->getCustomerId();
         $customer = $this->cus->load($customerId);
         $customerData = $customer->getDataModel();
+
         $datayn = "Yes";
         $customerData->setCustomAttribute('is_question_created', $datayn);
         $customer->updateData($customerData);
         $customerResource = $this->customerFactory->create();
         $customerResource->saveAttribute($customer, 'is_question_created');
         $this->messageManager->addSuccessMessage("Saved Data");
+
         return $this->_redirect('question/create/listquestion');
     }
-
-//    /**
-//     * @throws Exception
-//     */
-//    public function SetAttributeValue()
-//    {
-////        $customerId = $this->session->getCustomerId();
-////        $customer = $this->cus->load($customerId);
-////        $customerData = $customer->getDataModel();
-////        $data = "Yes";
-////        $customerData->setCustomAttribute('is_question_created', $data);
-////        $customer->updateData($customerData);
-////        $customerResource = $this->customerFactory->create();
-////        $customerResource->saveAttribute($customer, 'is_question_created');
-//    }
 }

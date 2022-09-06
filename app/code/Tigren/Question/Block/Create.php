@@ -11,6 +11,10 @@ use Magento\Framework\Phrase;
 use Magento\Framework\View\Element\Template;
 
 
+/**
+ * Class Create
+ * @package Tigren\Question\Block
+ */
 class Create extends Template
 {
     /**

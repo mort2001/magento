@@ -72,6 +72,7 @@ class Delete extends Action
             }
             return $this->resultRedirectFactory->create()->setPath('question/create/listquestion');
         } else {
+
             return $this->_redirect('customer/account/login');
         }
     }

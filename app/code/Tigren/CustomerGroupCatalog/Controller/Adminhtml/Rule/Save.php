@@ -43,8 +43,6 @@ class Save extends Action
     public function execute()
     {
         $data = $this->getRequest()->getParams();
-//        echo '<pre>';
-//        var_dump(implode(',', $data['store_id'])); die;
         $id = $data['rule_id'] ?? null;
         if ($id) {
             $post = $this->ruleFactory->create()->load($id);
@@ -69,6 +67,7 @@ class Save extends Action
         } catch (Exception $e) {
             $this->messageManager->addErrorMessage(__($e->getMessage()));
         }
+
         return $this->resultRedirectFactory->create()->setPath('tigren_customergroup/rule/index');
     }
 }

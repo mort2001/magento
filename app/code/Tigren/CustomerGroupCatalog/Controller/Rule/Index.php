@@ -62,6 +62,7 @@ class Index extends Action
         if ($this->_session->isLoggedIn()) {
             $discount = $this->_discount->getDiscount();
             $this->messageManager->addSuccessMessage('Congratulation!!! You have received discount ' . $discount * 100 . '%' . ' all products!!!');
+
             return $this->_pageFactory->create();
         } else {
             $this->messageManager->addErrorMessage('PLs Login first');

@@ -54,6 +54,7 @@ class DataProvider extends AbstractDataProvider
         foreach ($items as $Job) {
             $this->loadedData[$Job->getId()] = $Job->getData();
         }
+
         return $this->loadedData;
     }
 }

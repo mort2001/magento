@@ -34,6 +34,7 @@ class AddAttribute implements DataPatchInterface
      * AccountPurposeCustomerAttribute constructor.
      *
      * @param ModuleDataSetupInterface $setup
+     * @param Config $eavConfig
      * @param CustomerSetupFactory $customerSetupFactory
      */
     public function __construct(

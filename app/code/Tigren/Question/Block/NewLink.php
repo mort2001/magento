@@ -24,6 +24,7 @@ class NewLink extends Link
         if (false != $this->getTemplate()) {
             return parent::_toHtml();
         }
+
         return '<li><a ' . $this->getLinkAttributes() . ' >' . $this->escapeHtml($this->getLabel()) . '</a></li>';
     }
 }

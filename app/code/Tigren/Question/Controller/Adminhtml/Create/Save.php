@@ -40,7 +40,7 @@ class Save extends Action
     }
 
     /**
-     * @return ResponseInterface|Redirect|ResultInterface
+     * @return Redirect
      */
     public function execute()
     {
@@ -62,6 +62,7 @@ class Save extends Action
         } catch (Exception $e) {
             $this->messageManager->addErrorMessage(__($e->getMessage()));
         }
+
         return $this->resultRedirectFactory->create()->setPath('question/create/index');
     }
 }

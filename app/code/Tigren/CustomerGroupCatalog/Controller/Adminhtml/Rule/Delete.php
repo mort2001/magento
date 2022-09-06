@@ -97,6 +97,7 @@ class Delete extends Action
                 )
             );
         }
+
         return $this->resultRedirect->create()->setPath('tigren_customergroup/rule/index');
     }
 }

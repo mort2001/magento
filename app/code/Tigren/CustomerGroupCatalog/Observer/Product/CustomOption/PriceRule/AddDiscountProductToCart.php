@@ -76,6 +76,7 @@ class AddDiscountProductToCart implements ObserverInterface
     {
         $product = $observer->getEvent()->getData('product');
         $sku = $product->getSku();
+
         if ($this->_session->isLoggedIn()) {
             $group_id = $this->_session->getCustomerGroupId();
             $ruleCollection = $this->collectionFactory->create()
@@ -84,13 +85,14 @@ class AddDiscountProductToCart implements ObserverInterface
             $priority = $ruleCollection->getColumnValues('priority');
             $priority_collection = $this->collectionFactory->create()->addFieldToFilter('priority', min($priority));
             $discount = $priority_collection->getColumnValues('discount_amount');
-            $item = $observer->getEvent()->getData('quote_item');
 
+            $item = $observer->getEvent()->getData('quote_item');
             $item = ($item->getParentItem() ? $item->getParentItem() : $item);
             $integerIDs = array_map('intval', $discount);
             foreach ($integerIDs as $percent) {
                 $percent = $percent / 100;
             }
+
             $sku = $item->getSku();
             $productCollection = $this->_product->loadByAttribute('sku', $sku);
             $productPriceBySku = $productCollection->getPrice();

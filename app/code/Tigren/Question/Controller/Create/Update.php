@@ -77,6 +77,7 @@ class Update extends Action
             $this->messageManager->addErrorMessage('Error');
             return $this->pageFactory->create();
         }
+
         return $resutl;
     }
 }
