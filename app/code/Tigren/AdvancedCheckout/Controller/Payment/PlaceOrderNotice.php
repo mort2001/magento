@@ -14,9 +14,6 @@ use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactory;
 use Magento\Framework\Serialize\SerializerInterface;
-use Zend_Log;
-use Zend_Log_Exception;
-use Zend_Log_Writer_Stream;
 
 /**
  * Class PlaceOrderNotice
@@ -44,7 +41,12 @@ class PlaceOrderNotice extends Action
      * @param CollectionFactory $orderCollectionFactory
      * @param SerializerInterface $serializer
      */
-    public function __construct(Context $context, Session $session, CollectionFactory $orderCollectionFactory, SerializerInterface $serializer)
+    public function __construct(
+        Context             $context,
+        Session             $session,
+        CollectionFactory   $orderCollectionFactory,
+        SerializerInterface $serializer
+    )
     {
         $this->serializer = $serializer;
         $this->_orderCollectionFactory = $orderCollectionFactory;
@@ -54,7 +56,6 @@ class PlaceOrderNotice extends Action
 
     /**
      * @return ResponseInterface|ResultInterface
-     * @throws Zend_Log_Exception
      */
     public function execute()
     {
@@ -65,11 +66,6 @@ class PlaceOrderNotice extends Action
             $orders = $this->_orderCollectionFactory->create();
             $orders->addFieldToFilter('customer_id', $customerId);
             $statuses = $orders->getColumnValues('status');
-
-            $writer = new Zend_Log_Writer_Stream(BP . '/var/log/custom.log');
-            $logger = new Zend_Log();
-            $logger->addWriter($writer);
-            $logger->info(print_r($statuses, true));
 
             if (count($orders) > 0) {
                 foreach ($statuses as $status) {

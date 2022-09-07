@@ -35,7 +35,11 @@ class ListQuestion extends Action
      * @param PageFactory $resultPageFactory
      * @param Session $session
      */
-    public function __construct(Context $context, PageFactory $resultPageFactory, Session $session)
+    public function __construct(
+        Context     $context,
+        PageFactory $resultPageFactory,
+        Session     $session
+    )
     {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;

@@ -8,7 +8,6 @@
 namespace Tigren\Question\Model\Config;
 
 use Magento\Ui\DataProvider\AbstractDataProvider;
-use Tigren\Question\Model\PostFactory;
 use Tigren\Question\Model\ResourceModel\Post\CollectionFactory;
 
 /**

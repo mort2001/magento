@@ -49,7 +49,14 @@ class Save extends Action
      * @param CustomerFactory $customerFactory
      * @param Customer $cus
      */
-    public function __construct(Context $context, PostFactory $postFactory, Session $session, Context $httpContext, CustomerFactory $customerFactory, Customer $cus,)
+    public function __construct(
+        Context         $context,
+        PostFactory     $postFactory,
+        Session         $session,
+        Context         $httpContext,
+        CustomerFactory $customerFactory,
+        Customer        $cus
+    )
     {
         $this->cus = $cus;
         $this->customerFactory = $customerFactory;

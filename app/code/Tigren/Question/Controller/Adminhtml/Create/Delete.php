@@ -10,13 +10,10 @@ namespace Tigren\Question\Controller\Adminhtml\Create;
 use Magento\Backend\App\Action;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Backend\Model\View\Result\RedirectFactory;
-use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Ui\Component\MassAction\Filter;
 use Tigren\Question\Model\PostFactory;
 use Tigren\Question\Model\ResourceModel\Post\CollectionFactory;
-
 
 /**
  * Class Delete

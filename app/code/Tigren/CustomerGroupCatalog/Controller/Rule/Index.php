@@ -44,7 +44,12 @@ class Index extends Action
      * @param Session $session
      * @param Data $discount
      */
-    public function __construct(Context $context, PageFactory $pageFactory, Session $session, Data $discount)
+    public function __construct(
+        Context     $context,
+        PageFactory $pageFactory,
+        Session     $session,
+        Data        $discount
+    )
     {
         $this->_discount = $discount;
         $this->_session = $session;

@@ -7,9 +7,7 @@
 
 namespace Tigren\Question\Block;
 
-use Magento\Framework\Phrase;
 use Magento\Framework\View\Element\Template;
-
 
 /**
  * Class Create
@@ -21,7 +19,10 @@ class Create extends Template
      * @param Template\Context $context
      * @param array $data
      */
-    public function __construct(Template\Context $context, array $data = [])
+    public function __construct(
+        Template\Context $context,
+        array            $data = []
+    )
     {
         parent::__construct($context, $data);
     }

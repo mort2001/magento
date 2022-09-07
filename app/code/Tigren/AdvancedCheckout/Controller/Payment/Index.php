@@ -43,7 +43,12 @@ class Index extends Action
      * @param CheckoutSession $checkoutSession
      * @param SerializerInterface $serializer
      */
-    public function __construct(Context $context, ProductRepository $productRepository, CheckoutSession $checkoutSession, SerializerInterface $serializer)
+    public function __construct(
+        Context             $context,
+        ProductRepository   $productRepository,
+        CheckoutSession     $checkoutSession,
+        SerializerInterface $serializer
+    )
     {
         $this->serializer = $serializer;
         $this->_checkoutSession = $checkoutSession;

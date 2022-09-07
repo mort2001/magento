@@ -27,7 +27,10 @@ class Edit extends Template
      * @param Template\Context $context
      * @param PostFactory $postFactory
      */
-    public function __construct(Template\Context $context, PostFactory $postFactory)
+    public function __construct(
+        Template\Context $context,
+        PostFactory      $postFactory
+    )
     {
         $this->postFactory = $postFactory;
         parent::__construct($context);

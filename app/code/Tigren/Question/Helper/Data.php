@@ -33,7 +33,11 @@ class Data extends AbstractHelper
      * @param Session $session
      * @param CollectionFactory $collectionFactory
      */
-    public function __construct(Context $context, Session $session, CollectionFactory $collectionFactory)
+    public function __construct(
+        Context           $context,
+        Session           $session,
+        CollectionFactory $collectionFactory
+    )
     {
         $this->colelctionFactory = $collectionFactory;
         $this->_session = $session;

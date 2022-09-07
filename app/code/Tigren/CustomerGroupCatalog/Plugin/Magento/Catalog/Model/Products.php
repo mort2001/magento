@@ -40,7 +40,11 @@ class Products
      * @param CollectionFactory $collectionFactory
      * @param Data $data
      */
-    public function __construct(Session $session, CollectionFactory $collectionFactory, Data $data)
+    public function __construct(
+        Session           $session,
+        CollectionFactory $collectionFactory,
+        Data              $data
+    )
     {
         $this->_session = $session;
         $this->collectionFactory = $collectionFactory;

@@ -61,8 +61,14 @@ class ClearCart extends Action
      * @param Cart $cart
      * @param CartRepositoryInterface $cartRepository
      */
-    public function __construct(Context         $context, SerializerInterface $serializer, ResultFactory $resultFactory,
-                                CheckoutSession $checkoutSession, Item $modelCartItem, Cart $cart, CartRepositoryInterface $cartRepository)
+    public function __construct(
+        Context                 $context,
+        SerializerInterface     $serializer,
+        ResultFactory           $resultFactory,
+        CheckoutSession         $checkoutSession,
+        Item                    $modelCartItem, Cart $cart,
+        CartRepositoryInterface $cartRepository
+    )
     {
         $this->_cartRepository = $cartRepository;
         $this->_modelCart = $cart;

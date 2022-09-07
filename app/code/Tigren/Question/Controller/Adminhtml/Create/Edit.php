@@ -18,7 +18,6 @@ use Magento\Framework\View\Result\Page;
  */
 class Edit extends Action
 {
-
     /**
      * @return ResultInterface|Page
      */

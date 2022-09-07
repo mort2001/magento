@@ -75,6 +75,7 @@ class ViewAction extends Column
                 }
             }
         }
+
         return $dataSource;
     }
 }
