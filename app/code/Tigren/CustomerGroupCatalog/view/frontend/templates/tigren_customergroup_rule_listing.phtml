@@ -5,7 +5,7 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-$questions = $this->helper(Tigren\CustomerGroupCatalog\Helper\Data::class)->getRules();
+$rules = $this->helper(Tigren\CustomerGroupCatalog\Helper\Data::class)->getRules();
 ?>
 
 <button><a href="http://magento24.localhost.com/" )>Go to Homepage</a>
@@ -22,7 +22,7 @@ $questions = $this->helper(Tigren\CustomerGroupCatalog\Helper\Data::class)->getR
         <th>Priority</th>
     </tr>
     <?php
-    foreach ($questions as $item): ?>
+    foreach ($rules as $item): ?>
         <tr>
             <td><?= $item['rule_id'] ?></td>
             <td><?= $item['name'] ?></td>

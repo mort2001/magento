@@ -159,18 +159,10 @@
                 <item name="options" xsi:type="object">Tigren\CustomerGroupCatalog\Model\OptionSource\Rule\Status</item>
             </argument>
         </column>
-        <actionsColumn name="actions" class="Tigren\Base\Ui\Component\Listing\Column\ViewAction">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="indexField" xsi:type="string">rule_id</item>
-                    <item name="buttons" xsi:type="array">
-                        <item name="edit" xsi:type="array">
-                            <item name="itemLabel" xsi:type="string" translate="true">Edit</item>
-                            <item name="urlPath" xsi:type="string">tigren_customergroup/rule/edit</item>
-                        </item>
-                    </item>
-                </item>
-            </argument>
+        <actionsColumn name="actions" class="Tigren\CustomerGroupCatalog\Ui\Component\Listing\Column\Actions">
+            <settings>
+                <indexField>rule_id</indexField>
+            </settings>
         </actionsColumn>
     </columns>
 </listing>

@@ -54,7 +54,7 @@ class Index extends Action
         if ($this->_sesstion->isLoggedIn()) {
             return $this->_pageFactory->create();
         } else {
-            $this->messageManager->addErrorMessage('You must login first!!!');
+            $this->messageManager->addErrorMessage('Please Login first before doing anything ...');
             return $this->_redirect('customer/account/login');
         }
     }

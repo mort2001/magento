@@ -189,3 +189,443 @@ Stack trace:
 #30 /home/mort/Work/htdocs/magento/vendor/magento/framework/App/Bootstrap.php(264): Magento\Framework\App\Http\Interceptor->launch()
 #31 /home/mort/Work/htdocs/magento/pub/index.php(30): Magento\Framework\App\Bootstrap->run()
 #32 {main} [] []
+[2022-09-07T08:08:39.561077+00:00] main.CRITICAL: ValueError: min(): Argument #1 ($value) must contain at least one element in /home/mort/Work/htdocs/magento/app/code/Tigren/CustomerGroupCatalog/Observer/Product/CustomOption/PriceRule/AddDiscountProductToCart.php:91
+Stack trace:
+#0 /home/mort/Work/htdocs/magento/app/code/Tigren/CustomerGroupCatalog/Observer/Product/CustomOption/PriceRule/AddDiscountProductToCart.php(91): min()
+#1 /home/mort/Work/htdocs/magento/vendor/magento/framework/Event/Invoker/InvokerDefault.php(88): Tigren\CustomerGroupCatalog\Observer\Product\CustomOption\PriceRule\AddDiscountProductToCart->execute()
+#2 /home/mort/Work/htdocs/magento/vendor/magento/framework/Event/Invoker/InvokerDefault.php(74): Magento\Framework\Event\Invoker\InvokerDefault->_callObserverMethod()
+#3 /home/mort/Work/htdocs/magento/vendor/magento/framework/Event/Manager.php(66): Magento\Framework\Event\Invoker\InvokerDefault->dispatch()
+#4 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/Event/Manager/Proxy.php(95): Magento\Framework\Event\Manager->dispatch()
+#5 /home/mort/Work/htdocs/magento/vendor/magento/module-checkout/Model/Cart.php(420): Magento\Framework\Event\Manager\Proxy->dispatch()
+#6 /home/mort/Work/htdocs/magento/generated/code/Magento/Checkout/Model/Cart/Interceptor.php(86): Magento\Checkout\Model\Cart->addProduct()
+#7 /home/mort/Work/htdocs/magento/vendor/magento/module-checkout/Controller/Cart/Add.php(125): Magento\Checkout\Model\Cart\Interceptor->addProduct()
+#8 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(58): Magento\Checkout\Controller\Cart\Add->execute()
+#9 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(138): Magento\Checkout\Controller\Cart\Add\Interceptor->___callParent()
+#10 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(153): Magento\Checkout\Controller\Cart\Add\Interceptor->Magento\Framework\Interception\{closure}()
+#11 /home/mort/Work/htdocs/magento/generated/code/Magento/Checkout/Controller/Cart/Add/Interceptor.php(23): Magento\Checkout\Controller\Cart\Add\Interceptor->___callPlugins()
+#12 /home/mort/Work/htdocs/magento/vendor/magento/framework/App/Action/Action.php(111): Magento\Checkout\Controller\Cart\Add\Interceptor->execute()
+#13 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(58): Magento\Framework\App\Action\Action->dispatch()
+#14 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(138): Magento\Checkout\Controller\Cart\Add\Interceptor->___callParent()
+#15 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(153): Magento\Checkout\Controller\Cart\Add\Interceptor->Magento\Framework\Interception\{closure}()
+#16 /home/mort/Work/htdocs/magento/generated/code/Magento/Checkout/Controller/Cart/Add/Interceptor.php(32): Magento\Checkout\Controller\Cart\Add\Interceptor->___callPlugins()
+#17 /home/mort/Work/htdocs/magento/vendor/magento/framework/App/FrontController.php(245): Magento\Checkout\Controller\Cart\Add\Interceptor->dispatch()
+#18 /home/mort/Work/htdocs/magento/vendor/magento/framework/App/FrontController.php(212): Magento\Framework\App\FrontController->getActionResponse()
+#19 /home/mort/Work/htdocs/magento/vendor/magento/framework/App/FrontController.php(147): Magento\Framework\App\FrontController->processRequest()
+#20 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(58): Magento\Framework\App\FrontController->dispatch()
+#21 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(138): Magento\Framework\App\FrontController\Interceptor->___callParent()
+#22 /home/mort/Work/htdocs/magento/vendor/magento/module-store/App/FrontController/Plugin/RequestPreprocessor.php(99): Magento\Framework\App\FrontController\Interceptor->Magento\Framework\Interception\{closure}()
+#23 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(135): Magento\Store\App\FrontController\Plugin\RequestPreprocessor->aroundDispatch()
+#24 /home/mort/Work/htdocs/magento/vendor/magento/module-page-cache/Model/App/FrontController/BuiltinPlugin.php(71): Magento\Framework\App\FrontController\Interceptor->Magento\Framework\Interception\{closure}()
+#25 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(135): Magento\PageCache\Model\App\FrontController\BuiltinPlugin->aroundDispatch()
+#26 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(153): Magento\Framework\App\FrontController\Interceptor->Magento\Framework\Interception\{closure}()
+#27 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/App/FrontController/Interceptor.php(23): Magento\Framework\App\FrontController\Interceptor->___callPlugins()
+#28 /home/mort/Work/htdocs/magento/vendor/magento/framework/App/Http.php(116): Magento\Framework\App\FrontController\Interceptor->dispatch()
+#29 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/App/Http/Interceptor.php(23): Magento\Framework\App\Http->launch()
+#30 /home/mort/Work/htdocs/magento/vendor/magento/framework/App/Bootstrap.php(264): Magento\Framework\App\Http\Interceptor->launch()
+#31 /home/mort/Work/htdocs/magento/pub/index.php(30): Magento\Framework\App\Bootstrap->run()
+#32 {main} [] []
+[2022-09-07T08:08:49.685443+00:00] main.CRITICAL: ValueError: min(): Argument #1 ($value) must contain at least one element in /home/mort/Work/htdocs/magento/app/code/Tigren/CustomerGroupCatalog/Observer/Product/CustomOption/PriceRule/AddDiscountProductToCart.php:91
+Stack trace:
+#0 /home/mort/Work/htdocs/magento/app/code/Tigren/CustomerGroupCatalog/Observer/Product/CustomOption/PriceRule/AddDiscountProductToCart.php(91): min()
+#1 /home/mort/Work/htdocs/magento/vendor/magento/framework/Event/Invoker/InvokerDefault.php(88): Tigren\CustomerGroupCatalog\Observer\Product\CustomOption\PriceRule\AddDiscountProductToCart->execute()
+#2 /home/mort/Work/htdocs/magento/vendor/magento/framework/Event/Invoker/InvokerDefault.php(74): Magento\Framework\Event\Invoker\InvokerDefault->_callObserverMethod()
+#3 /home/mort/Work/htdocs/magento/vendor/magento/framework/Event/Manager.php(66): Magento\Framework\Event\Invoker\InvokerDefault->dispatch()
+#4 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/Event/Manager/Proxy.php(95): Magento\Framework\Event\Manager->dispatch()
+#5 /home/mort/Work/htdocs/magento/vendor/magento/module-checkout/Model/Cart.php(420): Magento\Framework\Event\Manager\Proxy->dispatch()
+#6 /home/mort/Work/htdocs/magento/generated/code/Magento/Checkout/Model/Cart/Interceptor.php(86): Magento\Checkout\Model\Cart->addProduct()
+#7 /home/mort/Work/htdocs/magento/vendor/magento/module-checkout/Controller/Cart/Add.php(125): Magento\Checkout\Model\Cart\Interceptor->addProduct()
+#8 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(58): Magento\Checkout\Controller\Cart\Add->execute()
+#9 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(138): Magento\Checkout\Controller\Cart\Add\Interceptor->___callParent()
+#10 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(153): Magento\Checkout\Controller\Cart\Add\Interceptor->Magento\Framework\Interception\{closure}()
+#11 /home/mort/Work/htdocs/magento/generated/code/Magento/Checkout/Controller/Cart/Add/Interceptor.php(23): Magento\Checkout\Controller\Cart\Add\Interceptor->___callPlugins()
+#12 /home/mort/Work/htdocs/magento/vendor/magento/framework/App/Action/Action.php(111): Magento\Checkout\Controller\Cart\Add\Interceptor->execute()
+#13 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(58): Magento\Framework\App\Action\Action->dispatch()
+#14 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(138): Magento\Checkout\Controller\Cart\Add\Interceptor->___callParent()
+#15 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(153): Magento\Checkout\Controller\Cart\Add\Interceptor->Magento\Framework\Interception\{closure}()
+#16 /home/mort/Work/htdocs/magento/generated/code/Magento/Checkout/Controller/Cart/Add/Interceptor.php(32): Magento\Checkout\Controller\Cart\Add\Interceptor->___callPlugins()
+#17 /home/mort/Work/htdocs/magento/vendor/magento/framework/App/FrontController.php(245): Magento\Checkout\Controller\Cart\Add\Interceptor->dispatch()
+#18 /home/mort/Work/htdocs/magento/vendor/magento/framework/App/FrontController.php(212): Magento\Framework\App\FrontController->getActionResponse()
+#19 /home/mort/Work/htdocs/magento/vendor/magento/framework/App/FrontController.php(147): Magento\Framework\App\FrontController->processRequest()
+#20 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(58): Magento\Framework\App\FrontController->dispatch()
+#21 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(138): Magento\Framework\App\FrontController\Interceptor->___callParent()
+#22 /home/mort/Work/htdocs/magento/vendor/magento/module-store/App/FrontController/Plugin/RequestPreprocessor.php(99): Magento\Framework\App\FrontController\Interceptor->Magento\Framework\Interception\{closure}()
+#23 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(135): Magento\Store\App\FrontController\Plugin\RequestPreprocessor->aroundDispatch()
+#24 /home/mort/Work/htdocs/magento/vendor/magento/module-page-cache/Model/App/FrontController/BuiltinPlugin.php(71): Magento\Framework\App\FrontController\Interceptor->Magento\Framework\Interception\{closure}()
+#25 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(135): Magento\PageCache\Model\App\FrontController\BuiltinPlugin->aroundDispatch()
+#26 /home/mort/Work/htdocs/magento/vendor/magento/framework/Interception/Interceptor.php(153): Magento\Framework\App\FrontController\Interceptor->Magento\Framework\Interception\{closure}()
+#27 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/App/FrontController/Interceptor.php(23): Magento\Framework\App\FrontController\Interceptor->___callPlugins()
+#28 /home/mort/Work/htdocs/magento/vendor/magento/framework/App/Http.php(116): Magento\Framework\App\FrontController\Interceptor->dispatch()
+#29 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/App/Http/Interceptor.php(23): Magento\Framework\App\Http->launch()
+#30 /home/mort/Work/htdocs/magento/vendor/magento/framework/App/Bootstrap.php(264): Magento\Framework\App\Http\Interceptor->launch()
+#31 /home/mort/Work/htdocs/magento/pub/index.php(30): Magento\Framework\App\Bootstrap->run()
+#32 {main} [] []
+[2022-09-07T09:54:25.663664+00:00] main.INFO: Item Magento_Backend::system_currency was removed [] []
+[2022-09-07T09:54:25.669763+00:00] main.INFO: Add of item with id Magento_Theme::design_config was processed [] []
+[2022-09-07T09:54:25.669855+00:00] main.INFO: Add of item with id Magento_Theme::system_design_theme was processed [] []
+[2022-09-07T09:54:25.669907+00:00] main.INFO: Add of item with id Magento_Config::system_config was processed [] []
+[2022-09-07T09:54:25.669944+00:00] main.INFO: Add of item with id Magento_Backend::system_design_schedule was processed [] []
+[2022-09-07T09:54:25.669977+00:00] main.INFO: Add of item with id Magento_Backend::system_store was processed [] []
+[2022-09-07T09:54:25.670008+00:00] main.INFO: Add of item with id Magento_Backend::dashboard was processed [] []
+[2022-09-07T09:54:25.670039+00:00] main.INFO: Add of item with id Magento_Backend::system was processed [] []
+[2022-09-07T09:54:25.670084+00:00] main.INFO: Add of item with id Magento_Backend::system_tools was processed [] []
+[2022-09-07T09:54:25.670158+00:00] main.INFO: Add of item with id Magento_Backend::system_design was processed [] []
+[2022-09-07T09:54:25.670193+00:00] main.INFO: Add of item with id Magento_Backend::system_convert was processed [] []
+[2022-09-07T09:54:25.670234+00:00] main.INFO: Add of item with id Magento_Backend::system_cache was processed [] []
+[2022-09-07T09:54:25.670267+00:00] main.INFO: Add of item with id Magento_Backend::marketing was processed [] []
+[2022-09-07T09:54:25.670308+00:00] main.INFO: Add of item with id Magento_Backend::marketing_communications was processed [] []
+[2022-09-07T09:54:25.670343+00:00] main.INFO: Add of item with id Magento_Backend::marketing_seo was processed [] []
+[2022-09-07T09:54:25.670374+00:00] main.INFO: Add of item with id Magento_Backend::marketing_user_content was processed [] []
+[2022-09-07T09:54:25.670405+00:00] main.INFO: Add of item with id Magento_Backend::content was processed [] []
+[2022-09-07T09:54:25.670445+00:00] main.INFO: Add of item with id Magento_Backend::content_elements was processed [] []
+[2022-09-07T09:54:25.670475+00:00] main.INFO: Add of item with id Magento_Backend::stores was processed [] []
+[2022-09-07T09:54:25.670516+00:00] main.INFO: Add of item with id Magento_Backend::stores_settings was processed [] []
+[2022-09-07T09:54:25.670549+00:00] main.INFO: Add of item with id Magento_Backend::stores_attributes was processed [] []
+[2022-09-07T09:54:25.670579+00:00] main.INFO: Add of item with id Magento_Backend::other_settings was processed [] []
+[2022-09-07T09:54:25.670609+00:00] main.INFO: Add of item with id Magento_Backend::system_other_settings was processed [] []
+[2022-09-07T09:54:25.670649+00:00] main.INFO: Add of item with id Magento_Variable::system_variable was processed [] []
+[2022-09-07T09:54:25.670698+00:00] main.INFO: Add of item with id Magento_Search::search_terms was processed [] []
+[2022-09-07T09:54:25.670731+00:00] main.INFO: Add of item with id Magento_Search::search_synonyms was processed [] []
+[2022-09-07T09:54:25.670761+00:00] main.INFO: Add of item with id Magento_Backup::system_tools_backup was processed [] []
+[2022-09-07T09:54:25.670792+00:00] main.INFO: Add of item with id Magento_Customer::customer was processed [] []
+[2022-09-07T09:54:25.670832+00:00] main.INFO: Add of item with id Magento_Customer::customer_manage was processed [] []
+[2022-09-07T09:54:25.670865+00:00] main.INFO: Add of item with id Magento_Customer::customer_online was processed [] []
+[2022-09-07T09:54:25.670940+00:00] main.INFO: Add of item with id Magento_Customer::customer_group was processed [] []
+[2022-09-07T09:54:25.670971+00:00] main.INFO: Add of item with id Magento_AdminNotification::system_adminnotification was processed [] []
+[2022-09-07T09:54:25.671003+00:00] main.INFO: Add of item with id Magento_Indexer::system_index was processed [] []
+[2022-09-07T09:54:25.671047+00:00] main.INFO: Add of item with id Magento_Cms::cms_page was processed [] []
+[2022-09-07T09:54:25.671081+00:00] main.INFO: Add of item with id Magento_Cms::cms_block was processed [] []
+[2022-09-07T09:54:25.671110+00:00] main.INFO: Add of item with id Magento_Catalog::catalog was processed [] []
+[2022-09-07T09:54:25.671159+00:00] main.INFO: Add of item with id Magento_Catalog::catalog_products was processed [] []
+[2022-09-07T09:54:25.671193+00:00] main.INFO: Add of item with id Magento_Catalog::catalog_categories was processed [] []
+[2022-09-07T09:54:25.671234+00:00] main.INFO: Add of item with id Magento_Catalog::catalog_attributes_attributes was processed [] []
+[2022-09-07T09:54:25.671267+00:00] main.INFO: Add of item with id Magento_Catalog::catalog_attributes_sets was processed [] []
+[2022-09-07T09:54:25.671307+00:00] main.INFO: Add of item with id Magento_Catalog::inventory was processed [] []
+[2022-09-07T09:54:25.671340+00:00] main.INFO: Add of item with id Magento_CatalogRule::promo was processed [] []
+[2022-09-07T09:54:25.671380+00:00] main.INFO: Add of item with id Magento_CatalogRule::promo_catalog was processed [] []
+[2022-09-07T09:54:25.671412+00:00] main.INFO: Add of item with id Magento_Sales::sales was processed [] []
+[2022-09-07T09:54:25.671452+00:00] main.INFO: Add of item with id Magento_Sales::sales_operation was processed [] []
+[2022-09-07T09:54:25.671494+00:00] main.INFO: Add of item with id Magento_Sales::sales_order was processed [] []
+[2022-09-07T09:54:25.671527+00:00] main.INFO: Add of item with id Magento_Sales::sales_invoice was processed [] []
+[2022-09-07T09:54:25.671558+00:00] main.INFO: Add of item with id Magento_Sales::sales_shipment was processed [] []
+[2022-09-07T09:54:25.671589+00:00] main.INFO: Add of item with id Magento_Sales::sales_creditmemo was processed [] []
+[2022-09-07T09:54:25.671618+00:00] main.INFO: Add of item with id Magento_Sales::sales_transactions was processed [] []
+[2022-09-07T09:54:25.671648+00:00] main.INFO: Add of item with id Magento_Sales::system_order_statuses was processed [] []
+[2022-09-07T09:54:25.671683+00:00] main.INFO: Add of item with id Magento_MediaGalleryUi::media was processed [] []
+[2022-09-07T09:54:25.671724+00:00] main.INFO: Add of item with id Magento_MediaGalleryUi::media_gallery was processed [] []
+[2022-09-07T09:54:25.671757+00:00] main.INFO: Add of item with id Magento_UrlRewrite::urlrewrite was processed [] []
+[2022-09-07T09:54:25.671788+00:00] main.INFO: Add of item with id Magento_User::system_acl was processed [] []
+[2022-09-07T09:54:25.671838+00:00] main.INFO: Add of item with id Magento_User::system_acl_users was processed [] []
+[2022-09-07T09:54:25.671875+00:00] main.INFO: Add of item with id Magento_User::system_acl_roles was processed [] []
+[2022-09-07T09:54:25.671906+00:00] main.INFO: Add of item with id Magento_User::system_acl_locks was processed [] []
+[2022-09-07T09:54:25.671947+00:00] main.INFO: Add of item with id Magento_Downloadable::report_products_downloads was processed [] []
+[2022-09-07T09:54:25.671984+00:00] main.INFO: Add of item with id Magento_Tax::sales_tax was processed [] []
+[2022-09-07T09:54:25.672025+00:00] main.INFO: Add of item with id Magento_Tax::sales_tax_rules was processed [] []
+[2022-09-07T09:54:25.672058+00:00] main.INFO: Add of item with id Magento_Tax::sales_tax_rates was processed [] []
+[2022-09-07T09:54:25.672087+00:00] main.INFO: Add of item with id Magento_Widget::cms_widget_instance was processed [] []
+[2022-09-07T09:54:25.672117+00:00] main.INFO: Add of item with id Magento_Integration::system_extensions was processed [] []
+[2022-09-07T09:54:25.672157+00:00] main.INFO: Add of item with id Magento_Integration::system_integrations was processed [] []
+[2022-09-07T09:54:25.672199+00:00] main.INFO: Add of item with id Magento_ImportExport::system_convert_import was processed [] []
+[2022-09-07T09:54:25.672287+00:00] main.INFO: Add of item with id Magento_ImportExport::system_convert_export was processed [] []
+[2022-09-07T09:54:25.672319+00:00] main.INFO: Add of item with id Magento_ImportExport::system_convert_history was processed [] []
+[2022-09-07T09:54:25.672359+00:00] main.INFO: Add of item with id Magento_Email::template was processed [] []
+[2022-09-07T09:54:25.672392+00:00] main.INFO: Add of item with id Magento_EncryptionKey::system_crypt_key was processed [] []
+[2022-09-07T09:54:25.672432+00:00] main.INFO: Add of item with id Magento_Analytics::business_intelligence was processed [] []
+[2022-09-07T09:54:25.672474+00:00] main.INFO: Add of item with id Magento_Analytics::advanced_reporting was processed [] []
+[2022-09-07T09:54:25.672506+00:00] main.INFO: Add of item with id Magento_Analytics::bi_essentials was processed [] []
+[2022-09-07T09:54:25.672537+00:00] main.INFO: Add of item with id Magento_InventoryAdminUi::inventory was processed [] []
+[2022-09-07T09:54:25.672576+00:00] main.INFO: Add of item with id Magento_InventoryAdminUi::source was processed [] []
+[2022-09-07T09:54:25.672608+00:00] main.INFO: Add of item with id Magento_InventoryAdminUi::stock was processed [] []
+[2022-09-07T09:54:25.672638+00:00] main.INFO: Add of item with id Magento_Reports::report was processed [] []
+[2022-09-07T09:54:25.672668+00:00] main.INFO: Add of item with id Magento_Reports::report_marketing was processed [] []
+[2022-09-07T09:54:25.672698+00:00] main.INFO: Add of item with id Magento_Reports::report_salesroot was processed [] []
+[2022-09-07T09:54:25.672737+00:00] main.INFO: Add of item with id Magento_Reports::report_salesroot_sales was processed [] []
+[2022-09-07T09:54:25.672770+00:00] main.INFO: Add of item with id Magento_Reports::report_salesroot_tax was processed [] []
+[2022-09-07T09:54:25.672800+00:00] main.INFO: Add of item with id Magento_Reports::report_salesroot_invoiced was processed [] []
+[2022-09-07T09:54:25.672831+00:00] main.INFO: Add of item with id Magento_Reports::report_salesroot_shipping was processed [] []
+[2022-09-07T09:54:25.672860+00:00] main.INFO: Add of item with id Magento_Reports::report_salesroot_refunded was processed [] []
+[2022-09-07T09:54:25.672889+00:00] main.INFO: Add of item with id Magento_Reports::report_salesroot_coupons was processed [] []
+[2022-09-07T09:54:25.672935+00:00] main.INFO: Add of item with id Magento_Reports::report_shopcart_product was processed [] []
+[2022-09-07T09:54:25.672967+00:00] main.INFO: Add of item with id Magento_Reports::report_shopcart_abandoned was processed [] []
+[2022-09-07T09:54:25.672997+00:00] main.INFO: Add of item with id Magento_Reports::report_products was processed [] []
+[2022-09-07T09:54:25.673026+00:00] main.INFO: Add of item with id Magento_Reports::report_products_bestsellers was processed [] []
+[2022-09-07T09:54:25.673056+00:00] main.INFO: Add of item with id Magento_Reports::report_products_sold was processed [] []
+[2022-09-07T09:54:25.673085+00:00] main.INFO: Add of item with id Magento_Reports::report_products_viewed was processed [] []
+[2022-09-07T09:54:25.673115+00:00] main.INFO: Add of item with id Magento_Reports::report_products_lowstock was processed [] []
+[2022-09-07T09:54:25.673149+00:00] main.INFO: Add of item with id Magento_Reports::report_customers was processed [] []
+[2022-09-07T09:54:25.673190+00:00] main.INFO: Add of item with id Magento_Reports::report_customers_accounts was processed [] []
+[2022-09-07T09:54:25.673222+00:00] main.INFO: Add of item with id Magento_Reports::report_customers_totals was processed [] []
+[2022-09-07T09:54:25.673252+00:00] main.INFO: Add of item with id Magento_Reports::report_customers_orders was processed [] []
+[2022-09-07T09:54:25.673281+00:00] main.INFO: Add of item with id Magento_Reports::report_statistics was processed [] []
+[2022-09-07T09:54:25.673320+00:00] main.INFO: Add of item with id Magento_Reports::report_statistics_refresh was processed [] []
+[2022-09-07T09:54:25.673353+00:00] main.INFO: Add of item with id Magento_Search::report_search_term was processed [] []
+[2022-09-07T09:54:25.673385+00:00] main.INFO: Add of item with id Magento_LoginAsCustomerLog::login_log was processed [] []
+[2022-09-07T09:54:25.673449+00:00] main.INFO: Add of item with id Magento_Marketplace::partners was processed [] []
+[2022-09-07T09:54:25.673479+00:00] main.INFO: Add of item with id Magento_Newsletter::newsletter_template was processed [] []
+[2022-09-07T09:54:25.673509+00:00] main.INFO: Add of item with id Magento_Newsletter::newsletter_queue was processed [] []
+[2022-09-07T09:54:25.673538+00:00] main.INFO: Add of item with id Magento_Newsletter::newsletter_subscriber was processed [] []
+[2022-09-07T09:54:25.673568+00:00] main.INFO: Add of item with id Magento_Newsletter::newsletter_problem was processed [] []
+[2022-09-07T09:54:25.673597+00:00] main.INFO: Add of item with id Magento_SalesRule::promo_quote was processed [] []
+[2022-09-07T09:54:25.673626+00:00] main.INFO: Add of item with id Magento_Sitemap::catalog_sitemap was processed [] []
+[2022-09-07T09:54:25.673656+00:00] main.INFO: Add of item with id Magento_PageBuilder::templates was processed [] []
+[2022-09-07T09:54:25.673685+00:00] main.INFO: Add of item with id Magento_Paypal::report_salesroot_paypal_settlement_reports was processed [] []
+[2022-09-07T09:54:25.673716+00:00] main.INFO: Add of item with id Magento_Paypal::paypal_billing_agreement was processed [] []
+[2022-09-07T09:54:25.673745+00:00] main.INFO: Add of item with id Magento_Review::catalog_reviews_ratings_ratings was processed [] []
+[2022-09-07T09:54:25.673785+00:00] main.INFO: Add of item with id Magento_Review::catalog_reviews_ratings_pending was processed [] []
+[2022-09-07T09:54:25.673818+00:00] main.INFO: Add of item with id Magento_Review::catalog_reviews_ratings_reviews_all was processed [] []
+[2022-09-07T09:54:25.673847+00:00] main.INFO: Add of item with id Magento_Review::report_review was processed [] []
+[2022-09-07T09:54:25.673887+00:00] main.INFO: Add of item with id Magento_Review::report_review_customer was processed [] []
+[2022-09-07T09:54:25.673919+00:00] main.INFO: Add of item with id Magento_Review::report_review_product was processed [] []
+[2022-09-07T09:54:25.673950+00:00] main.INFO: Add of item with id Magento_CheckoutAgreements::sales_checkoutagreement was processed [] []
+[2022-09-07T09:54:25.673979+00:00] main.INFO: Add of item with id Magento_TaxImportExport::system_convert_tax was processed [] []
+[2022-09-07T09:54:25.674015+00:00] main.INFO: Add of item with id Magento_AsynchronousOperations::system_magento_logging was processed [] []
+[2022-09-07T09:54:25.674077+00:00] main.INFO: Add of item with id Magento_AsynchronousOperations::system_magento_logging_bulk_operations was processed [] []
+[2022-09-07T09:54:25.674114+00:00] main.INFO: Add of item with id Magento_CurrencySymbol::system_currency was processed [] []
+[2022-09-07T09:54:25.674155+00:00] main.INFO: Add of item with id Magento_CurrencySymbol::system_currency_rates was processed [] []
+[2022-09-07T09:54:25.674187+00:00] main.INFO: Add of item with id Magento_CurrencySymbol::system_currency_symbols was processed [] []
+[2022-09-07T09:54:25.674216+00:00] main.INFO: Add of item with id MenuAmasty_Base::menu was processed [] []
+[2022-09-07T09:54:25.674262+00:00] main.INFO: Add of item with id Amasty_Base::marketplace was processed [] []
+[2022-09-07T09:54:25.674296+00:00] main.INFO: Add of item with id Amasty_Base::extensions was processed [] []
+[2022-09-07T09:54:25.674326+00:00] main.INFO: Add of item with id Amasty_GroupAssign::group_assign was processed [] []
+[2022-09-07T09:54:25.674381+00:00] main.INFO: Add of item with id Amasty_GroupAssign::rules was processed [] []
+[2022-09-07T09:54:25.674413+00:00] main.INFO: Add of item with id Amasty_Groupcat::rule was processed [] []
+[2022-09-07T09:54:25.674453+00:00] main.INFO: Add of item with id Amasty_Groupcat::rule_manage was processed [] []
+[2022-09-07T09:54:25.674485+00:00] main.INFO: Add of item with id Amasty_Groupcat::request was processed [] []
+[2022-09-07T09:54:25.674515+00:00] main.INFO: Add of item with id PayPal_Braintree::settlement_report was processed [] []
+[2022-09-07T09:54:25.674545+00:00] main.INFO: Add of item with id PayPal_Braintree::virtual_terminal was processed [] []
+[2022-09-07T09:54:25.674575+00:00] main.INFO: Add of item with id Tigren_CustomerGroup::rule was processed [] []
+[2022-09-07T09:54:25.674701+00:00] main.INFO: Add of item with id Tigren_CustomerGroup::manage_rules was processed [] []
+[2022-09-07T09:54:25.674736+00:00] main.INFO: Add of item with id Tigren_CustomerGroup::add_rule was processed [] []
+[2022-09-07T09:54:25.674765+00:00] main.INFO: Add of item with id Tigren_Question::question was processed [] []
+[2022-09-07T09:54:25.674806+00:00] main.INFO: Add of item with id Tigren_Question::manage_questions was processed [] []
+[2022-09-07T09:54:25.674839+00:00] main.INFO: Add of item with id Tigren_Question::create_question was processed [] []
+[2022-09-07T09:54:26.203801+00:00] main.INFO: Add of item with id Amasty_GroupAssign::container was processed [] []
+[2022-09-07T09:54:26.204161+00:00] main.INFO: Add of item with id Amasty_GroupAssign::rulesmenu was processed [] []
+[2022-09-07T09:54:26.204365+00:00] main.INFO: Add of item with id Amasty_GroupAssign::menuconfig was processed [] []
+[2022-09-07T09:54:26.204570+00:00] main.INFO: Add of item with id Amasty_GroupAssign::menuguide was processed [] []
+[2022-09-07T09:54:26.205182+00:00] main.INFO: Add of item with id Amasty_Groupcat::container was processed [] []
+[2022-09-07T09:54:26.205459+00:00] main.INFO: Add of item with id Amasty_Groupcat::rule_managemenu was processed [] []
+[2022-09-07T09:54:26.205739+00:00] main.INFO: Add of item with id Amasty_Groupcat::requestmenu was processed [] []
+[2022-09-07T09:54:26.205955+00:00] main.INFO: Add of item with id Amasty_Groupcat::menuconfig was processed [] []
+[2022-09-07T09:54:26.206156+00:00] main.INFO: Add of item with id Amasty_Groupcat::menuguide was processed [] []
+[2022-09-07T09:54:26.206459+00:00] main.INFO: Add of item with id Amasty_Reindex::container was processed [] []
+[2022-09-07T09:54:26.206835+00:00] main.INFO: Add of item with id Amasty_Reindex::menuguide was processed [] []
+[2022-09-07T10:02:56.407217+00:00] main.INFO: Item Magento_Backend::system_currency was removed [] []
+[2022-09-07T10:02:56.410639+00:00] main.INFO: Add of item with id Magento_Theme::design_config was processed [] []
+[2022-09-07T10:02:56.410702+00:00] main.INFO: Add of item with id Magento_Theme::system_design_theme was processed [] []
+[2022-09-07T10:02:56.410751+00:00] main.INFO: Add of item with id Magento_Config::system_config was processed [] []
+[2022-09-07T10:02:56.410786+00:00] main.INFO: Add of item with id Magento_Backend::system_design_schedule was processed [] []
+[2022-09-07T10:02:56.410817+00:00] main.INFO: Add of item with id Magento_Backend::system_store was processed [] []
+[2022-09-07T10:02:56.410846+00:00] main.INFO: Add of item with id Magento_Backend::dashboard was processed [] []
+[2022-09-07T10:02:56.410875+00:00] main.INFO: Add of item with id Magento_Backend::system was processed [] []
+[2022-09-07T10:02:56.410916+00:00] main.INFO: Add of item with id Magento_Backend::system_tools was processed [] []
+[2022-09-07T10:02:56.410958+00:00] main.INFO: Add of item with id Magento_Backend::system_design was processed [] []
+[2022-09-07T10:02:56.410991+00:00] main.INFO: Add of item with id Magento_Backend::system_convert was processed [] []
+[2022-09-07T10:02:56.411030+00:00] main.INFO: Add of item with id Magento_Backend::system_cache was processed [] []
+[2022-09-07T10:02:56.411062+00:00] main.INFO: Add of item with id Magento_Backend::marketing was processed [] []
+[2022-09-07T10:02:56.411100+00:00] main.INFO: Add of item with id Magento_Backend::marketing_communications was processed [] []
+[2022-09-07T10:02:56.411132+00:00] main.INFO: Add of item with id Magento_Backend::marketing_seo was processed [] []
+[2022-09-07T10:02:56.411161+00:00] main.INFO: Add of item with id Magento_Backend::marketing_user_content was processed [] []
+[2022-09-07T10:02:56.411190+00:00] main.INFO: Add of item with id Magento_Backend::content was processed [] []
+[2022-09-07T10:02:56.411224+00:00] main.INFO: Add of item with id Magento_Backend::content_elements was processed [] []
+[2022-09-07T10:02:56.411253+00:00] main.INFO: Add of item with id Magento_Backend::stores was processed [] []
+[2022-09-07T10:02:56.411292+00:00] main.INFO: Add of item with id Magento_Backend::stores_settings was processed [] []
+[2022-09-07T10:02:56.411323+00:00] main.INFO: Add of item with id Magento_Backend::stores_attributes was processed [] []
+[2022-09-07T10:02:56.411352+00:00] main.INFO: Add of item with id Magento_Backend::other_settings was processed [] []
+[2022-09-07T10:02:56.411380+00:00] main.INFO: Add of item with id Magento_Backend::system_other_settings was processed [] []
+[2022-09-07T10:02:56.411418+00:00] main.INFO: Add of item with id Magento_Variable::system_variable was processed [] []
+[2022-09-07T10:02:56.411458+00:00] main.INFO: Add of item with id Magento_Search::search_terms was processed [] []
+[2022-09-07T10:02:56.411490+00:00] main.INFO: Add of item with id Magento_Search::search_synonyms was processed [] []
+[2022-09-07T10:02:56.411518+00:00] main.INFO: Add of item with id Magento_Backup::system_tools_backup was processed [] []
+[2022-09-07T10:02:56.411546+00:00] main.INFO: Add of item with id Magento_Customer::customer was processed [] []
+[2022-09-07T10:02:56.411584+00:00] main.INFO: Add of item with id Magento_Customer::customer_manage was processed [] []
+[2022-09-07T10:02:56.411616+00:00] main.INFO: Add of item with id Magento_Customer::customer_online was processed [] []
+[2022-09-07T10:02:56.411645+00:00] main.INFO: Add of item with id Magento_Customer::customer_group was processed [] []
+[2022-09-07T10:02:56.411673+00:00] main.INFO: Add of item with id Magento_AdminNotification::system_adminnotification was processed [] []
+[2022-09-07T10:02:56.411703+00:00] main.INFO: Add of item with id Magento_Indexer::system_index was processed [] []
+[2022-09-07T10:02:56.411742+00:00] main.INFO: Add of item with id Magento_Cms::cms_page was processed [] []
+[2022-09-07T10:02:56.411772+00:00] main.INFO: Add of item with id Magento_Cms::cms_block was processed [] []
+[2022-09-07T10:02:56.411800+00:00] main.INFO: Add of item with id Magento_Catalog::catalog was processed [] []
+[2022-09-07T10:02:56.411846+00:00] main.INFO: Add of item with id Magento_Catalog::catalog_products was processed [] []
+[2022-09-07T10:02:56.411930+00:00] main.INFO: Add of item with id Magento_Catalog::catalog_categories was processed [] []
+[2022-09-07T10:02:56.411985+00:00] main.INFO: Add of item with id Magento_Catalog::catalog_attributes_attributes was processed [] []
+[2022-09-07T10:02:56.412017+00:00] main.INFO: Add of item with id Magento_Catalog::catalog_attributes_sets was processed [] []
+[2022-09-07T10:02:56.412055+00:00] main.INFO: Add of item with id Magento_Catalog::inventory was processed [] []
+[2022-09-07T10:02:56.412086+00:00] main.INFO: Add of item with id Magento_CatalogRule::promo was processed [] []
+[2022-09-07T10:02:56.412124+00:00] main.INFO: Add of item with id Magento_CatalogRule::promo_catalog was processed [] []
+[2022-09-07T10:02:56.412155+00:00] main.INFO: Add of item with id Magento_Sales::sales was processed [] []
+[2022-09-07T10:02:56.412193+00:00] main.INFO: Add of item with id Magento_Sales::sales_operation was processed [] []
+[2022-09-07T10:02:56.412233+00:00] main.INFO: Add of item with id Magento_Sales::sales_order was processed [] []
+[2022-09-07T10:02:56.412264+00:00] main.INFO: Add of item with id Magento_Sales::sales_invoice was processed [] []
+[2022-09-07T10:02:56.412292+00:00] main.INFO: Add of item with id Magento_Sales::sales_shipment was processed [] []
+[2022-09-07T10:02:56.412321+00:00] main.INFO: Add of item with id Magento_Sales::sales_creditmemo was processed [] []
+[2022-09-07T10:02:56.412348+00:00] main.INFO: Add of item with id Magento_Sales::sales_transactions was processed [] []
+[2022-09-07T10:02:56.412376+00:00] main.INFO: Add of item with id Magento_Sales::system_order_statuses was processed [] []
+[2022-09-07T10:02:56.412405+00:00] main.INFO: Add of item with id Magento_MediaGalleryUi::media was processed [] []
+[2022-09-07T10:02:56.412447+00:00] main.INFO: Add of item with id Magento_MediaGalleryUi::media_gallery was processed [] []
+[2022-09-07T10:02:56.412480+00:00] main.INFO: Add of item with id Magento_UrlRewrite::urlrewrite was processed [] []
+[2022-09-07T10:02:56.412508+00:00] main.INFO: Add of item with id Magento_User::system_acl was processed [] []
+[2022-09-07T10:02:56.412546+00:00] main.INFO: Add of item with id Magento_User::system_acl_users was processed [] []
+[2022-09-07T10:02:56.412577+00:00] main.INFO: Add of item with id Magento_User::system_acl_roles was processed [] []
+[2022-09-07T10:02:56.412606+00:00] main.INFO: Add of item with id Magento_User::system_acl_locks was processed [] []
+[2022-09-07T10:02:56.412644+00:00] main.INFO: Add of item with id Magento_Downloadable::report_products_downloads was processed [] []
+[2022-09-07T10:02:56.412675+00:00] main.INFO: Add of item with id Magento_Tax::sales_tax was processed [] []
+[2022-09-07T10:02:56.412713+00:00] main.INFO: Add of item with id Magento_Tax::sales_tax_rules was processed [] []
+[2022-09-07T10:02:56.412745+00:00] main.INFO: Add of item with id Magento_Tax::sales_tax_rates was processed [] []
+[2022-09-07T10:02:56.412773+00:00] main.INFO: Add of item with id Magento_Widget::cms_widget_instance was processed [] []
+[2022-09-07T10:02:56.412801+00:00] main.INFO: Add of item with id Magento_Integration::system_extensions was processed [] []
+[2022-09-07T10:02:56.412839+00:00] main.INFO: Add of item with id Magento_Integration::system_integrations was processed [] []
+[2022-09-07T10:02:56.412879+00:00] main.INFO: Add of item with id Magento_ImportExport::system_convert_import was processed [] []
+[2022-09-07T10:02:56.412911+00:00] main.INFO: Add of item with id Magento_ImportExport::system_convert_export was processed [] []
+[2022-09-07T10:02:56.412939+00:00] main.INFO: Add of item with id Magento_ImportExport::system_convert_history was processed [] []
+[2022-09-07T10:02:56.412977+00:00] main.INFO: Add of item with id Magento_Email::template was processed [] []
+[2022-09-07T10:02:56.413008+00:00] main.INFO: Add of item with id Magento_EncryptionKey::system_crypt_key was processed [] []
+[2022-09-07T10:02:56.413077+00:00] main.INFO: Add of item with id Magento_Analytics::business_intelligence was processed [] []
+[2022-09-07T10:02:56.413133+00:00] main.INFO: Add of item with id Magento_Analytics::advanced_reporting was processed [] []
+[2022-09-07T10:02:56.413183+00:00] main.INFO: Add of item with id Magento_Analytics::bi_essentials was processed [] []
+[2022-09-07T10:02:56.413221+00:00] main.INFO: Add of item with id Magento_InventoryAdminUi::inventory was processed [] []
+[2022-09-07T10:02:56.413302+00:00] main.INFO: Add of item with id Magento_InventoryAdminUi::source was processed [] []
+[2022-09-07T10:02:56.413343+00:00] main.INFO: Add of item with id Magento_InventoryAdminUi::stock was processed [] []
+[2022-09-07T10:02:56.413373+00:00] main.INFO: Add of item with id Magento_Reports::report was processed [] []
+[2022-09-07T10:02:56.413403+00:00] main.INFO: Add of item with id Magento_Reports::report_marketing was processed [] []
+[2022-09-07T10:02:56.413432+00:00] main.INFO: Add of item with id Magento_Reports::report_salesroot was processed [] []
+[2022-09-07T10:02:56.413518+00:00] main.INFO: Add of item with id Magento_Reports::report_salesroot_sales was processed [] []
+[2022-09-07T10:02:56.413550+00:00] main.INFO: Add of item with id Magento_Reports::report_salesroot_tax was processed [] []
+[2022-09-07T10:02:56.413580+00:00] main.INFO: Add of item with id Magento_Reports::report_salesroot_invoiced was processed [] []
+[2022-09-07T10:02:56.413608+00:00] main.INFO: Add of item with id Magento_Reports::report_salesroot_shipping was processed [] []
+[2022-09-07T10:02:56.413637+00:00] main.INFO: Add of item with id Magento_Reports::report_salesroot_refunded was processed [] []
+[2022-09-07T10:02:56.413665+00:00] main.INFO: Add of item with id Magento_Reports::report_salesroot_coupons was processed [] []
+[2022-09-07T10:02:56.413704+00:00] main.INFO: Add of item with id Magento_Reports::report_shopcart_product was processed [] []
+[2022-09-07T10:02:56.413741+00:00] main.INFO: Add of item with id Magento_Reports::report_shopcart_abandoned was processed [] []
+[2022-09-07T10:02:56.413793+00:00] main.INFO: Add of item with id Magento_Reports::report_products was processed [] []
+[2022-09-07T10:02:56.413839+00:00] main.INFO: Add of item with id Magento_Reports::report_products_bestsellers was processed [] []
+[2022-09-07T10:02:56.413893+00:00] main.INFO: Add of item with id Magento_Reports::report_products_sold was processed [] []
+[2022-09-07T10:02:56.413939+00:00] main.INFO: Add of item with id Magento_Reports::report_products_viewed was processed [] []
+[2022-09-07T10:02:56.413968+00:00] main.INFO: Add of item with id Magento_Reports::report_products_lowstock was processed [] []
+[2022-09-07T10:02:56.414000+00:00] main.INFO: Add of item with id Magento_Reports::report_customers was processed [] []
+[2022-09-07T10:02:56.414062+00:00] main.INFO: Add of item with id Magento_Reports::report_customers_accounts was processed [] []
+[2022-09-07T10:02:56.414113+00:00] main.INFO: Add of item with id Magento_Reports::report_customers_totals was processed [] []
+[2022-09-07T10:02:56.414149+00:00] main.INFO: Add of item with id Magento_Reports::report_customers_orders was processed [] []
+[2022-09-07T10:02:56.414178+00:00] main.INFO: Add of item with id Magento_Reports::report_statistics was processed [] []
+[2022-09-07T10:02:56.414220+00:00] main.INFO: Add of item with id Magento_Reports::report_statistics_refresh was processed [] []
+[2022-09-07T10:02:56.414252+00:00] main.INFO: Add of item with id Magento_Search::report_search_term was processed [] []
+[2022-09-07T10:02:56.414282+00:00] main.INFO: Add of item with id Magento_LoginAsCustomerLog::login_log was processed [] []
+[2022-09-07T10:02:56.414310+00:00] main.INFO: Add of item with id Magento_Marketplace::partners was processed [] []
+[2022-09-07T10:02:56.414352+00:00] main.INFO: Add of item with id Magento_Newsletter::newsletter_template was processed [] []
+[2022-09-07T10:02:56.414399+00:00] main.INFO: Add of item with id Magento_Newsletter::newsletter_queue was processed [] []
+[2022-09-07T10:02:56.414448+00:00] main.INFO: Add of item with id Magento_Newsletter::newsletter_subscriber was processed [] []
+[2022-09-07T10:02:56.414509+00:00] main.INFO: Add of item with id Magento_Newsletter::newsletter_problem was processed [] []
+[2022-09-07T10:02:56.414560+00:00] main.INFO: Add of item with id Magento_SalesRule::promo_quote was processed [] []
+[2022-09-07T10:02:56.414610+00:00] main.INFO: Add of item with id Magento_Sitemap::catalog_sitemap was processed [] []
+[2022-09-07T10:02:56.414661+00:00] main.INFO: Add of item with id Magento_PageBuilder::templates was processed [] []
+[2022-09-07T10:02:56.414735+00:00] main.INFO: Add of item with id Magento_Paypal::report_salesroot_paypal_settlement_reports was processed [] []
+[2022-09-07T10:02:56.414793+00:00] main.INFO: Add of item with id Magento_Paypal::paypal_billing_agreement was processed [] []
+[2022-09-07T10:02:56.414845+00:00] main.INFO: Add of item with id Magento_Review::catalog_reviews_ratings_ratings was processed [] []
+[2022-09-07T10:02:56.414891+00:00] main.INFO: Add of item with id Magento_Review::catalog_reviews_ratings_pending was processed [] []
+[2022-09-07T10:02:56.414945+00:00] main.INFO: Add of item with id Magento_Review::catalog_reviews_ratings_reviews_all was processed [] []
+[2022-09-07T10:02:56.415008+00:00] main.INFO: Add of item with id Magento_Review::report_review was processed [] []
+[2022-09-07T10:02:56.415084+00:00] main.INFO: Add of item with id Magento_Review::report_review_customer was processed [] []
+[2022-09-07T10:02:56.415144+00:00] main.INFO: Add of item with id Magento_Review::report_review_product was processed [] []
+[2022-09-07T10:02:56.415203+00:00] main.INFO: Add of item with id Magento_CheckoutAgreements::sales_checkoutagreement was processed [] []
+[2022-09-07T10:02:56.415262+00:00] main.INFO: Add of item with id Magento_TaxImportExport::system_convert_tax was processed [] []
+[2022-09-07T10:02:56.415327+00:00] main.INFO: Add of item with id Magento_AsynchronousOperations::system_magento_logging was processed [] []
+[2022-09-07T10:02:56.415402+00:00] main.INFO: Add of item with id Magento_AsynchronousOperations::system_magento_logging_bulk_operations was processed [] []
+[2022-09-07T10:02:56.415463+00:00] main.INFO: Add of item with id Magento_CurrencySymbol::system_currency was processed [] []
+[2022-09-07T10:02:56.415535+00:00] main.INFO: Add of item with id Magento_CurrencySymbol::system_currency_rates was processed [] []
+[2022-09-07T10:02:56.415595+00:00] main.INFO: Add of item with id Magento_CurrencySymbol::system_currency_symbols was processed [] []
+[2022-09-07T10:02:56.415653+00:00] main.INFO: Add of item with id MenuAmasty_Base::menu was processed [] []
+[2022-09-07T10:02:56.415725+00:00] main.INFO: Add of item with id Amasty_Base::marketplace was processed [] []
+[2022-09-07T10:02:56.415785+00:00] main.INFO: Add of item with id Amasty_Base::extensions was processed [] []
+[2022-09-07T10:02:56.415883+00:00] main.INFO: Add of item with id Amasty_GroupAssign::group_assign was processed [] []
+[2022-09-07T10:02:56.415964+00:00] main.INFO: Add of item with id Amasty_GroupAssign::rules was processed [] []
+[2022-09-07T10:02:56.415997+00:00] main.INFO: Add of item with id Amasty_Groupcat::rule was processed [] []
+[2022-09-07T10:02:56.416036+00:00] main.INFO: Add of item with id Amasty_Groupcat::rule_manage was processed [] []
+[2022-09-07T10:02:56.416069+00:00] main.INFO: Add of item with id Amasty_Groupcat::request was processed [] []
+[2022-09-07T10:02:56.416099+00:00] main.INFO: Add of item with id PayPal_Braintree::settlement_report was processed [] []
+[2022-09-07T10:02:56.416129+00:00] main.INFO: Add of item with id PayPal_Braintree::virtual_terminal was processed [] []
+[2022-09-07T10:02:56.416159+00:00] main.INFO: Add of item with id Tigren_CustomerGroup::rule was processed [] []
+[2022-09-07T10:02:56.416198+00:00] main.INFO: Add of item with id Tigren_CustomerGroup::manage_rules was processed [] []
+[2022-09-07T10:02:56.416230+00:00] main.INFO: Add of item with id Tigren_CustomerGroup::add_rule was processed [] []
+[2022-09-07T10:02:56.416260+00:00] main.INFO: Add of item with id Tigren_Question::question was processed [] []
+[2022-09-07T10:02:56.416305+00:00] main.INFO: Add of item with id Tigren_Question::manage_questions was processed [] []
+[2022-09-07T10:02:56.416338+00:00] main.INFO: Add of item with id Tigren_Question::create_question was processed [] []
+[2022-09-07T10:02:56.826863+00:00] main.INFO: Add of item with id Amasty_GroupAssign::container was processed [] []
+[2022-09-07T10:02:56.827301+00:00] main.INFO: Add of item with id Amasty_GroupAssign::rulesmenu was processed [] []
+[2022-09-07T10:02:56.827629+00:00] main.INFO: Add of item with id Amasty_GroupAssign::menuconfig was processed [] []
+[2022-09-07T10:02:56.827947+00:00] main.INFO: Add of item with id Amasty_GroupAssign::menuguide was processed [] []
+[2022-09-07T10:02:56.828843+00:00] main.INFO: Add of item with id Amasty_Groupcat::container was processed [] []
+[2022-09-07T10:02:56.829222+00:00] main.INFO: Add of item with id Amasty_Groupcat::rule_managemenu was processed [] []
+[2022-09-07T10:02:56.829548+00:00] main.INFO: Add of item with id Amasty_Groupcat::requestmenu was processed [] []
+[2022-09-07T10:02:56.829858+00:00] main.INFO: Add of item with id Amasty_Groupcat::menuconfig was processed [] []
+[2022-09-07T10:02:56.830158+00:00] main.INFO: Add of item with id Amasty_Groupcat::menuguide was processed [] []
+[2022-09-07T10:02:56.830592+00:00] main.INFO: Add of item with id Amasty_Reindex::container was processed [] []
+[2022-09-07T10:02:56.831015+00:00] main.INFO: Add of item with id Amasty_Reindex::menuguide was processed [] []
+[2022-09-07T10:02:56.915905+00:00] main.CRITICAL: Exception: Warning: Undefined array key "entity_id" in /home/mort/Work/htdocs/magento/app/code/Tigren/CustomerGroupCatalog/Ui/Component/Listing/Column/Actions.php on line 62 in /home/mort/Work/htdocs/magento/vendor/magento/framework/App/ErrorHandler.php:61
+Stack trace:
+#0 /home/mort/Work/htdocs/magento/app/code/Tigren/CustomerGroupCatalog/Ui/Component/Listing/Column/Actions.php(62): Magento\Framework\App\ErrorHandler->handler()
+#1 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Element/UiComponent/Context.php(393): Tigren\CustomerGroupCatalog\Ui\Component\Listing\Column\Actions->prepareDataSource()
+#2 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Element/UiComponent/Context.php(390): Magento\Framework\View\Element\UiComponent\Context->prepareDataSource()
+#3 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Element/UiComponent/Context.php(390): Magento\Framework\View\Element\UiComponent\Context->prepareDataSource()
+#4 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Element/UiComponent/Context.php(251): Magento\Framework\View\Element\UiComponent\Context->prepareDataSource()
+#5 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout/Generic.php(75): Magento\Framework\View\Element\UiComponent\Context->getDataSourceData()
+#6 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout/Generator/Structure.php(46): Magento\Framework\View\Layout\Generic->build()
+#7 /home/mort/Work/htdocs/magento/vendor/magento/module-ui/TemplateEngine/Xhtml/Result.php(102): Magento\Framework\View\Layout\Generator\Structure->generate()
+#8 /home/mort/Work/htdocs/magento/vendor/magento/module-ui/TemplateEngine/Xhtml/Result.php(124): Magento\Ui\TemplateEngine\Xhtml\Result->appendLayoutConfiguration()
+#9 /home/mort/Work/htdocs/magento/vendor/magento/module-ui/Component/Wrapper/UiComponent.php(73): Magento\Ui\TemplateEngine\Xhtml\Result->__toString()
+#10 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Element/AbstractBlock.php(1095): Magento\Ui\Component\Wrapper\UiComponent->_toHtml()
+#11 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Element/AbstractBlock.php(1099): Magento\Framework\View\Element\AbstractBlock->Magento\Framework\View\Element\{closure}()
+#12 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Element/AbstractBlock.php(660): Magento\Framework\View\Element\AbstractBlock->_loadCache()
+#13 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(591): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#14 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(553): Magento\Framework\View\Layout->_renderUiComponent()
+#15 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/View/Layout/Interceptor.php(149): Magento\Framework\View\Layout->renderNonCachedElement()
+#16 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(510): Magento\Framework\View\Layout\Interceptor->renderNonCachedElement()
+#17 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/View/Layout/Interceptor.php(140): Magento\Framework\View\Layout->renderElement()
+#18 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(606): Magento\Framework\View\Layout\Interceptor->renderElement()
+#19 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(557): Magento\Framework\View\Layout->_renderContainer()
+#20 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/View/Layout/Interceptor.php(149): Magento\Framework\View\Layout->renderNonCachedElement()
+#21 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(510): Magento\Framework\View\Layout\Interceptor->renderNonCachedElement()
+#22 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/View/Layout/Interceptor.php(140): Magento\Framework\View\Layout->renderElement()
+#23 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(606): Magento\Framework\View\Layout\Interceptor->renderElement()
+#24 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(557): Magento\Framework\View\Layout->_renderContainer()
+#25 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/View/Layout/Interceptor.php(149): Magento\Framework\View\Layout->renderNonCachedElement()
+#26 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(510): Magento\Framework\View\Layout\Interceptor->renderNonCachedElement()
+#27 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/View/Layout/Interceptor.php(140): Magento\Framework\View\Layout->renderElement()
+#28 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(606): Magento\Framework\View\Layout\Interceptor->renderElement()
+#29 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(557): Magento\Framework\View\Layout->_renderContainer()
+#30 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/View/Layout/Interceptor.php(149): Magento\Framework\View\Layout->renderNonCachedElement()
+#31 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(510): Magento\Framework\View\Layout\Interceptor->renderNonCachedElement()
+#32 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/View/Layout/Interceptor.php(140): Magento\Framework\View\Layout->renderElement()
+#33 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(606): Magento\Framework\View\Layout\Interceptor->renderElement()
+#34 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(557): Magento\Framework\View\Layout->_renderContainer()
+#35 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/View/Layout/Interceptor.php(149): Magento\Framework\View\Layout->renderNonCachedElement()
+#36 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(510): Magento\Framework\View\Layout\Interceptor->renderNonCachedElement()
+#37 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/View/Layout/Interceptor.php(140): Magento\Framework\View\Layout->renderElement()
+#38 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(606): Magento\Framework\View\Layout\Interceptor->renderElement()
+#39 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(557): Magento\Framework\View\Layout->_renderContainer()
+#40 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/View/Layout/Interceptor.php(149): Magento\Framework\View\Layout->renderNonCachedElement()
+#41 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(510): Magento\Framework\View\Layout\Interceptor->renderNonCachedElement()
+#42 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/View/Layout/Interceptor.php(140): Magento\Framework\View\Layout->renderElement()
+#43 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(606): Magento\Framework\View\Layout\Interceptor->renderElement()
+#44 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(557): Magento\Framework\View\Layout->_renderContainer()
+#45 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/View/Layout/Interceptor.php(149): Magento\Framework\View\Layout->renderNonCachedElement()
+#46 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(510): Magento\Framework\View\Layout\Interceptor->renderNonCachedElement()
+#47 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/View/Layout/Interceptor.php(140): Magento\Framework\View\Layout->renderElement()
+#48 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(606): Magento\Framework\View\Layout\Interceptor->renderElement()
+#49 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(557): Magento\Framework\View\Layout->_renderContainer()
+#50 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/View/Layout/Interceptor.php(149): Magento\Framework\View\Layout->renderNonCachedElement()
+#51 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(510): Magento\Framework\View\Layout\Interceptor->renderNonCachedElement()
+#52 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/View/Layout/Interceptor.php(140): Magento\Framework\View\Layout->renderElement()
+#53 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(606): Magento\Framework\View\Layout\Interceptor->renderElement()
+#54 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(557): Magento\Framework\View\Layout->_renderContainer()
+#55 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/View/Layout/Interceptor.php(149): Magento\Framework\View\Layout->renderNonCachedElement()
+#56 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(510): Magento\Framework\View\Layout\Interceptor->renderNonCachedElement()
+#57 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/View/Layout/Interceptor.php(140): Magento\Framework\View\Layout->renderElement()
+#58 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Layout.php(975): Magento\Framework\View\Layout\Interceptor->renderElement()
+#59 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/View/Layout/Interceptor.php(347): Magento\Framework\View\Layout->getOutput()
+#60 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Result/Page.php(260): Magento\Framework\View\Layout\Interceptor->getOutput()
+#61 /home/mort/Work/htdocs/magento/vendor/magento/framework/View/Result/Layout.php(171): Magento\Framework\View\Result\Page->render()
+#62 /home/mort/Work/htdocs/magento/generated/code/Magento/Backend/Model/View/Result/Page/Interceptor.php(140): Magento\Framework\View\Result\Layout->renderResult()
+#63 /home/mort/Work/htdocs/magento/vendor/magento/framework/App/Http.php(120): Magento\Backend\Model\View\Result\Page\Interceptor->renderResult()
+#64 /home/mort/Work/htdocs/magento/generated/code/Magento/Framework/App/Http/Interceptor.php(23): Magento\Framework\App\Http->launch()
+#65 /home/mort/Work/htdocs/magento/vendor/magento/framework/App/Bootstrap.php(264): Magento\Framework\App\Http\Interceptor->launch()
+#66 /home/mort/Work/htdocs/magento/pub/index.php(30): Magento\Framework\App\Bootstrap->run()
+#67 {main} [] []
