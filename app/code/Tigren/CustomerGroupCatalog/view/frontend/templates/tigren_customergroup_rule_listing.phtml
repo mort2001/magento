@@ -7,19 +7,28 @@
 
 $rules = $this->helper(Tigren\CustomerGroupCatalog\Helper\Data::class)->getRules();
 ?>
-
-<button><a href="http://magento24.localhost.com/" )>Go to Homepage</a>
-</button>
+<style>
+    td {
+        text-align: center;
+    }
+    #center {
+        text-align: center;
+    }
+</style>
+<button class="action submit primary"><a style="color: white" href="<?= $block->getUrl('') ?>">
+        <?php echo __('Go to Homepage :D') ?></a></button>
+<br><br>
+<div style="text-align: center; color: #0a820b; font-family: monospace; font-size: 25px;">
+    <b>Rule Infomation</b></div>
 <hr>
-
 <table border="1">
     <tr>
-        <th>Rule ID</th>
-        <th>Name</th>
-        <th>Store</th>
-        <th>Customer Group ID</th>
-        <th>Discount Amount (%)</th>
-        <th>Priority</th>
+        <th id="center">Rule ID</th>
+        <th id="center">Name</th>
+        <th id="center">Store</th>
+        <th id="center">Customer Group ID</th>
+        <th id="center">Discount Amount (%)</th>
+        <th id="center">Priority</th>
     </tr>
     <?php
     foreach ($rules as $item): ?>
