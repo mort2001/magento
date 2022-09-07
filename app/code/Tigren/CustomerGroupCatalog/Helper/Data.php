@@ -14,6 +14,8 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule\Collection;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule\CollectionFactory;
 use Magento\Customer\Model\Session;
+use Zend_Log;
+use Zend_Log_Writer_Stream;
 
 /**
  * Class Data
@@ -54,35 +56,39 @@ class Data extends AbstractHelper
     public function getRules()
     {
         $group_id = $this->_session->getCustomerGroupId();
-        $ruleCollection = $this->collectionFactory->create()->addFieldToFilter('customer_group_ids', $group_id);
+        $ruleCollection = $this->collectionFactory->create()->addFieldToFilter('customer_group_ids', ['like' => '%' . $group_id . '%']);
         $priority = $ruleCollection->getColumnValues('priority');
 
         return $this->collectionFactory->create()->addFieldToFilter('priority', min($priority));
     }
 
     /**
-     * @return float|int|void
+     * @return float|int
      * @throws LocalizedException
      * @throws NoSuchEntityException
      */
     public function getDiscount()
     {
+        $percent = 0;
         if ($this->_session->isLoggedIn()) {
             $group_id = $this->_session->getCustomerGroupId();
-            $ruleCollection = $this->collectionFactory->create()->addFieldToFilter('customer_group_ids', $group_id);
+            $ruleCollection = $this->collectionFactory->create()
+                ->addFieldToFilter('customer_group_ids', ['like' => '%' . $group_id . '%']);
             $priority = $ruleCollection->getColumnValues('priority');
+            $discount = $ruleCollection->getColumnValues('discount_amount');
             $priority_collection = $this->collectionFactory->create()
                 ->addFieldToFilter('priority', min($priority))
                 ->addFieldToFilter('from_date', ['lt' => date('Y-m-d')])
-                ->addFieldToFilter('to_date', ['gt' => date('Y-m-d')]);
-            $discount = $priority_collection->getColumnValues('discount_amount');
-            $integerIDs = array_map('intval', $discount);
-            $percent = 0;
+                ->addFieldToFilter('to_date', ['gt' => date('Y-m-d')])
+                ->addFieldToFilter('discount_amount', max($discount));
+            $apply_discount = $priority_collection->getColumnValues('discount_amount');
+
+            $integerIDs = array_map('intval', $apply_discount);
             foreach ($integerIDs as $percent) {
                 $percent = $percent / 100;
             }
-
-            return $percent;
         }
+
+        return $percent;
     }
 }

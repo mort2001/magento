@@ -77,5 +77,14 @@ if ($question->count()) {
         </table>
     </div>
     <?php
+} else {
+    ?>
+    <div style="color: red; text-align: center;">
+        <b>You have no question(s) created!!! Please create question first!!!</b>
+        <br><br>
+        <button class="action submit primary"><a style="color: white" href="<?= $block->getUrl('*/*/index') ?>">
+                <?php echo __('Create Question') ?></a></button>
+    </div>
+    <?php
 }
 ?>

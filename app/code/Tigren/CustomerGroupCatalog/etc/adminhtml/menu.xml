@@ -11,7 +11,10 @@
         <add id="Tigren_CustomerGroup::rule" title="Tigren Rule" module="Tigren_CustomerGroupCatalog" sortOrder="20"
              resource="Tigren_CustomerGroup::rule"/>
         <add id="Tigren_CustomerGroup::manage_rules" title="Manage Rules" module="Tigren_CustomerGroupCatalog"
-             action="tigren_customergroup/rule/index" resource="Tigren_CustomerGroup::manage_rules"
+             action="tigren_customergroup/rule/index" resource="Tigren_CustomerGroup::rule"
+             parent="Tigren_CustomerGroup::rule"/>
+        <add id="Tigren_CustomerGroup::add_rule" title="Add New Rule" module="Tigren_CustomerGroupCatalog"
+             action="tigren_customergroup/rule/addnew" resource="Tigren_CustomerGroup::rule"
              parent="Tigren_CustomerGroup::rule"/>
     </menu>
 </config>

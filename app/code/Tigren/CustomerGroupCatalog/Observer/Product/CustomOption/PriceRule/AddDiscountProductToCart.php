@@ -16,6 +16,9 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Customer\Model\Session;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule\CollectionFactory;
+use Zend_Log;
+use Zend_Log_Exception;
+use Zend_Log_Writer_Stream;
 
 /**
  * Class Addtocart
@@ -70,7 +73,7 @@ class AddDiscountProductToCart implements ObserverInterface
 
     /**
      * @param Observer $observer
-     * @throws NoSuchEntityException|LocalizedException
+     * @throws NoSuchEntityException|LocalizedException|Zend_Log_Exception|
      */
     public function execute(Observer $observer)
     {
@@ -81,19 +84,24 @@ class AddDiscountProductToCart implements ObserverInterface
             $group_id = $this->_session->getCustomerGroupId();
             $ruleCollection = $this->collectionFactory->create()
                 ->addFieldToFilter('products', ['like' => '%' . $sku . '%'])
-                ->addFieldToFilter('customer_group_ids', $group_id);
+                ->addFieldToFilter('customer_group_ids', ['like' => '%' . $group_id . '%']);
             $priority = $ruleCollection->getColumnValues('priority');
-            $priority_collection = $this->collectionFactory->create()->addFieldToFilter('priority', min($priority));
-            $discount = $priority_collection->getColumnValues('discount_amount');
+            $discount = $ruleCollection->getColumnValues('discount_amount');
+            $priority_collection = $this->collectionFactory->create()
+                ->addFieldToFilter('priority', min($priority))
+                ->addFieldToFilter('from_date', ['lt' => date('Y-m-d')])
+                ->addFieldToFilter('to_date', ['gt' => date('Y-m-d')])
+                ->addFieldToFilter('discount_amount', max($discount));
+            $apply_discount = $priority_collection->getColumnValues('discount_amount');
 
             $item = $observer->getEvent()->getData('quote_item');
             $item = ($item->getParentItem() ? $item->getParentItem() : $item);
-            $integerIDs = array_map('intval', $discount);
+            $integerIDs = array_map('intval', $apply_discount);
+            $percent = 0;
             foreach ($integerIDs as $percent) {
                 $percent = $percent / 100;
             }
 
-            $sku = $item->getSku();
             $productCollection = $this->_product->loadByAttribute('sku', $sku);
             $productPriceBySku = $productCollection->getPrice();
             $customPrice = $productPriceBySku - ($productPriceBySku * $percent); // custom price
