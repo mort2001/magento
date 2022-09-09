@@ -69,7 +69,8 @@ class FinalPriceBox extends \Magento\Catalog\Pricing\Render\FinalPriceBox
                 'data-product-id="' . $this->getSaleableItem()->getId() . '"' .
                 '>' . $html . '</div>';
         } else {
-            $wording = '<a href="customer/account/login"> Please Login To See Price </a>';
+            $wording = '<a style="color: darkred; font-family: monospace; font-weight: bold; text-decoration: underline;" 
+                href="customer/account/login"> Please Login To See The Price!!!</a>';
             return '<div class="" ' .
                 'data-role="priceBox" ' .
                 'data-product-id="' . $this->getSaleableItem()->getId() . '"' .
