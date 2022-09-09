@@ -16,9 +16,7 @@ use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Serialize\SerializerInterface;
-use Zend_Log;
 use Zend_Log_Exception;
-use Zend_Log_Writer_Stream;
 
 /**
  * Class Index
@@ -73,6 +71,7 @@ class Index extends Action
         $check_product = $this->_checkoutSession->getQuote()->getItemsCollection();
         $cart_sku = $check_product
             ->addFieldToFilter('sku', $sku);
+
         $a = 0;
         foreach ($cart_sku as $cart) {
             if ($cart['sku'] == $sku) {
@@ -85,6 +84,7 @@ class Index extends Action
         } else {
             $result['ClearCart'] = false;
         }
+
         return $this->getResponse()->representJson($this->serializer->serialize($result));
     }
 }

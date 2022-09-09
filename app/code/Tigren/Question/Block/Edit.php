@@ -11,7 +11,6 @@ use Magento\Framework\View\Element\Template;
 use Tigren\Question\Model\Post;
 use Tigren\Question\Model\PostFactory;
 
-
 /**
  * Class Edit
  * @package Tigren\Question\Block

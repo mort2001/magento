@@ -12,6 +12,7 @@ use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\View\Result\Page;
 
 /**
  * Class Edit
@@ -35,7 +36,7 @@ class Edit extends Action
     }
 
     /**
-     * @return ResponseInterface
+     * @return Page|ResponseInterface|
      */
     public function execute()
     {

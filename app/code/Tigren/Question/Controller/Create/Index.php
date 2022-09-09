@@ -55,6 +55,7 @@ class Index extends Action
             return $this->_pageFactory->create();
         } else {
             $this->messageManager->addErrorMessage('Please Login first before doing anything ...');
+
             return $this->_redirect('customer/account/login');
         }
     }

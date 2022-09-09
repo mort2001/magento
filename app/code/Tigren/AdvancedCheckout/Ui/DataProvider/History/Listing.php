@@ -48,6 +48,7 @@ class Listing extends AbstractDataProvider
         if ($filter->getField() == 'entity_id') {
             $filter->setField('main_table.' . $filter->getField());
         }
+
         parent::addFilter($filter);
     }
 }

@@ -39,15 +39,6 @@ $configuredRegularPrice = $block->getPriceType(
                 ]
             ); ?>
         </span>
-
-        <span>
-        <?php
-        $item = $block->getSaleableItem();
-        $_savePercent = (float)$discount * 100;
-        echo '<b style="color:#008000">' . $_savePercent . '% off </b>';
-        ?>
-    </span>
-
         <span class="old-price">
             <?= /* @noEscape */
             $block->renderAmount(

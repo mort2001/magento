@@ -44,6 +44,7 @@ class Index extends Action
     {
         $page = $this->_pageFactory->create();
         $page->getConfig()->getTitle()->prepend('List Questions');
+
         return $page;
     }
 }

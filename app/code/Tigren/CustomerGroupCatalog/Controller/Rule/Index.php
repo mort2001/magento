@@ -16,7 +16,6 @@ use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Customer\Model\Session;
 use Tigren\CustomerGroupCatalog\Helper\Data;
-use Zend_Log_Exception;
 
 /**
  * Class Index

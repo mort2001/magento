@@ -16,9 +16,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Customer\Model\Session;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule\CollectionFactory;
-use Zend_Log;
 use Zend_Log_Exception;
-use Zend_Log_Writer_Stream;
 
 /**
  * Class Addtocart

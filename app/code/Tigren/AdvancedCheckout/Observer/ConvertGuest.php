@@ -21,6 +21,7 @@ use Magento\Framework\Encryption\EncryptorInterface;
 use Magento\Customer\Model\ResourceModel\Customer\CollectionFactory;
 use Tigren\CustomerGroupCatalog\Model\HistoryFactory;
 use Tigren\CustomerGroupCatalog\Helper\Data;
+use Zend_Log_Exception;
 
 /**
  * Class ConvertGuest
@@ -28,7 +29,13 @@ use Tigren\CustomerGroupCatalog\Helper\Data;
  */
 class ConvertGuest implements ObserverInterface
 {
+    /**
+     * @var Data
+     */
     protected $_helper;
+    /**
+     * @var HistoryFactory
+     */
     protected $_historyFactory;
     /**
      * @var CollectionFactory
@@ -63,6 +70,8 @@ class ConvertGuest implements ObserverInterface
      * @param CustomerFactory $customer
      * @param EncryptorInterface $encryptor
      * @param CollectionFactory $collectionFactory
+     * @param HistoryFactory $historyFactory
+     * @param Data $helper
      */
     public function __construct(
         StoreManagerInterface            $storeManager,
@@ -93,7 +102,7 @@ class ConvertGuest implements ObserverInterface
      * @throws AlreadyExistsException
      * @throws LocalizedException
      * @throws NoSuchEntityException
-     * @throws \Zend_Log_Exception
+     * @throws Zend_Log_Exception
      */
     public function execute(Observer $observer)
     {

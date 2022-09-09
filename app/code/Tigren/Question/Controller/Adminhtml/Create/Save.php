@@ -9,9 +9,7 @@ namespace Tigren\Question\Controller\Adminhtml\Create;
 
 use Exception;
 use Magento\Backend\App\Action;
-use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\Result\Redirect;
-use Magento\Framework\Controller\ResultInterface;
 use Tigren\Question\Model\PostFactory;
 
 /**

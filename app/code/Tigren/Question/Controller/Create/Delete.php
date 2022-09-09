@@ -10,7 +10,9 @@ namespace Tigren\Question\Controller\Create;
 use Magento\Customer\Model\Session;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\Result\Redirect;
+use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\PageFactory;
 use Tigren\Question\Model\PostFactory;
 use Tigren\Question\Model\ResourceModel\Post\CollectionFactory;
@@ -39,6 +41,9 @@ class Delete extends Action
     /**
      * @param Context $context
      * @param PageFactory $_pageFactory
+     * @param PostFactory $postFactory
+     * @param CollectionFactory $collectionFactory
+     * @param Session $session
      */
     public function __construct(
         Context           $context,
@@ -56,7 +61,7 @@ class Delete extends Action
     }
 
     /**
-     * @return Redirect
+     * @return ResponseInterface|Redirect|ResultInterface
      */
     public function execute()
     {

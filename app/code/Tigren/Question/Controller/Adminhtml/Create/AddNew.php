@@ -18,7 +18,6 @@ use Magento\Framework\View\Result\Page;
  */
 class AddNew extends Action
 {
-
     /**
      * @return ResultInterface|Page
      */

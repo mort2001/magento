@@ -20,7 +20,7 @@ use Magento\Framework\View\Result\Page;
 class Edit extends Action
 {
     /**
-     * @return ResponseInterface|ResultInterface|Page
+     * @return Page|ResultInterface
      */
     public function execute()
     {
