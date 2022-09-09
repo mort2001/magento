@@ -54,6 +54,7 @@ class ListQuestion extends Action
         if ($this->_sesstion->isLoggedIn()) {
             return $this->resultPageFactory->create();
         } else {
+            $this->messageManager->addErrorMessage('Please Login first before doing anything ...');
             return $this->_redirect('customer/account/login');
         }
     }

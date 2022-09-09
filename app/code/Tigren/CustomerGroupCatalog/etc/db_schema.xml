@@ -29,4 +29,19 @@
             <column name="products"/>
         </index>
     </table>
+
+    <table name="customergroup_catalog_history" resource="default" engine="innodb"
+           comment="Customer Group Catalog History Table">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="int" name="order_id" padding="10" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Order ID"/>
+        <column xsi:type="int" name="customer_id" padding="10" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Customer ID"/>
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Rule ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
 </schema>

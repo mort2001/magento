@@ -18,5 +18,16 @@
         "index": {
             "TIGREN_CUSTOMERGROUP_RULE_NAME_DISCOUNT_AMOUNT_PRODUCTS": true
         }
+    },
+    "customergroup_catalog_history": {
+        "column": {
+            "entity_id": true,
+            "order_id": true,
+            "customer_id": true,
+            "rule_id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
     }
 }

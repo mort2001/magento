@@ -19,6 +19,8 @@ use Magento\Sales\Model\OrderFactory;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\Encryption\EncryptorInterface;
 use Magento\Customer\Model\ResourceModel\Customer\CollectionFactory;
+use Tigren\CustomerGroupCatalog\Model\HistoryFactory;
+use Tigren\CustomerGroupCatalog\Helper\Data;
 
 /**
  * Class ConvertGuest
@@ -26,6 +28,8 @@ use Magento\Customer\Model\ResourceModel\Customer\CollectionFactory;
  */
 class ConvertGuest implements ObserverInterface
 {
+    protected $_helper;
+    protected $_historyFactory;
     /**
      * @var CollectionFactory
      */
@@ -67,9 +71,13 @@ class ConvertGuest implements ObserverInterface
         OrderRepositoryInterface         $orderRepository,
         CustomerFactory                  $customer,
         EncryptorInterface               $encryptor,
-        CollectionFactory                $collectionFactory
+        CollectionFactory                $collectionFactory,
+        HistoryFactory                   $historyFactory,
+        Data                             $helper
     )
     {
+        $this->_helper = $helper;
+        $this->_historyFactory = $historyFactory;
         $this->_collectionFactory = $collectionFactory;
         $this->_encryptor = $encryptor;
         $this->_storeManager = $storeManager;
@@ -85,6 +93,7 @@ class ConvertGuest implements ObserverInterface
      * @throws AlreadyExistsException
      * @throws LocalizedException
      * @throws NoSuchEntityException
+     * @throws \Zend_Log_Exception
      */
     public function execute(Observer $observer)
     {
@@ -102,14 +111,35 @@ class ConvertGuest implements ObserverInterface
         if ($order->getId() && !$customer->getId()) {
 
             $registration = $this->orderCustomerService->create($orderId);
-            $new_one = $this->_customer->create()->load( $registration->getId());
+            $new_one = $this->_customer->create()->load($registration->getId());
             $new_one->setPassword('mort123');
             $new_one->save();
+
+            $history = $this->_historyFactory->create();
+            $rule = $this->_helper->getRuleId();
+            $arr = [
+                'order_id' => $order->getId(),
+                'customer_id' => $registration->getId(),
+                'rule_id' => $rule
+            ];
+
+            $history->addData($arr);
+            $history->save();
         } else {
             //if customer Registered and checkout as guest
             $order->setCustomerId($customer->getId());
             $order->setCustomerIsGuest(0);
             $this->orderRepository->save($order);
+
+            $history = $this->_historyFactory->create();
+            $rule = $this->_helper->getRuleId();
+            $arr = [
+                'order_id' => $order->getId(),
+                'customer_id' => $customer->getId(),
+                'rule_id' => implode(',' , $rule)
+            ];
+            $history->addData($arr);
+            $history->save();
         }
     }
 }
