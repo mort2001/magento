@@ -23,8 +23,7 @@ class RedirectCustomUrl
     public function afterExecute(LoginPost $subject, $result)
     {
         $customUrl = 'tigren_customergroup/rule/index';
-        $result->setPath($customUrl);
 
-        return $result;
+        return $result->setPath($customUrl);
     }
 }

@@ -5,7 +5,7 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-$rules = $this->helper(Tigren\CustomerGroupCatalog\Helper\Data::class)->getRules();
+$item = $this->helper(Tigren\CustomerGroupCatalog\Helper\Data::class)->getRules();
 ?>
 <style>
     td {
@@ -30,8 +30,7 @@ $rules = $this->helper(Tigren\CustomerGroupCatalog\Helper\Data::class)->getRules
         <th id="center">Discount Amount (%)</th>
         <th id="center">Priority</th>
     </tr>
-    <?php
-    foreach ($rules as $item): ?>
+
         <tr>
             <td><?= $item['rule_id'] ?></td>
             <td><?= $item['name'] ?></td>
@@ -40,6 +39,6 @@ $rules = $this->helper(Tigren\CustomerGroupCatalog\Helper\Data::class)->getRules
             <td><?= $item['discount_amount'] ?></td>
             <td><?= $item['priority'] ?></td>
         </tr>
-    <?php endforeach; ?>
+
 </table>
 

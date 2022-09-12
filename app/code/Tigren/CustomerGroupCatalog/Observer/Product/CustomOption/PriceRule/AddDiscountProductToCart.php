@@ -17,13 +17,23 @@ use Magento\Store\Model\StoreManagerInterface;
 use Magento\Customer\Model\Session;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule\CollectionFactory;
 use Zend_Log_Exception;
+use Magento\Framework\Message\ManagerInterface;
+use Tigren\CustomerGroupCatalog\Helper\Data;
 
 /**
- * Class Addtocart
+ * Class Cartload
  * @package Vendor\Module\Observer\Product\CustomOption\PriceRule
  */
 class AddDiscountProductToCart implements ObserverInterface
 {
+    /**
+     * @var Data
+     */
+    protected $_data;
+    /**
+     * @var ManagerInterface
+     */
+    protected $_message;
     /**
      * @var CollectionFactory
      */
@@ -53,15 +63,21 @@ class AddDiscountProductToCart implements ObserverInterface
      * @param RequestInterface $request
      * @param Session $session
      * @param CollectionFactory $collectionFactory
+     * @param ManagerInterface $_message
+     * @param Data $data
      */
     public function __construct(
         Product               $product,
         StoreManagerInterface $storeManager,
         RequestInterface      $request,
         Session               $session,
-        CollectionFactory     $collectionFactory
+        CollectionFactory     $collectionFactory,
+        ManagerInterface      $_message,
+        Data                  $data
     )
     {
+        $this->_data = $data;
+        $this->_message = $_message;
         $this->collectionFactory = $collectionFactory;
         $this->_session = $session;
         $this->_product = $product;
@@ -80,29 +96,13 @@ class AddDiscountProductToCart implements ObserverInterface
 
         if ($this->_session->isLoggedIn()) {
             $group_id = $this->_session->getCustomerGroupId();
-            $ruleCollection = $this->collectionFactory->create()
-                ->addFieldToFilter('products', ['like' => '%' . $sku . '%'])
-                ->addFieldToFilter('customer_group_ids', ['like' => '%' . $group_id . '%']);
-            $priority = $ruleCollection->getColumnValues('priority');
-            $discount = $ruleCollection->getColumnValues('discount_amount');
-            $priority_collection = $this->collectionFactory->create()
-                ->addFieldToFilter('priority', min($priority))
-                ->addFieldToFilter('from_date', ['lt' => date('Y-m-d')])
-                ->addFieldToFilter('to_date', ['gt' => date('Y-m-d')])
-                ->addFieldToFilter('discount_amount', max($discount));
-            $apply_discount = $priority_collection->getColumnValues('discount_amount');
+            $discount_amount = $this->_data->getApplyRuleDiscount($sku, $group_id);
 
             $item = $observer->getEvent()->getData('quote_item');
             $item = ($item->getParentItem() ? $item->getParentItem() : $item);
-            $integerIDs = array_map('intval', $apply_discount);
-            $percent = 0;
-            foreach ($integerIDs as $percent) {
-                $percent = $percent / 100;
-            }
-
             $productCollection = $this->_product->loadByAttribute('sku', $sku);
             $productPriceBySku = $productCollection->getPrice();
-            $customPrice = $productPriceBySku - ($productPriceBySku * $percent); // custom price
+            $customPrice = $productPriceBySku - ($productPriceBySku * $discount_amount); // custom price
             $item->setCustomPrice($customPrice);
             $item->setOriginalCustomPrice($customPrice);
             $item->getProduct()->setIsSuperMode(true);

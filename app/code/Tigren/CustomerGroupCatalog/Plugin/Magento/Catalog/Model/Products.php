@@ -13,6 +13,9 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule\CollectionFactory;
 use Tigren\CustomerGroupCatalog\Helper\Data;
 use Magento\Catalog\Model\Product;
+use Zend_Log;
+use Zend_Log_Exception;
+use Zend_Log_Writer_Stream;
 
 /**
  * Class Products
@@ -33,7 +36,7 @@ class Products
     /**
      * @var Data
      */
-    protected $data;
+    protected $_data;
 
     /**
      * @param Session $session
@@ -48,7 +51,7 @@ class Products
     {
         $this->_session = $session;
         $this->collectionFactory = $collectionFactory;
-        $this->data = $data;
+        $this->_data = $data;
     }
 
     /**
@@ -60,15 +63,15 @@ class Products
      */
     public function afterGetSpecialPrice(Product $product, $result)
     {
-        $final_price = 0;
         try {
-            $discount_amount = $this->data->getDiscount();
-            $all_price = $product->getPriceInfo()->getPrice('final_price')->getValue();
-            $final_price = $all_price - ($all_price * $discount_amount);
+            if ($this->_session->isLoggedIn()) {
+                $group_id = $this->_session->getCustomerGroupId();
+                $sku = $product->getSku();
+                $discountAmount = $this->_data->getApplyRuleDiscount($sku, $group_id);
+                $finalPriceValue = $product->getPriceInfo()->getPrice('final_price')->getValue();
+                return $finalPriceValue - ($finalPriceValue * $discountAmount);
+            }
         } catch (NoSuchEntityException|LocalizedException $e) {
         }
-
-        return $final_price;
     }
-
 }

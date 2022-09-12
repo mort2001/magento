@@ -16,6 +16,7 @@ use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Serialize\SerializerInterface;
+use Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule\CollectionFactory;
 use Zend_Log_Exception;
 
 /**
@@ -24,6 +25,7 @@ use Zend_Log_Exception;
  */
 class Index extends Action
 {
+    protected $_collectionFactory;
     /**
      * @var SerializerInterface
      */
@@ -47,9 +49,11 @@ class Index extends Action
         Context             $context,
         ProductRepository   $productRepository,
         CheckoutSession     $checkoutSession,
-        SerializerInterface $serializer
+        SerializerInterface $serializer,
+        CollectionFactory   $collectionFactory
     )
     {
+        $this->_collectionFactory = $collectionFactory;
         $this->serializer = $serializer;
         $this->_checkoutSession = $checkoutSession;
         $this->_productRepository = $productRepository;
@@ -71,14 +75,12 @@ class Index extends Action
         $check_product = $this->_checkoutSession->getQuote()->getItemsCollection();
         $cart_sku = $check_product
             ->addFieldToFilter('sku', $sku);
-
         $a = 0;
         foreach ($cart_sku as $cart) {
             if ($cart['sku'] == $sku) {
                 $a++;
             }
         }
-
         if ($multi_orders == 0 && $a > 0) {
             $result['ClearCart'] = true;
         } else {

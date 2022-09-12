@@ -32,15 +32,27 @@ class HideAddToCartButton
 
     /**
      * @param Product $product
-     * @param Closure $result
-     * @return $this|int
+     * @param $result
+     * @return bool|void
      */
-    public function aroundIsSalable(Product $product, Closure $result)
+    public function afterIsSalable(Product $product, $result)
     {
         if ($this->sesstion->isLoggedIn()) {
-            return $this;
-        } else {
-            return 0;
+            return $result;
         }
     }
+//
+//    /**
+//     * @param Product $product
+//     * @param Closure $result
+//     * @return bool|void
+//     */
+//    public function aroundIsSalable(Product $product, Closure $result)
+//    {
+//        if ($this->sesstion->isLoggedIn()) {
+//            return true;
+//        }
+//    }
+
+
 }
