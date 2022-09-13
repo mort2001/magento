@@ -86,7 +86,7 @@ class ClearCart extends Action
      */
     public function execute()
     {
-        $status = $this->getRequest()->getParams();
+        $status = $this->getRequest()->getParam('status');
         if ($status) {
             $cart = $this->checkoutSession
                 ->clearQuote()

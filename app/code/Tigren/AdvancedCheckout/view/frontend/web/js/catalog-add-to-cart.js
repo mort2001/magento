@@ -10,7 +10,7 @@ define([
         'underscore',
         'Magento_Catalog/js/product/view/product-ids-resolver',
         'Magento_Catalog/js/product/view/product-info-resolver',
-        'jquery-ui-modules/widget'
+        'jquery-ui-modules/widget',
     ], function ($, $t, _, idsResolver, productInfoResolver) {
         'use strict';
         return function (widget) {
@@ -108,7 +108,7 @@ define([
                                         {
                                             text: 'Clear Cart',
                                             click: function (status) {
-                                                var customurl = "tigren_advancedcheckout/payment/clearcart";
+                                                var customurl = "/tigren_advancedcheckout/payment/clearcart";
                                                 $.ajax({
                                                     url: customurl,
                                                     data: {
