@@ -45,7 +45,6 @@ class Save extends Action
      * @param Context $context
      * @param PostFactory $postFactory
      * @param Session $session
-     * @param Context $httpContext
      * @param CustomerFactory $customerFactory
      * @param Customer $cus
      */
@@ -53,7 +52,6 @@ class Save extends Action
         Context         $context,
         PostFactory     $postFactory,
         Session         $session,
-        Context         $httpContext,
         CustomerFactory $customerFactory,
         Customer        $cus
     )

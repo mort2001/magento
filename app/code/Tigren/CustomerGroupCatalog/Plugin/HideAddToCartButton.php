@@ -7,7 +7,6 @@
 
 namespace Tigren\CustomerGroupCatalog\Plugin;
 
-use Closure;
 use Magento\Catalog\Model\Product;
 use Magento\Customer\Model\Session;
 
@@ -41,6 +40,7 @@ class HideAddToCartButton
             return $result;
         }
     }
+
 //
 //    /**
 //     * @param Product $product

@@ -22,6 +22,7 @@ use Magento\Customer\Model\ResourceModel\Customer\CollectionFactory;
 use Tigren\CustomerGroupCatalog\Model\HistoryFactory;
 use Tigren\CustomerGroupCatalog\Helper\Data;
 use Zend_Log_Exception;
+use Magento\Customer\Model\Session;
 
 /**
  * Class ConvertGuest
@@ -29,6 +30,7 @@ use Zend_Log_Exception;
  */
 class ConvertGuest implements ObserverInterface
 {
+    protected $_session;
     /**
      * @var Data
      */
@@ -82,9 +84,11 @@ class ConvertGuest implements ObserverInterface
         EncryptorInterface               $encryptor,
         CollectionFactory                $collectionFactory,
         HistoryFactory                   $historyFactory,
-        Data                             $helper
+        Data                             $helper,
+        Session $session
     )
     {
+        $this->_session = $session;
         $this->_helper = $helper;
         $this->_historyFactory = $historyFactory;
         $this->_collectionFactory = $collectionFactory;
@@ -110,45 +114,38 @@ class ConvertGuest implements ObserverInterface
         //take the last order
         $orderId = $orderIds[0];
         $order = $this->_orderFactory->create()->load($orderId);
-        $customer = $this->_customer->create();
+        //Call History Model
+        $history = $this->_historyFactory->create();
+        //Get Rule_ID
+        $rule = $this->_helper->getRuleId();
 
-        //Base on order detail to approach customer
-        $customer->setWebsiteId($this->_storeManager->getStore()->getWebsiteId());
-        $customer->loadByEmail($order->getCustomerEmail());
+        //Nếu customer dãd đăng nhập và lấy đc orderId
+        if($this->_session->isLoggedIn() && $order->getId())
+        {
+            $customerId = $this->_session->getCustomerId();
+            $order->setCustomerId($customerId);
+            $order->setCustomerIsGuest(0);
+            $this->orderRepository->save($order);
 
-        //Convert guest into customer
-        if ($order->getId() && !$customer->getId()) {
-
+            $arr = [
+                'order_id' => $order->getId(),
+                'customer_id' => $customerId,
+                'rule_id' => $rule
+            ];
+        }else{
             $registration = $this->orderCustomerService->create($orderId);
             $new_one = $this->_customer->create()->load($registration->getId());
             $new_one->setPassword('mort123');
             $new_one->save();
 
-            $history = $this->_historyFactory->create();
-            $rule = $this->_helper->getRuleId();
             $arr = [
                 'order_id' => $order->getId(),
                 'customer_id' => $registration->getId(),
-                'rule_id' => $rule
+                'rule_id' => ''
             ];
-
-            $history->addData($arr);
-            $history->save();
-        } else {
-            //if customer Registered and checkout as guest
-            $order->setCustomerId($customer->getId());
-            $order->setCustomerIsGuest(0);
-            $this->orderRepository->save($order);
-
-            $history = $this->_historyFactory->create();
-            $rule = $this->_helper->getRuleId();
-            $arr = [
-                'order_id' => $order->getId(),
-                'customer_id' => $customer->getId(),
-                'rule_id' => implode(',' , $rule)
-            ];
-            $history->addData($arr);
-            $history->save();
         }
+
+        $history->addData($arr);
+        $history->save();
     }
 }

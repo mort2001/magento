@@ -33,7 +33,6 @@ class ListQuestion extends Template
      */
     protected $httpContext;
 
-
     /**
      * @param Context $context
      * @param CollectionFactory $collectionFactory

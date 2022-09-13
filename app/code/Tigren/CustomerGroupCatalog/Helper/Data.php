@@ -12,12 +12,9 @@ use Magento\Framework\App\Helper\Context;
 use Magento\Framework\DataObject;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule\Collection;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule\CollectionFactory;
 use Magento\Customer\Model\Session;
-use Zend_Log;
 use Zend_Log_Exception;
-use Zend_Log_Writer_Stream;
 
 /**
  * Class Data
@@ -118,8 +115,8 @@ class Data extends AbstractHelper
             ->addFieldToFilter('from_date', ['lt' => date('Y-m-d')])
             ->addFieldToFilter('to_date', ['gt' => date('Y-m-d')])
             ->setOrder('priority', 'ASC');
-
         $discount_amount = $ruleCollection->setPageSize(1)->getFirstItem()->getDiscountAmount();
+
         return $discount_amount / 100;
     }
 }

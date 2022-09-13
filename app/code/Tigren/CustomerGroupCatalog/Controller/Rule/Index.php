@@ -9,6 +9,7 @@ namespace Tigren\CustomerGroupCatalog\Controller\Rule;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -16,6 +17,7 @@ use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Customer\Model\Session;
 use Tigren\CustomerGroupCatalog\Helper\Data;
+use Zend_Log_Exception;
 
 /**
  * Class Index
@@ -58,9 +60,10 @@ class Index extends Action
     }
 
     /**
-     * @return Page|ResultInterface|void
+     * @return ResponseInterface|ResultInterface|Page|void
      * @throws LocalizedException
      * @throws NoSuchEntityException
+     * @throws Zend_Log_Exception
      */
     public function execute()
     {

@@ -10,9 +10,14 @@ namespace Tigren\Question\Setup\Patch\Data;
 use Magento\Customer\Model\Customer;
 use Magento\Customer\Setup\CustomerSetupFactory;
 use Magento\Eav\Model\Config;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
+/**
+ * Class AddAttribute
+ * @package Tigren\Question\Setup\Patch\Data
+ */
 class AddAttribute implements DataPatchInterface
 {
     /**
@@ -49,6 +54,10 @@ class AddAttribute implements DataPatchInterface
     }
 
     /** We'll add our customer attribute here */
+    /**
+     * @return void
+     * @throws LocalizedException
+     */
     public function apply()
     {
         $customerSetup
@@ -68,7 +77,7 @@ class AddAttribute implements DataPatchInterface
             'label' => 'Question is created',
             'source' => 'Magento\Eav\Model\Entity\Attribute\Source\Boolean',
             'required' => false,
-            'default' =>"No",
+            'default' => "No",
             'visible' => true,
             'user_defined' => true,
             'system' => false,
@@ -95,11 +104,17 @@ class AddAttribute implements DataPatchInterface
         $newAttribute->save();
     }
 
+    /**
+     * @return array|string[]
+     */
     public static function getDependencies()
     {
         return [];
     }
 
+    /**
+     * @return array|string[]
+     */
     public function getAliases()
     {
         return [];

@@ -25,6 +25,9 @@ use Zend_Log_Exception;
  */
 class Index extends Action
 {
+    /**
+     * @var CollectionFactory
+     */
     protected $_collectionFactory;
     /**
      * @var SerializerInterface
@@ -44,6 +47,7 @@ class Index extends Action
      * @param ProductRepository $productRepository
      * @param CheckoutSession $checkoutSession
      * @param SerializerInterface $serializer
+     * @param CollectionFactory $collectionFactory
      */
     public function __construct(
         Context             $context,
@@ -72,6 +76,7 @@ class Index extends Action
         $sku = $this->getRequest()->getParam('productSku');
         $product = $this->_productRepository->get($sku);
         $multi_orders = $product->getCustomAttribute('custom_product_attribute') ? $product->getCustomAttribute('custom_product_attribute')->getValue() : '';
+
         $check_product = $this->_checkoutSession->getQuote()->getItemsCollection();
         $cart_sku = $check_product
             ->addFieldToFilter('sku', $sku);

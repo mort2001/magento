@@ -13,9 +13,6 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule\CollectionFactory;
 use Tigren\CustomerGroupCatalog\Helper\Data;
 use Magento\Catalog\Model\Product;
-use Zend_Log;
-use Zend_Log_Exception;
-use Zend_Log_Writer_Stream;
 
 /**
  * Class Products
@@ -69,6 +66,7 @@ class Products
                 $sku = $product->getSku();
                 $discountAmount = $this->_data->getApplyRuleDiscount($sku, $group_id);
                 $finalPriceValue = $product->getPriceInfo()->getPrice('final_price')->getValue();
+
                 return $finalPriceValue - ($finalPriceValue * $discountAmount);
             }
         } catch (NoSuchEntityException|LocalizedException $e) {
