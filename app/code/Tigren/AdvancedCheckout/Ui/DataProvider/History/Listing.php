@@ -14,18 +14,10 @@ use Magento\Ui\DataProvider\AbstractDataProvider;
 
 /**
  * Class Listing
- * @package Tigren\CustomerGroupCatalog\Ui\DataProvider\Rule
+ * @package Tigren\AdvancedCheckout\Ui\DataProvider\History
  */
 class Listing extends AbstractDataProvider
 {
-    /**
-     * @param CollectionFactory $collectionFactory
-     * @param $name
-     * @param $primaryFieldName
-     * @param $requestFieldName
-     * @param array $meta
-     * @param array $data
-     */
     public function __construct(
         CollectionFactory $collectionFactory,
                           $name,
