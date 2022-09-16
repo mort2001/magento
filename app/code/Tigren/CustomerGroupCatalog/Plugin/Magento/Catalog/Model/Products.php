@@ -61,14 +61,12 @@ class Products
     public function afterGetSpecialPrice(Product $product, $result)
     {
         try {
-            if ($this->_session->isLoggedIn()) {
-                $group_id = $this->_session->getCustomerGroupId();
-                $sku = $product->getSku();
-                $discountAmount = $this->_data->getApplyRuleDiscount($sku, $group_id);
-                $finalPriceValue = $product->getPriceInfo()->getPrice('final_price')->getValue();
+            $group_id = $this->_session->getCustomerGroupId();
+            $sku = $product->getSku();
+            $discountAmount = $this->_data->getApplyRuleDiscount($sku, $group_id);
+            $finalPriceValue = $product->getPriceInfo()->getPrice('final_price')->getValue();
 
-                return $finalPriceValue - ($finalPriceValue * $discountAmount);
-            }
+            return $finalPriceValue - ($finalPriceValue * $discountAmount);
         } catch (NoSuchEntityException|LocalizedException $e) {
         }
     }

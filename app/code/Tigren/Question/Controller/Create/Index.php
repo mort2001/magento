@@ -25,6 +25,7 @@ class Index extends Action
      * @var PageFactory
      */
     protected $_pageFactory;
+
     /**
      * @var Session
      */

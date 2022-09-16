@@ -30,16 +30,18 @@
     <!--    <preference for="Magento\ConfigurableProduct\Pricing\Render\FinalPriceBox"-->
     <!--                type="Tigren\CustomerGroupCatalog\Pricing\Render\FinalPriceBox"/>-->
 
-    <!--    <type name="Magento\Catalog\Model\Product">-->
-    <!--        <plugin name="hidebutton" type="Tigren\CustomerGroupCatalog\Plugin\HideAddToCartButton" sortOrder="1"-->
-    <!--                disabled="false"/>-->
-    <!--    </type>-->
+<!--        <type name="Magento\Catalog\Model\Product">-->
+<!--            <plugin name="hide_button" type="Tigren\CustomerGroupCatalog\Plugin\Magento\Catalog\Model\HideAddToCartButton" sortOrder="1"-->
+<!--                    disabled="false"/>-->
+<!--        </type>-->
 
+<!--    Redirect to custom URL after login-->
     <type name="Magento\Customer\Controller\Account\LoginPost">
-        <plugin name="redirect_custom_url" type="Tigren\CustomerGroupCatalog\Plugin\RedirectCustomUrl" sortOrder="1"
+        <plugin name="redirect_custom_url" type="Tigren\CustomerGroupCatalog\Plugin\Magento\Customer\Controller\Account\RedirectCustomUrl" sortOrder="1"
                 disabled="false"/>
     </type>
 
+<!--    Change product's price depend on Rule-->
     <type name="Magento\Catalog\Model\Product">
         <plugin name="change_product_price" type="Tigren\CustomerGroupCatalog\Plugin\Magento\Catalog\Model\Products"
                 sortOrder="1"

@@ -78,7 +78,7 @@ class Delete extends Action
             try {
                 $deletePost->delete();
                 $total++;
-            } catch (LocalizedException $exception) {
+            } catch (LocalizedException) {
                 $err++;
             }
         }

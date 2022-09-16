@@ -86,8 +86,7 @@ define([
                             productSku: productSku,
                         },
                         dataType: 'json',
-                        beforeSend: function (notice) {
-                            console.log(notice);
+                        beforeSend: function () {
                             $('body').trigger('processStart');
                         },
                         success: function (notice) {

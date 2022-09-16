@@ -30,27 +30,33 @@ class AddDiscountProductToCart implements ObserverInterface
      * @var Data
      */
     protected $_data;
+
     /**
      * @var ManagerInterface
      */
     protected $_message;
+
     /**
      * @var CollectionFactory
      */
     protected $collectionFactory;
+
     /**
      * @var Session
      */
     protected $_session;
+
     /**
      * @var RequestInterface
      */
     protected $_request;
 
+
     /**
      * @var StoreManagerInterface
      */
     protected $_storeManager;
+
 
     /**
      * @var Product
@@ -93,19 +99,16 @@ class AddDiscountProductToCart implements ObserverInterface
     {
         $product = $observer->getEvent()->getData('product');
         $sku = $product->getSku();
+        $group_id = $this->_session->getCustomerGroupId();
+        $discount_amount = $this->_data->getApplyRuleDiscount($sku, $group_id);
 
-        if ($this->_session->isLoggedIn()) {
-            $group_id = $this->_session->getCustomerGroupId();
-            $discount_amount = $this->_data->getApplyRuleDiscount($sku, $group_id);
-
-            $item = $observer->getEvent()->getData('quote_item');
-            $item = ($item->getParentItem() ? $item->getParentItem() : $item);
-            $productCollection = $this->_product->loadByAttribute('sku', $sku);
-            $productPriceBySku = $productCollection->getPrice();
-            $customPrice = $productPriceBySku - ($productPriceBySku * $discount_amount); // custom price
-            $item->setCustomPrice($customPrice);
-            $item->setOriginalCustomPrice($customPrice);
-            $item->getProduct()->setIsSuperMode(true);
-        }
+        $item = $observer->getEvent()->getData('quote_item');
+        $item = ($item->getParentItem() ? $item->getParentItem() : $item);
+        $productCollection = $this->_product->loadByAttribute('sku', $sku);
+        $productPriceBySku = $productCollection->getPrice();
+        $customPrice = $productPriceBySku - ($productPriceBySku * $discount_amount); // custom price
+        $item->setCustomPrice($customPrice);
+        $item->setOriginalCustomPrice($customPrice);
+        $item->getProduct()->setIsSuperMode(true);
     }
 }

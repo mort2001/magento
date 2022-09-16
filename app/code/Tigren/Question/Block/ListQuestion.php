@@ -23,6 +23,7 @@ class ListQuestion extends Template
      * @var CollectionFactory
      */
     protected $collection;
+
     /**
      * @var Session
      */

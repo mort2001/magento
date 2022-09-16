@@ -22,7 +22,11 @@ use Tigren\Question\Model\ResourceModel\Post\CollectionFactory;
  */
 class Delete extends Action
 {
+    /**
+     * @var Session
+     */
     protected $_session;
+
     /**
      * @var PageFactory
      */

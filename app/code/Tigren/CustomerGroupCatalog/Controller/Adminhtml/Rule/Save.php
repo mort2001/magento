@@ -45,9 +45,9 @@ class Save extends Action
         $data = $this->getRequest()->getParams();
         $id = $data['rule_id'] ?? null;
         if ($id) {
-            $post = $this->ruleFactory->create()->load($id);
+            $rule = $this->ruleFactory->create()->load($id);
         } else {
-            $post = $this->ruleFactory->create();
+            $rule = $this->ruleFactory->create();
         }
         $arr = [
             'name' => $data['name'],
@@ -61,8 +61,8 @@ class Save extends Action
             'customer_group_ids' => implode(',', $data['customer_group_ids'])
         ];
         try {
-            $post->addData($arr);
-            $post->save();
+            $rule->addData($arr);
+            $rule->save();
             $this->messageManager->addSuccessMessage(__('You had saved the rule'));
         } catch (Exception $e) {
             $this->messageManager->addErrorMessage(__($e->getMessage()));

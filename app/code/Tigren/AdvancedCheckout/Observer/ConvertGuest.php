@@ -7,6 +7,7 @@
 
 namespace Tigren\AdvancedCheckout\Observer;
 
+use Exception;
 use Magento\Customer\Model\CustomerFactory;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
@@ -16,8 +17,6 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Sales\Api\OrderCustomerManagementInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\OrderFactory;
-use Magento\Store\Model\StoreManagerInterface;
-use Magento\Framework\Encryption\EncryptorInterface;
 use Magento\Customer\Model\ResourceModel\Customer\CollectionFactory;
 use Tigren\CustomerGroupCatalog\Model\HistoryFactory;
 use Tigren\CustomerGroupCatalog\Helper\Data;
@@ -30,70 +29,71 @@ use Magento\Customer\Model\Session;
  */
 class ConvertGuest implements ObserverInterface
 {
+    /**
+     * @var Session
+     */
     protected $_session;
+
     /**
      * @var Data
      */
     protected $_helper;
+
     /**
      * @var HistoryFactory
      */
     protected $_historyFactory;
+
     /**
      * @var CollectionFactory
      */
     protected $_collectionFactory;
-    /**
-     * @var EncryptorInterface
-     */
-    protected $_encryptor;
+
     /**
      * @var OrderCustomerManagementInterface
      */
     protected $orderCustomerService;
+
     /**
      * @var OrderFactory
      */
     protected $_orderFactory;
+
     /**
      * @var OrderRepositoryInterface
      */
     protected $orderRepository;
+
     /**
      * @var CustomerFactory
      */
     protected $_customer;
 
     /**
-     * @param StoreManagerInterface $storeManager
      * @param OrderCustomerManagementInterface $orderCustomerService
      * @param OrderFactory $orderFactory
      * @param OrderRepositoryInterface $orderRepository
      * @param CustomerFactory $customer
-     * @param EncryptorInterface $encryptor
      * @param CollectionFactory $collectionFactory
      * @param HistoryFactory $historyFactory
      * @param Data $helper
+     * @param Session $session
      */
     public function __construct(
-        StoreManagerInterface            $storeManager,
         OrderCustomerManagementInterface $orderCustomerService,
         OrderFactory                     $orderFactory,
         OrderRepositoryInterface         $orderRepository,
         CustomerFactory                  $customer,
-        EncryptorInterface               $encryptor,
         CollectionFactory                $collectionFactory,
         HistoryFactory                   $historyFactory,
         Data                             $helper,
-        Session $session
+        Session                          $session
     )
     {
         $this->_session = $session;
         $this->_helper = $helper;
         $this->_historyFactory = $historyFactory;
         $this->_collectionFactory = $collectionFactory;
-        $this->_encryptor = $encryptor;
-        $this->_storeManager = $storeManager;
         $this->orderCustomerService = $orderCustomerService;
         $this->_orderFactory = $orderFactory;
         $this->orderRepository = $orderRepository;
@@ -111,41 +111,45 @@ class ConvertGuest implements ObserverInterface
     public function execute(Observer $observer)
     {
         $orderIds = $observer->getEvent()->getOrderIds();
-        //take the last order
         $orderId = $orderIds[0];
-        $order = $this->_orderFactory->create()->load($orderId);
-        //Call History Model
-        $history = $this->_historyFactory->create();
-        //Get Rule_ID
-        $rule = $this->_helper->getRuleId();
+        $lastOrder = $this->_orderFactory->create()->load($orderId);
+        $historyCollection = $this->_historyFactory->create();
+        $ruleId = $this->_helper->getRuleId();
+        $isLogIn = $this->_session->isLoggedIn();
 
-        //Nếu customer dãd đăng nhập và lấy đc orderId
-        if($this->_session->isLoggedIn() && $order->getId())
-        {
+        if ($isLogIn && $lastOrder->getId()) {
             $customerId = $this->_session->getCustomerId();
-            $order->setCustomerId($customerId);
-            $order->setCustomerIsGuest(0);
-            $this->orderRepository->save($order);
+            $lastOrder->setCustomerId($customerId);
+            $lastOrder->setCustomerIsGuest(0);
+            $this->orderRepository->save($lastOrder);
 
             $arr = [
-                'order_id' => $order->getId(),
+         /**
+     * @param Observer $observer
+     * @return void
+     * @throws AlreadyExistsException
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
+     * @throws Zend_Log_Exception
+     * @throws Exception
+     */           'order_id' => $lastOrder->getId(),
                 'customer_id' => $customerId,
-                'rule_id' => $rule
+                'rule_id' => $ruleId
             ];
-        }else{
+        } else if (!$isLogIn && $lastOrder->getId()) {
             $registration = $this->orderCustomerService->create($orderId);
             $new_one = $this->_customer->create()->load($registration->getId());
             $new_one->setPassword('mort123');
             $new_one->save();
 
             $arr = [
-                'order_id' => $order->getId(),
+                'order_id' => $lastOrder->getId(),
                 'customer_id' => $registration->getId(),
-                'rule_id' => ''
+                'rule_id' => $ruleId
             ];
         }
 
-        $history->addData($arr);
-        $history->save();
+        $historyCollection->addData($arr);
+        $historyCollection->save();
     }
 }

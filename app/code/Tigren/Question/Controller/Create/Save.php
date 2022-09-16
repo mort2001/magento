@@ -27,19 +27,21 @@ class Save extends Action
      * @var PostFactory
      */
     protected $_postFactory;
+
     /**
      * @var Session
      */
     protected $session;
+
     /**
      * @var CustomerRepository
      */
     protected $customerFactory;
+
     /**
      * @var Customer
      */
     protected $cus;
-
 
     /**
      * @param Context $context

@@ -26,6 +26,7 @@ class Data extends AbstractHelper
      * @var CollectionFactory
      */
     private $collectionFactory;
+
     /**
      * @var Session
      */
@@ -71,17 +72,16 @@ class Data extends AbstractHelper
      */
     public function getDiscount()
     {
-        if ($this->_session->isLoggedIn()) {
-            $group_id = $this->_session->getCustomerGroupId();
-            $ruleCollection = $this->collectionFactory->create()
-                ->addFieldToFilter('customer_group_ids', ['like' => '%' . $group_id . '%'])
-                ->addFieldToFilter('from_date', ['lt' => date('Y-m-d')])
-                ->addFieldToFilter('to_date', ['gt' => date('Y-m-d')])
-                ->setOrder('priority', 'ASC');
-            $discount_amount = $ruleCollection->setPageSize(1)->getFirstItem()->getDiscountAmount();
+        $group_id = $this->_session->getCustomerGroupId();
+        $ruleCollection = $this->collectionFactory->create()
+            ->addFieldToFilter('customer_group_ids', ['like' => '%' . $group_id . '%'])
+            ->addFieldToFilter('from_date', ['lt' => date('Y-m-d')])
+            ->addFieldToFilter('to_date', ['gt' => date('Y-m-d')])
+            ->setOrder('priority', 'ASC');
+        $discount_amount = $ruleCollection->setPageSize(1)->getFirstItem()->getDiscountAmount();
 
-            return $discount_amount / 100;
-        }
+        return $discount_amount / 100;
+
     }
 
     /**
@@ -90,16 +90,14 @@ class Data extends AbstractHelper
      */
     public function getRuleId()
     {
-        if ($this->_session->isLoggedIn()) {
-            $group_id = $this->_session->getCustomerGroupId();
-            $ruleCollection = $this->collectionFactory->create()
-                ->addFieldToFilter('customer_group_ids', ['like' => '%' . $group_id . '%'])
-                ->addFieldToFilter('from_date', ['lt' => date('Y-m-d')])
-                ->addFieldToFilter('to_date', ['gt' => date('Y-m-d')])
-                ->setOrder('priority', 'ASC');
+        $group_id = $this->_session->getCustomerGroupId();
+        $ruleCollection = $this->collectionFactory->create()
+            ->addFieldToFilter('customer_group_ids', ['like' => '%' . $group_id . '%'])
+            ->addFieldToFilter('from_date', ['lt' => date('Y-m-d')])
+            ->addFieldToFilter('to_date', ['gt' => date('Y-m-d')])
+            ->setOrder('priority', 'ASC');
 
-            return $ruleCollection->setPageSize(1)->getFirstItem()->getRuleId();
-        }
+        return $ruleCollection->setPageSize(1)->getFirstItem()->getRuleId();
     }
 
     /**

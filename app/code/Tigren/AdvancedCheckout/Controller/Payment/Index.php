@@ -17,7 +17,6 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Serialize\SerializerInterface;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule\CollectionFactory;
-use Zend_Log_Exception;
 
 /**
  * Class Index
@@ -68,25 +67,24 @@ class Index extends Action
      * @return ResponseInterface|ResultInterface
      * @throws LocalizedException
      * @throws NoSuchEntityException
-     * @throws Zend_Log_Exception
      */
     public function execute()
     {
         $result = [];
         $sku = $this->getRequest()->getParam('productSku');
         $product = $this->_productRepository->get($sku);
-        $multi_orders = $product->getCustomAttribute('custom_product_attribute') ? $product->getCustomAttribute('custom_product_attribute')->getValue() : '';
+        $multiOrders = $product->getCustomAttribute('custom_product_attribute') ? $product->getCustomAttribute('custom_product_attribute')->getValue() : '';
 
-        $check_product = $this->_checkoutSession->getQuote()->getItemsCollection();
-        $cart_sku = $check_product
+        $productCollectionCart = $this->_checkoutSession->getQuote()->getItemsCollection();
+        $filterProducts = $productCollectionCart
             ->addFieldToFilter('sku', $sku);
         $a = 0;
-        foreach ($cart_sku as $cart) {
+        foreach ($filterProducts as $cart) {
             if ($cart['sku'] == $sku) {
                 $a++;
             }
         }
-        if ($multi_orders == 0 && $a > 0) {
+        if ($multiOrders == 0 && $a > 0) {
             $result['ClearCart'] = true;
         } else {
             $result['ClearCart'] = false;

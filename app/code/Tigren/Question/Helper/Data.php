@@ -23,6 +23,7 @@ class Data extends AbstractHelper
      * @var Session
      */
     protected $_session;
+
     /**
      * @var CollectionFactory
      */

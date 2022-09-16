@@ -9,7 +9,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="Tigren_CustomerGroup::rule" title="Tigren Rule" module="Tigren_CustomerGroupCatalog" sortOrder="20"
-             resource="Tigren_CustomerGroup::rule"/>
+             resource="Tigren_CustomerGroup::rule" action="tigren_customergroup/rule/index"/>
         <add id="Tigren_CustomerGroup::manage_rules" title="Manage Rules" module="Tigren_CustomerGroupCatalog"
              action="tigren_customergroup/rule/index" resource="Tigren_CustomerGroup::rule"
              parent="Tigren_CustomerGroup::rule"/>

@@ -31,22 +31,27 @@ class ClearCart extends Action
      * @var CartRepositoryInterface
      */
     protected $_cartRepository;
+
     /**
      * @var Cart
      */
     protected $_modelCart;
+
     /**
      * @var Item
      */
     protected $modelCartItem;
+
     /**
      * @var CheckoutSession
      */
     protected $checkoutSession;
+
     /**
      * @var SerializerInterface
      */
     protected $serializer;
+
     /**
      * @var ResultFactory
      */
@@ -91,7 +96,6 @@ class ClearCart extends Action
             $cart = $this->checkoutSession
                 ->clearQuote()
                 ->getQuote()
-                ->unsetData('any_custom_quote_attribute')
                 ->removeAllItems();
             $this->_cartRepository->save($cart);
             $this->checkoutSession->replaceQuote($cart);

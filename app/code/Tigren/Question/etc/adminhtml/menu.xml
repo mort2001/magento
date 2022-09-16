@@ -9,7 +9,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="Tigren_Question::question" title="Tigren Question" module="Tigren_Question" sortOrder="20"
-             resource="Tigren_Question::question"/>
+             resource="Tigren_Question::question" action="question/create"/>
         <add id="Tigren_Question::manage_questions" title="Manage Questions" module="Tigren_Question"
              action="question/create" resource="Tigren_Question::question"
              parent="Tigren_Question::question"/>

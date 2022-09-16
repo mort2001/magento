@@ -34,7 +34,6 @@ class PlaceOrderNotice extends Action
      */
     protected $_session;
 
-
     /**
      * @param Context $context
      * @param Session $session
@@ -63,16 +62,15 @@ class PlaceOrderNotice extends Action
         $data = $this->getRequest()->getParam('data');
         if ($data) {
             $customerId = $this->_session->getCustomerId();
-            $orders = $this->_orderCollectionFactory->create();
-            $orders->addFieldToFilter('customer_id', $customerId);
-            $statuses = $orders->getColumnValues('status');
+            $orderCollection = $this->_orderCollectionFactory->create();
+            $orderCollection->addFieldToFilter('customer_id', $customerId);
+            $orderCollection->setOrder('created_at', 'DESC');
 
-            if (count($orders) > 0) {
-                foreach ($statuses as $status) {
-                    if ($status == 'pending' || $status == 'processing') {
-                        $result['openPopup'] = true;
-                    }
-                }
+            $lastOrder = $orderCollection->setPageSize(1)->getFirstItem();
+            $status = $lastOrder->getStatus();
+
+            if ($status == 'pending' || $status == 'processing') {
+                $result['openPopup'] = true;
             } else {
                 $result['openPopup'] = false;
             }

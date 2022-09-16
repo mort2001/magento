@@ -25,6 +25,7 @@ class ListQuestion extends Action
      * @var PageFactory
      */
     protected $resultPageFactory;
+
     /**
      * @var Session
      */

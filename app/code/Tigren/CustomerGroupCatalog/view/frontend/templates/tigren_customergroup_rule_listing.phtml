@@ -6,6 +6,7 @@
  */
 
 $item = $this->helper(Tigren\CustomerGroupCatalog\Helper\Data::class)->getRules();
+$discount = $this->helper(Tigren\CustomerGroupCatalog\Helper\Data::class)->getDiscount();
 ?>
 <style>
     td {
@@ -15,6 +16,11 @@ $item = $this->helper(Tigren\CustomerGroupCatalog\Helper\Data::class)->getRules(
         text-align: center;
     }
 </style>
+<div>
+    <p style="color: rebeccapurple; font-weight: bold; font-size: 18px">
+        Congratulation!!! You have received discount <?= $discount * 100 ?> % all products!!!
+    </p>
+</div>
 <button class="action submit primary"><a style="color: white" href="<?= $block->getUrl('') ?>">
         <?php echo __('Go to Homepage :D') ?></a></button>
 <br><br>
