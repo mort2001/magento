@@ -28,4 +28,6 @@
             <argument name="resourceModel" xsi:type="string">Tigren\Question\Model\ResourceModel\Post</argument>
         </arguments>
     </virtualType>
+
+    <preference for="Tigren\Question\Api\QuestionInterface" type="Tigren\Question\Model\Question"/>
 </config>

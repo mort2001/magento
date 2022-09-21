@@ -52,7 +52,7 @@ if ($question->count()) {
             <?php
             foreach ($question as $item): ?>
                 <tr>
-                    <td data-th="<?= $block->escapeHtml(__('ID')) ?>" class="col id">
+                    <td data-th="<?= $block->escapeHtml(__('ID')) ?>" class="col entityid" id="question_id">
                         <?php echo $item['entity_id'] ?>
                     </td>
                     <td data-th="<?= $block->escapeHtml(__('Title')) ?>" class="col title">
@@ -68,8 +68,11 @@ if ($question->count()) {
                     <td>
                         <button><a href="<?= $block->getUrl("*/*/edit") ?>?id=<?= $item['entity_id'] ?>" )>Edit</a>
                         </button>
-                        <button><a href="<?= $block->getUrl("*/*/delete") ?>?id=<?= $item['entity_id'] ?>" )
-                                   onclick="return confirm('Do you want delete the question ?')">Delete</a></button>
+                        <button title="<?php echo __('Delete') ?>"
+                                data-question-id="<?= $item['entity_id'] ?>"
+                                class="action submit delete_btn" onclick="return deleteQuestion(this)">
+                            <span><?php echo __('Delete') ?></span>
+                        </button>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -88,3 +91,49 @@ if ($question->count()) {
     <?php
 }
 ?>
+<!--<script type="text/javascript">-->
+<!---->
+<!--    function deleteQuestion(e){-->
+<!--        const questionId = e.getAttribute('data-question-id');-->
+<!--        console.log(questionId);-->
+<!--    }-->
+<!--</script>-->
+
+<script>
+    function deleteQuestion(e) {
+        const questionId = e.getAttribute('data-question-id');
+    require(
+        [
+            'jquery',
+            'mage/translate',
+            'mage/storage',
+            'ko',
+            'Tigren_Question/js/model/url-builder'
+        ], function (
+            $,
+            $t,
+            storage,
+            ko,
+            urlBuilder
+        ) {
+                storage.delete(
+                    urlBuilder.createUrl('/tigren_question/delete/'+ questionId, {}),
+                    JSON.stringify({
+                        id: questionId,
+                    }),
+                ).done(function (data) {
+                    if (data === true) {
+                        console.log(data);
+                        alert('Delete success!!!');
+                        window.location.href = '/question/create/listquestion'
+                    }
+                }).fail(
+                    function (response) {
+                        console.log(response);
+                        alert("Sai cmnr");
+                    }
+                );
+        });
+    }
+</script>
+

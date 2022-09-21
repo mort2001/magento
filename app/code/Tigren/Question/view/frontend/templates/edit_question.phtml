@@ -17,8 +17,6 @@ $getQuestion = $block->getQuestion();
 
 <div id="custom_form">
     <form class="form form-edit-account"
-          action="<?= $block->escapeUrl($block->getUrl("*/*/update")) ?>.?id=<?= $getQuestion['entity_id'] ?>"
-          method="post"
           enctype="multipart/form-data"
           data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
           autocomplete="off">
@@ -27,6 +25,8 @@ $getQuestion = $block->getQuestion();
         <fieldset class="fieldset info">
             <legend style="text-align: center; font-size: 25px; font-family: monospace; color: #0a820b" class="legend">
                 <b><span><?= $block->escapeHtml(__('Edit Question')) ?></span></b></legend>
+            <input name="id" id="id" title="<?php echo __('ID') ?>" class="input-text" type="hidden"
+                   value="<?= $getQuestion->getEntityId() ?>"/>
             <div class="field title required">
                 <label class="label" for="title"><span><?php echo __('Title') ?></span></label>
                 <div class="control">
@@ -42,9 +42,56 @@ $getQuestion = $block->getQuestion();
                            value="<?= $getQuestion['content'] ?>"/>
                 </div>
             </div>
-            <button type="submit" title="<?php echo __('Submit') ?>" class="action submit primary" id="custom_btn">
+            <button type="submit" title="<?php echo __('Submit') ?>"
+                    data-question-id="<?= $getQuestion->getEntityId() ?>" class="action submit primary"
+                    id="submit_form_btn">
                 <span><?php echo __('Submit') ?></span>
             </button>
         </fieldset>
     </form>
 </div>
+
+<script>
+    require(
+        [
+            'jquery',
+            'mage/translate',
+            'mage/storage',
+            'ko',
+            'Tigren_Question/js/model/url-builder'
+        ], function (
+            $,
+            $t,
+            storage,
+            ko,
+            urlBuilder
+        ) {
+            $('#submit_form_btn').on('click', function (event) {
+                var title = $('#title').val();
+                var content = $('#content').val();
+                var id = $('#id').val();
+                if (title && content) {
+                    event.preventDefault();
+                    storage.post(
+                        urlBuilder.createUrl('/tigren_question/update/', {}),
+                        JSON.stringify({
+                            id: id,
+                            title: title,
+                            content: content,
+                        }),
+                    ).done(function (data) {
+                            if (data === true) {
+                                console.log(data);
+                                alert('Upadte Question Successfully!!!');
+                                window.location.href = '/question/create/listquestion'
+                            }
+                        }
+                    ).fail(
+                        function (response) {
+                        }
+                    );
+                }
+            });
+        })
+
+</script>

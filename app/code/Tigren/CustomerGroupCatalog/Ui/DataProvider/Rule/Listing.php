@@ -20,17 +20,17 @@ class Listing extends AbstractDataProvider
 {
     /**
      * @param CollectionFactory $collectionFactory
-     * @param $name
-     * @param $primaryFieldName
-     * @param $requestFieldName
+     * @param string $name
+     * @param string $primaryFieldName
+     * @param string $requestFieldName
      * @param array $meta
      * @param array $data
      */
     public function __construct(
         CollectionFactory $collectionFactory,
-                          $name,
-                          $primaryFieldName,
-                          $requestFieldName,
+        string  $name,
+        string $primaryFieldName,
+        string  $requestFieldName,
         array             $meta = [],
         array             $data = []
     )
