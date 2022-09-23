@@ -37,9 +37,8 @@ $getQuestion = $block->getQuestion();
             <div class="field content required">
                 <label class="label" for="title"><span><?php echo __('Content') ?></span></label>
                 <div class="control">
-                    <input name="content" id="content" title="<?php echo __('Content') ?>" class="input-text"
-                           type="text"
-                           value="<?= $getQuestion['content'] ?>"/>
+                    <textarea name="content" id="content" title="<?php echo __('Content') ?>"
+                              class="input-text"> <?= $getQuestion['content'] ?> </textarea>
                 </div>
             </div>
             <button type="submit" title="<?php echo __('Submit') ?>"
