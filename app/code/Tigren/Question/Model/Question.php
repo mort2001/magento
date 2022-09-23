@@ -17,7 +17,6 @@ use Magento\Customer\Model\Session;
  */
 class Question implements QuestionInterface
 {
-
     /**
      * @var Session
      */
