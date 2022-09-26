@@ -28,14 +28,17 @@ class Index extends Action
      * @var CollectionFactory
      */
     protected $_collectionFactory;
+
     /**
      * @var SerializerInterface
      */
     protected $serializer;
+
     /**
      * @var CheckoutSession
      */
     protected $_checkoutSession;
+
     /**
      * @var ProductRepository
      */
@@ -73,7 +76,7 @@ class Index extends Action
         $result = [];
         $sku = $this->getRequest()->getParam('productSku');
         $product = $this->_productRepository->get($sku);
-        $multiOrders = $product->getCustomAttribute('custom_product_attribute') ? $product->getCustomAttribute('custom_product_attribute')->getValue() : '';
+        $multiOrders = $product->getCustomAttribute('custom_product_attribute') ? $product->getCustomAttribute('custom_product_attribute')->getValue() : 0;
 
         $productCollectionCart = $this->_checkoutSession->getQuote()->getItemsCollection();
         $filterProducts = $productCollectionCart

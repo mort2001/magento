@@ -67,7 +67,7 @@ class Products
             $finalPriceValue = $product->getPriceInfo()->getPrice('final_price')->getValue();
 
             return $finalPriceValue - ($finalPriceValue * $discountAmount);
-        } catch (NoSuchEntityException|LocalizedException $e) {
+        } catch (NoSuchEntityException|LocalizedException) {
         }
     }
 }

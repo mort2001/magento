@@ -9,6 +9,10 @@ namespace Tigren\CustomerGroupCatalog\Plugin\Magento\Catalog\Model;
 
 use Magento\Catalog\Model\Product;
 use Magento\Customer\Model\Session;
+use Magento\Framework\App\Http\Context;
+use Zend_Log;
+use Zend_Log_Exception;
+use Zend_Log_Writer_Stream;
 
 /**
  * Class HideButton
@@ -16,6 +20,8 @@ use Magento\Customer\Model\Session;
  */
 class HideAddToCartButton
 {
+    protected $_httpContext;
+
     /**
      * @var Session
      */
@@ -23,21 +29,26 @@ class HideAddToCartButton
 
     /**
      * @param Session $session
+     * @param Context $httpContext
      */
-    public function __construct(Session $session)
+    public function __construct(Session $session, Context $httpContext)
     {
+        $this->_httpContext = $httpContext;
         $this->session = $session;
     }
 
     /**
      * @param Product $product
      * @param $result
-     * @return bool|void
+     * @return bool
      */
     public function afterIsSalable(Product $product, $result)
     {
-        if ($this->session->isLoggedIn()) {
-            return $result;
+        if ($this->_httpContext->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH)) {
+            $result = true;
+        } else {
+            $result = false;
         }
+        return $result;
     }
 }

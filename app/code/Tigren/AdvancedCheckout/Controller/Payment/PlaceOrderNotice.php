@@ -25,10 +25,12 @@ class PlaceOrderNotice extends Action
      * @var SerializerInterface
      */
     protected $serializer;
+
     /**
      * @var CollectionFactory
      */
     protected $_orderCollectionFactory;
+
     /**
      * @var Session
      */

@@ -51,12 +51,10 @@ class AddDiscountProductToCart implements ObserverInterface
      */
     protected $_request;
 
-
     /**
      * @var StoreManagerInterface
      */
     protected $_storeManager;
-
 
     /**
      * @var Product

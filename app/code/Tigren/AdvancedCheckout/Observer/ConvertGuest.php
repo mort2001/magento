@@ -124,23 +124,15 @@ class ConvertGuest implements ObserverInterface
             $this->orderRepository->save($lastOrder);
 
             $arr = [
-         /**
-     * @param Observer $observer
-     * @return void
-     * @throws AlreadyExistsException
-     * @throws LocalizedException
-     * @throws NoSuchEntityException
-     * @throws Zend_Log_Exception
-     * @throws Exception
-     */           'order_id' => $lastOrder->getId(),
+                'order_id' => $lastOrder->getId(),
                 'customer_id' => $customerId,
                 'rule_id' => $ruleId
             ];
         } else if (!$isLogIn && $lastOrder->getId()) {
             $registration = $this->orderCustomerService->create($orderId);
-            $new_one = $this->_customer->create()->load($registration->getId());
-            $new_one->setPassword('mort123');
-            $new_one->save();
+            $new_customer = $this->_customer->create()->load($registration->getId());
+            $new_customer->setPassword('mort123');
+            $new_customer->save();
 
             $arr = [
                 'order_id' => $lastOrder->getId(),

@@ -33,6 +33,6 @@ interface QuestionInterface
      * @param string $content
      * @return bool
      */
-    public function update ($id, $title, $content);
+    public function update($id, $title, $content);
 }
 
