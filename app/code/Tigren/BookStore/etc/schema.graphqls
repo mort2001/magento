@@ -1,0 +1,61 @@
+type Query {
+    getAllBooks : [Books]
+    @resolver(class: "\\Tigren\\BookStore\\Model\\Resolver\\GetAllBooks")
+    @doc(description: "Take all books from the database")
+}
+type Mutation {
+    addNewBookInput (
+        input: InputBook! @doc(description: "Add new book")
+    ): addNewBookOutput @resolver(class: "\\Tigren\\BookStore\\Model\\Resolver\\AddNewBook") @doc(description: "Resolver to add new book")
+
+    addNewAuthorInput (
+        input: InputAuthor!
+    ) : addNewAuthorOutput @resolver(class: "\\Tigren\\BookStore\\Model\\Resolver\\AddNewAuthor") @doc(description: "Resolver to add new author")
+}
+
+type Books {
+    entity_id: Int @doc(description: "Book entity id")
+    title: String @doc(description: "Book title")
+    page: Int @doc(description: "Book pages")
+    created_at: String @doc(description: "Book created")
+    author: Author @doc(description: "Author of this book")
+}
+
+type Author {
+    author_id: Int @doc(description: "Author id")
+    name: String @doc(description: "Author name")
+    age: Int @doc(description: "Age of the author")
+    pseudonym: String @doc(description: "Pseudonym of the author")
+    gender: Int @doc(description: "Gender of the author")
+}
+
+input InputBook {
+    title: String! @doc(description: "Book title")
+    page: Int! @doc(description: "Book pages")
+    created_at: String! @doc(description: "Book created")
+    author_pseudonym: String! @doc(description: "Pseudonym of the author")
+}
+
+input InputAuthor {
+    name: String! @doc(description: "")
+    age: Int! @doc(description:"")
+    pseudonym: String! @doc(description:"")
+    gender: Int @doc(description:"")
+}
+
+type addNewBookOutput {
+    title: String
+    page: Int
+    created_at: String
+    author: Author
+    message: String @doc(description: "Message of this action")
+}
+
+type addNewAuthorOutput {
+    message: String @doc(description: "Message of this action")
+    author_id: Int @doc(description: "")
+    name: String @doc(description: "Name")
+    age: Int @doc(description: "Age")
+    pseudonym: String @doc(description: "")
+    gender : Int @doc(description: "Gender")
+}

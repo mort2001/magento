@@ -1,0 +1,14 @@
+type Query {
+    getCountNumberDays(input: DateInput) : DateOutput
+    @resolver(class: "Tigren\\GraphQL\\Model\\Resolver\\GetCountNumberDays")
+    @doc(description: "Get number days")
+}
+
+input DateInput {
+    year: Int
+    month: Int
+}
+
+type DateOutput {
+    days: Int
+}
