@@ -1,0 +1,29 @@
+{
+    "tigren_book_store": {
+        "column": {
+            "entity_id": true,
+            "title": true,
+            "page": true,
+            "created_at": true,
+            "author_id": true
+        },
+        "index": {
+            "TIGREN_BOOK_STORE_AUTHOR_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "TIGREN_BOOK_STORE_AUTHOR_ID_TIGREN_BOOK_STORE_AUTHOR_AUTHOR_ID": true
+        }
+    },
+    "tigren_book_store_author": {
+        "column": {
+            "author_id": true,
+            "name": true,
+            "age": true,
+            "gender": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
