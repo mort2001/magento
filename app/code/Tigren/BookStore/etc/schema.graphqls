@@ -2,6 +2,10 @@ type Query {
     getAllBooks : [Books]
     @resolver(class: "\\Tigren\\BookStore\\Model\\Resolver\\GetAllBooks")
     @doc(description: "Take all books from the database")
+
+    getViewsCountOfProduct(
+        sku: String! @doc(description: "Enter Sku of the product")
+    ) : ViewsCountOutput @resolver(class: "\\Tigren\\BookStore\\Model\\Resolver\\GetViewsCountOfProduct") @doc(description: "")
 }
 type Mutation {
     addNewBookInput (
@@ -11,6 +15,10 @@ type Mutation {
     addNewAuthorInput (
         input: InputAuthor!
     ) : addNewAuthorOutput @resolver(class: "\\Tigren\\BookStore\\Model\\Resolver\\AddNewAuthor") @doc(description: "Resolver to add new author")
+
+    addViewCountInput (
+        sku: String! @doc(description: "")
+    ): addViewCountOutput @resolver(class: "\\Tigren\\BookStore\\Model\\Resolver\\AddViewCount") @doc(description: "")
 }
 
 type Books {
@@ -58,4 +66,13 @@ type addNewAuthorOutput {
     age: Int @doc(description: "Age")
     pseudonym: String @doc(description: "")
     gender : Int @doc(description: "Gender")
+}
+
+type ViewsCountOutput {
+    views_count: Int @doc(description: "")
+    message: String @doc(description: "")
+}
+
+type addViewCountOutput {
+    message: String @doc(description: "")
 }
