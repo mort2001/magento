@@ -1,8 +1,13 @@
+<?php
+/**
+ * @var Tigren\Kojs\Block\Account $block ;
+ */
+?>
 <div id="custom-component" data-bind="scope:'customcomponent'">
     <!-- ko template: getTemplate() --><!-- /ko -->
     <script type="text/x-magento-init">
     {
-        "#custom-component": {
+         "#custom-component": {
             "Magento_Ui/js/core/app": {
                "components": {
                     "customcomponent": {
@@ -12,5 +17,40 @@
             }
         }
     }
+
+
+
+    </script>
+</div>
+
+<br>
+<hr>
+<br>
+
+<div id="other-component" data-bind="scope: 'othercase-test'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+    {
+        "#other-component": {
+            "Magento_Ui/js/core/app": {
+               "components": {
+                    "othercase-test": {
+                        "component": "Tigren_Kojs/js/view/product"
+                    }
+                }
+            }
+        }
+    }
+
+
+    </script>
+    <script>
+        require([
+            'mage/url',
+            'Magento_Ui/js/block-loader'
+        ], function (url, blockLoader) {
+            blockLoader("<?php /* @escapeNotVerified */ echo $block->getViewFileUrl('images/loader-1.gif'); ?>");
+            return url.setBaseUrl('<?php /* @escapeNotVerified */ echo $block->getBaseUrl();?>');
+        });
     </script>
 </div>

@@ -19,6 +19,9 @@ define([
                 this._super();
             },
             addNewCustomer: function () {
+                // if(this.customerData == null || this.customerData.length === 0 || this.customerData === ''){
+                //     alert('Invalid input!!!');
+                // }
                 this.customerName.push({mort:this.customerData()});
                 this.customerData('');
             }
