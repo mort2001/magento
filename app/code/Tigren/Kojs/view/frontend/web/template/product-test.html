@@ -1,0 +1,26 @@
+<!--
+  ~ @author    Tigren Solutions <info@tigren.com>
+  ~ @copyright Copyright (c) 2022 Tigren Solutions <https://www.tigren.com>. All rights reserved.
+  ~ @license   Open Software License ("OSL") v. 3.0
+  -->
+
+<button data-bind="click: getProductData">Get next Product</button>
+<hr>
+<table class="list-product">
+    <br>
+    <thead>Table of Products</thead>
+    <tr style="background: pink">
+        <th>#</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Image</th>
+    </tr>
+    <tbody data-bind="foreach: listProducts">
+    <tr style="background: aquamarine">
+        <td data-bind="text: entity_id"></td>
+        <td data-bind="text: name"></td>
+        <td data-bind="text: price"></td>
+        <td><img data-bind="attr: {src: src}" width="120" height="150" alt="Product Image"></td>
+    </tr>
+    </tbody>
+</table>

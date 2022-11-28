@@ -350,6 +350,7 @@ return [
         'Tigren_BookStore' => 1,
         'Tigren_CustomerGroupCatalog' => 1,
         'Tigren_GraphQLShowDays' => 1,
+        'Tigren_Kojs' => 1,
         'Tigren_Question' => 1
     ]
 ];

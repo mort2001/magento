@@ -210,6 +210,10 @@ class Product extends AbstractResource
         return $this->defaultAttributes->getDefaultAttributes();
     }
 
+    public function getCollection()
+    {
+    }
+
     /**
      * Retrieve product website identifiers
      *
