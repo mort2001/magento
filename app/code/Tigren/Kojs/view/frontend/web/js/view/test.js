@@ -11,7 +11,7 @@ define([
         'use strict';
         return Component.extend({
             defaults: {
-                template: 'Tigren_Kojs/knockout-test'
+                template: 'Tigren_Kojs/knockout-test',
             },
             initialize: function () {
                 this.customerName = ko.observableArray([]);
