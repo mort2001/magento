@@ -5,13 +5,25 @@
  */
 
 define([
-    'jquery', 'uiComponent', 'ko'
+        'jquery', 'uiComponent', 'ko'
     ],
     function ($, Component, ko) {
         'use strict';
         return Component.extend({
             defaults: {
-                template: 'Tigren_Kojs/knockout-test',
+                imports: {
+                    status: '${ $.provider }:status',
+                },
+                // status: ko.observable(),
+                // bio: ko.observable(''),
+
+                tracks: {
+                    status: true,
+                    bio: true
+                },
+                links: {
+                    bio: '${ $.provider }:bio'
+                }
             },
             initialize: function () {
                 this.customerName = ko.observableArray([]);
@@ -19,11 +31,23 @@ define([
                 this._super();
             },
             addNewCustomer: function () {
-                // if(this.customerData == null || this.customerData.length === 0 || this.customerData === ''){
-                //     alert('Invalid input!!!');
-                // }
-                this.customerName.push({mort:this.customerData()});
+                this.customerName.push({ mort: this.customerData() });
                 this.customerData('');
+            },
+            getTwitterHandle: function () {
+                return '@' + this.twitter;
+            },
+
+            getTwitterUrl: function () {
+                return 'https://twitter.com/' + this.twitter;
+            },
+
+            getButtonText: function () {
+                return this.status === 'Online' ? 'Go Offline' : 'Go Online';
+            },
+
+            setStatus: function () {
+                return this.status === 'Online' ? this.status= 'Offline' : this.status = 'Online';
             }
         });
     }

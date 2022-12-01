@@ -11,12 +11,18 @@
             "Magento_Ui/js/core/app": {
                "components": {
                     "customcomponent": {
-                        "component": "Tigren_Kojs/js/view/test"
+                        "component": "Tigren_Kojs/js/view/test",
+                        "config": {
+                            "template": "Tigren_Kojs/knockout-test",
+                            "provider": "othercase-test"
+                        }
                     }
                 }
             }
         }
     }
+
+
     </script>
 </div>
 <br>
@@ -29,12 +35,18 @@
             "Magento_Ui/js/core/app": {
                "components": {
                     "othercase-test": {
-                        "component": "Tigren_Kojs/js/view/product"
+                        "component": "Tigren_Kojs/js/view/product",
+                        "config": {
+                            "template": "Tigren_Kojs/product-test",
+                            "provider": "customcomponent"
+                        }
                     }
                 }
             }
         }
     }
+
+
 
     </script>
     <script>
