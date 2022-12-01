@@ -13,6 +13,7 @@ define([
             defaults: {
                 imports: {
                     status: '${ $.provider }:status',
+                    defaultStatus: '${ $.provider }:status',
                 },
                 // status: ko.observable(),
                 // bio: ko.observable(''),
@@ -34,12 +35,12 @@ define([
                 this.customerName.push({ mort: this.customerData() });
                 this.customerData('');
             },
-            getTwitterHandle: function () {
-                return '@' + this.twitter;
+            getFBHandle: function () {
+                return "Thành Dương";
             },
 
-            getTwitterUrl: function () {
-                return 'https://twitter.com/' + this.twitter;
+            getFBUrl: function () {
+                return 'https://fb.com/' + this.facebook;
             },
 
             getButtonText: function () {
@@ -48,6 +49,13 @@ define([
 
             setStatus: function () {
                 return this.status === 'Online' ? this.status= 'Offline' : this.status = 'Online';
+            },
+            setDefaultStatus: function () {
+                // return this.status = 'zzZ';
+                return this.status = this.defaultStatus;
+            },
+            getButtonDefaultText: function () {
+                return 'Back to Default Status';
             }
         });
     }

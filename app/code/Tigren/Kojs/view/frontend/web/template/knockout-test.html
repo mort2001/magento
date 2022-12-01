@@ -4,10 +4,14 @@
   ~ @license   Open Software License ("OSL") v. 3.0
   -->
 
-<div class="component-wrapper">
+<div class="component-wrapper" style="background: rgba(119,190,210,255); padding: 10px;">
     <div class="field">
-        <label class="label" for="email"><span data-bind="i18n: 'New Things'"></span></label>
-        <div class="control">
+        <!--        <label class="label" for="email"><strong><span data-bind="i18n: 'New Things'"></span></strong></label>-->
+        <div class="title" style="text-align: center; font-weight: bold">
+            <span data-bind="i18n: 'New Things'"></span>
+        </div>
+        <br>
+        <div class="control" style="margin: 0 150px 0 0">
             <input name="customername"
                    id="customername"
                    type="text"
@@ -17,14 +21,14 @@
         </div>
         <br>
         <div class="primary">
-            <button type="submit" class="action action-login secondary" data-bind="click: addNewCustomer">
+            <button type="submit" class="action action-login primary" data-bind="click: addNewCustomer">
                 <span data-bind="i18n: 'Save'"></span>
             </button>
         </div>
         <hr>
     </div>
     <ol>
-        <div class="customer-list" style="width: 20%;background: aquamarine;margin-top: 10px;"
+        <div class="customer-list" style="width: 20%;background: aquamarine;margin-top: 20px;"
              data-bind="foreach: customerName">
             <li data-bind="text: mort"></li>
         </div>
@@ -34,74 +38,103 @@
 <br>
 <hr>
 
-<!-- ko if: firstName -->
-<p>
-    <strong data-bind="i18n: 'Name:'"></strong>
-    <span data-bind="text: firstName"></span>
-</p>
-<!-- /ko -->
+<div class="information-mort" style="background: rgba(205,236,238,255); padding: 10px">
+    <div class="header" style="text-align: center">
+        <p><strong>Author's information</strong></p>
+    </div>
+    <!-- ko if: firstName -->
+    <p>
+        <strong data-bind="i18n: 'Name:'"></strong>
+        <span data-bind="text: firstName"></span>
+    </p>
+    <!-- /ko -->
 
-<!-- ko if: role -->
-<p>
-    <strong data-bind="i18n: 'Role:'"></strong>
-    <span data-bind="text: role"></span>
-</p>
-<!-- /ko -->
+    <!-- ko if: role -->
+    <p>
+        <strong data-bind="i18n: 'Role:'"></strong>
+        <span data-bind="text: role"></span>
+    </p>
+    <!-- /ko -->
 
-<!-- ko if: location -->
-<p>
-    <strong data-bind="i18n: 'Location:'"></strong>
-    <span data-bind="text: location"></span>
-</p>
-<!-- /ko -->
+    <!-- ko if: location -->
+    <p>
+        <strong data-bind="i18n: 'Location:'"></strong>
+        <span data-bind="text: location"></span>
+    </p>
+    <!-- /ko -->
 
-<!-- ko if: twitter -->
-<p>
-    <strong data-bind="i18n: 'Twitter:'"></strong>
+    <!-- ko if: facebook -->
+    <p>
+        <strong data-bind="i18n: 'Facebook:'"></strong>
 
-    <a target="_blank" data-bind="
+        <a target="_blank" data-bind="
         attr: {
-            title: $t('Follow me on Twitter'),
-            href: getTwitterUrl()
+            title: $t('Follow me on FB'),
+            href: getFBUrl()
         },
-        text: getTwitterHandle()">
-    </a>
-</p>
-<!-- /ko -->
-
-<!-- ko if: status -->
-<p>
-    <strong data-bind="i18n: 'Status:'"></strong>
-    <span data-bind="text: status"></span>
-</p>
-<!-- /ko -->
-
-<p>
-    <strong data-bind="i18n: 'Bio:'"></strong>
-    <!-- ko if: bio -->
-    <span data-bind="text: bio"></span>
+        text: getFBHandle()">
+        </a>
+    </p>
     <!-- /ko -->
 
-    <!-- ko ifnot: bio -->
-    <span data-bind="i18n: 'Bio needs to be written.'"></span>
+    <!-- ko if: status === "zzZ" -->
+    <p>
+        <strong data-bind="i18n: 'Status:'"></strong>
+        <span data-bind="text: status"></span>
+        <img src="https://tinyurl.com/5xt5yajh" alt="Sleep image" width="20px" height="20px">
+    </p>
     <!-- /ko -->
-</p>
 
-<fieldset class="fieldset">
-    <label class="label" for="bio">
-        <strong data-bind="i18n: 'Add you bio content:'"></strong>
-    </label>
-    <div class="control">
+    <!-- ko if: status === "Online" -->
+    <p>
+        <strong data-bind="i18n: 'Status:'"></strong>
+        <span data-bind="text: status"></span>
+        <img src="https://tinyurl.com/2wyds37h" alt="online image" width="20px" height="20px">
+    </p>
+    <!-- /ko -->
+
+    <!-- ko if: status === "Offline" -->
+    <p>
+        <strong data-bind="i18n: 'Status:'"></strong>
+        <span data-bind="text: status"></span>
+        <img src="https://tinyurl.com/pph9n9k8" alt="Offline image" width="20px" height="20px">
+    </p>
+    <!-- /ko -->
+
+    <p>
+        <strong data-bind="i18n: 'Bio:'"></strong>
+        <!-- ko if: bio -->
+        <span data-bind="text: bio"></span>
+        <!-- /ko -->
+
+        <!-- ko ifnot: bio -->
+        <span data-bind="i18n: 'Bio needs to be written.'"></span>
+        <!-- /ko -->
+    </p>
+
+    <fieldset class="fieldset">
+        <label class="label" for="bio">
+            <strong data-bind="i18n: 'Add you bio content:'"></strong>
+        </label>
+        <div class="control">
         <textarea
                 id="bio"
                 cols="5"
                 rows="5"
                 data-bind="textInput: bio">
         </textarea>
-    </div>
-</fieldset>
-
-<button type="button" class="action primary" data-bind="
+        </div>
+    </fieldset>
+    <div>
+        <button type="button" class="action primary" data-bind="
     click: setStatus,
     text: getButtonText()">
-</button>
+        </button>
+        <button type="button" title="Default Status" class="action primary" data-bind="
+    click: setDefaultStatus,
+    text: getButtonDefaultText()" style="float: right">
+        </button>
+    </div>
+</div>
+<br>
+<hr>

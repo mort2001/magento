@@ -19,14 +19,14 @@ define([
             firstName: 'Mort',
             role: 'Back-End Dev',
             location: 'VN',
-            twitter: 'mort',
-            status: ko.observable('OnOff'),
+            facebook: 'td.mort.150',
+            status: ko.observable('zzZ'),
             bio: ko.observable(''),
             exports: {
                 firstName: '${ $.provider }:firstName',
                 role: '${ $.provider }:role',
                 location: '${ $.provider }:location',
-                twitter: '${ $.provider }:twitter'
+                facebook: '${ $.provider }:facebook'
             },
             listens: {
                 '${ $.provider }:status': 'statusChanged',
