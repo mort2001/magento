@@ -38,11 +38,10 @@ class Data extends AbstractHelper
      * @param Session $session
      */
     public function __construct(
-        Context           $context,
+        Context $context,
         CollectionFactory $collectionFactory,
-        Session           $session
-    )
-    {
+        Session $session
+    ) {
         $this->collectionFactory = $collectionFactory;
         $this->_session = $session;
         parent::__construct($context);
@@ -50,6 +49,24 @@ class Data extends AbstractHelper
 
     /**
      * @return DataObject
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
+     */
+    public function getRule()
+    {
+        $group_id = $this->_session->getCustomerGroupId();
+        $ruleCollection = $this->collectionFactory->create()
+            ->addFieldToFilter('customer_group_ids', ['like' => '%' . $group_id . '%'])
+            ->addFieldToFilter('from_date', ['lt' => date('Y-m-d')])
+            ->addFieldToFilter('to_date', ['gt' => date('Y-m-d')])
+            ->setOrder('priority', 'ASC')
+            ->setOrder('discount_amount', 'DESC');
+
+        return $ruleCollection->setPageSize(1)->getFirstItem();
+    }
+
+    /**
+     * @return array
      * @throws LocalizedException
      * @throws NoSuchEntityException
      */
@@ -62,11 +79,11 @@ class Data extends AbstractHelper
             ->addFieldToFilter('to_date', ['gt' => date('Y-m-d')])
             ->setOrder('priority', 'ASC');
 
-        return $ruleCollection->setPageSize(1)->getFirstItem();
+        return $ruleCollection->getData();
     }
 
     /**
-     * @return float|int
+     * @return float
      * @throws LocalizedException
      * @throws NoSuchEntityException|Zend_Log_Exception
      */
@@ -77,11 +94,11 @@ class Data extends AbstractHelper
             ->addFieldToFilter('customer_group_ids', ['like' => '%' . $group_id . '%'])
             ->addFieldToFilter('from_date', ['lt' => date('Y-m-d')])
             ->addFieldToFilter('to_date', ['gt' => date('Y-m-d')])
-            ->setOrder('priority', 'ASC');
+            ->setOrder('priority', 'ASC')
+            ->setOrder('discount_amount', 'DESC');
         $discount_amount = $ruleCollection->setPageSize(1)->getFirstItem()->getDiscountAmount();
 
-        return $discount_amount / 100;
-
+        return (float)$discount_amount / 100;
     }
 
     /**
@@ -95,7 +112,8 @@ class Data extends AbstractHelper
             ->addFieldToFilter('customer_group_ids', ['like' => '%' . $group_id . '%'])
             ->addFieldToFilter('from_date', ['lt' => date('Y-m-d')])
             ->addFieldToFilter('to_date', ['gt' => date('Y-m-d')])
-            ->setOrder('priority', 'ASC');
+            ->setOrder('priority', 'ASC')
+            ->setOrder('discount_amount', 'DESC');
 
         return $ruleCollection->setPageSize(1)->getFirstItem()->getRuleId();
     }
@@ -103,16 +121,32 @@ class Data extends AbstractHelper
     /**
      * @return float|int
      * @throws LocalizedException
-     * @throws NoSuchEntityException
+     * @throws NoSuchEntityException|Zend_Log_Exception
      */
     public function getApplyRuleDiscount($sku, $group_id)
     {
+        $ruleCollection = $this->collectionFactory->create()
+            ->addFieldToFilter('customer_group_ids', ['like' => '%' . $group_id . '%'])
+            ->addFieldToFilter('from_date', ['lt' => date('Y-m-d')])
+            ->addFieldToFilter('to_date', ['gt' => date('Y-m-d')])
+            ->setOrder('priority', 'ASC')
+            ->setOrder('discount_amount', 'DESC');
+        $ruleData = $ruleCollection->setPageSize(1)->getFirstItem()->getProducts();
+        $ruleProductDiscount = explode(',', $ruleData);
+
+        foreach ($ruleProductDiscount as $rule) {
+            if ($rule == "*" || $rule == "all" || $rule == "All") {
+                return $this->getDiscount();
+            }
+        }
+
         $ruleCollection = $this->collectionFactory->create()
             ->addFieldToFilter('products', ['like' => '%' . $sku . '%'])
             ->addFieldToFilter('customer_group_ids', ['like' => '%' . $group_id . '%'])
             ->addFieldToFilter('from_date', ['lt' => date('Y-m-d')])
             ->addFieldToFilter('to_date', ['gt' => date('Y-m-d')])
-            ->setOrder('priority', 'ASC');
+            ->setOrder('priority', 'ASC')
+            ->setOrder('discount_amount', 'DESC');
         $discount_amount = $ruleCollection->setPageSize(1)->getFirstItem()->getDiscountAmount();
 
         return $discount_amount / 100;
